@@ -4,3 +4,4 @@
 *.log
 .env
 /runtime/
+/node_modules/
