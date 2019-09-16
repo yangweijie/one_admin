@@ -43,3 +43,12 @@ function base64DecodeImage($base64)
         return false;
     }
 }
+
+function get_num_from_str($str){
+    return preg_replace('/\D/', '', $str);
+}
+
+// 生成js时间戳
+function jstime(){
+    return substr(get_num_from_str(microtime(true)), 0, 13);
+}
