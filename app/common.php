@@ -1378,7 +1378,8 @@ if (!function_exists('role_auth')) {
      * @author 蔡伟明 <314013107@qq.com>
      */
     function role_auth() {
-        session('role_menu_auth', model('user/role')->roleAuth());
+    	$model = new \app\user\model\Role();
+        session('role_menu_auth', $model->roleAuth());
     }
 }
 

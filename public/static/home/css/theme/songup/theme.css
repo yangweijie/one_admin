@@ -1,0 +1,270 @@
+@charset "utf-8";
+/*global*/
+*{
+   margin:0;
+   padding:0;border:0
+}
+div{margin:0;padding:0;}
+embed{z-index:0}
+a:visited{color: #D1D1D1}
+a:link, a:visited {
+    text-decoration: none;
+    color: #888;
+    line-height: 140%;
+}
+a{text-decoration: none;}
+body{
+    font-size:13px;
+    margin:0px;
+    padding:0px;
+    text-align:center;
+    color:#888;
+    font-family: Tahoma, Arial,'宋体';
+    background-attachment:scroll;/*必要，防抖动*/
+    background-color: #333;
+    background-image: url(../songup/images/bg.gif);
+    background-repeat: no-repeat;
+    background-position: center top;
+}
+ul{
+    list-style:none;
+}
+select{font-family: Verdana, Arial}
+th{background:#f5f5f1;}
+html{
+    SCROLLBAR-FACE-COLOR:#000;SCROLLBAR-HIGHLIGHT-COLOR:#2b2b2b;SCROLLBAR-SHADOW-COLOR:#2b2b2b;
+    SCROLLBAR-3DLIGHT-COLOR:#666;SCROLLBAR-ARROW-COLOR:#fff;SCROLLBAR-TRACK-COLOR:#333;
+    SCROLLBAR-DARKSHADOW-COLOR:#666;/*overflow-x:hidden*/;
+}
+
+#header,#body,#footer{
+    width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    background: #FFF url()
+}
+
+#header{
+    height:243px;margin:0 auto;
+    background:url(../songup/images/header.gif) no-repeat;
+}
+
+#header .container{
+    /*margin-top: 70px;*/
+}
+
+#header .site-name{
+    float: left;
+    text-align: left;
+    font-size: 24px;
+    font-style: italic;
+    color: #996;
+    font-weight: bold;
+    margin-top: 70px;
+    margin-left: 37px;
+    padding: 0;
+}
+
+#header .site-name .description{font-size: 16px;}
+
+#logo {color:#996;margin-left: 55px}
+#tv img{
+    height: 118px;
+    margin: -22px 0 0 90px;
+    display: inline;
+    float: left;
+    clear: left;
+}
+#nav-menu{float: left;margin-left: 21px}
+
+#nav-menu a:link{
+    font-size: 11px;
+    float: left;
+    background: url(../songup/images/menudiv.gif) 0px 3px no-repeat;
+    text-align: center;
+    padding: 0px 0px 0px 15px;
+    color: #FFF;
+}
+
+#nav-menu a:hover{
+    color: #888;
+    background: url(../songup/images/menudiv01.gif) 0px 3px no-repeat;
+    padding: 0px 0px 0px 15px;
+    text-decoration: none;
+}
+
+#main{margin-top: 16px;margin-left: 9px}
+
+.post-top{
+    height: 40px;
+    background: url(../songup/images/title.gif) 0px 0px no-repeat;
+    padding: 26px 2px 2px 12px !important;
+    padding: 26px 2px 2px 12px;
+    color: #840730;
+    text-align: left;
+    margin-bottom: 2px;
+}
+
+.post-top .CateIconSP {
+    background: url(../songup/images/date-bg.gif) no-repeat 0 1px;
+    float: left;
+    width: 38px;
+    height: 36px;
+    padding-top: 0px;
+    margin-top: -10px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: -5px;
+}
+
+.CateIconSP .DateYM {
+    text-align: center;
+    font-size: 10px;
+    color: #FFF;
+    font-family: Tahoma,Arial,"Courier New", Courier;
+    padding-top: 2px;
+    letter-spacing: 1px;
+}
+.CateIconSP .DateDay {
+    text-align: center;
+    font-size: 17px;
+    color: #7B7B53;
+    line-height: 28px;
+    font-family: Arial;
+    font-weight: bold;
+    font-family: Arial,"Courier New", Courier;
+}
+.post-title{
+    padding: 2px 4px 4px 45px;
+    font-size: 12px;
+    display: inline;
+    color: #333;
+}
+.post-title a{
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    font-family: Tahoma;
+    text-align: left;
+}
+.post-meta li{
+    float: right;
+}
+
+.post-meta{
+    width: 100%;
+    padding: 0px;
+    text-align: right;
+    background: url(../songup/images/c_d.gif) repeat-x;
+    height: 30px;
+    padding-bottom: 30px;
+    padding: 3px 2px 8px 2px;
+}
+
+.pageContent{
+    margin: 0 auto;
+    padding-left: 0px;
+    text-align: center;
+    height: 18px;
+}
+.page{
+    padding-right: 5px;
+    height: 18px;
+}
+
+.page span,.page a.num{
+    padding-right: 5px;
+}
+#secondary{
+    width: 250px;
+    margin: 0px!important;
+    margin: 0px;
+    text-align: left;
+    padding:0;
+    background: #000;
+    margin-left: 10px;
+}
+
+#sidebar-topimg{
+    background: url(../songup/images/sidebar_top.gif);
+    height: 49px;
+    overflow: hidden;
+}
+
+#secondary section{
+    margin: 0 10px;
+}
+
+#secondary section .widget-title, .site-search label{
+    margin: 0px;
+    height: 25px;
+    text-align: left;
+    padding: 0px 0px 0px 5px;
+    font-size: 12px;
+    _font-size: 11px;
+    color: #FFF;
+    clear: both;
+    background-image: url(../songup/images/sider_title.gif);
+    background-repeat: no-repeat;
+}
+
+.site-search {width: 100%}
+
+.site-search label{display: block;}
+
+.site-search [name="kw"]{
+    width: 200px;
+    height: 20px;
+    line-height: 20px;
+    padding: 3px 20px 3px 10px;
+    margin-bottom: 10px;
+
+}
+
+#search button {
+    position: relative;
+    right: -206px;
+    top: -35px;
+    border: none;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    background: rgba(0, 0, 0, 0) url(../songup/images/search.gif) no-repeat center center;
+    direction: ltr;
+    text-indent: -9999em;
+}
+
+section.widget{
+    padding-bottom: 10px;
+}
+.widget-list{
+    color: #666;
+    padding-top: 5px;
+}
+.widget-list a:link{color: #666}
+.widget-tag{
+    word-wrap:break-word;
+}
+.widget-tag li{
+    display: inline;
+    margin-right: 3px;
+}
+.widget-tag a:link{
+    color: #D1D1D1;
+}
+.widget-tag a:hover{
+    text-decoration: underline;
+}
+#sidebar-bottomimg {
+    background: url(../songup/images/sidebar_bot.gif);
+    height: 60px;
+    overflow: hidden;
+}
+
+#footer{
+    height: 60px;
+    padding: 5px 0px 0px;
+    background-image: url(../songup/images/footer.gif);
+    background-repeat: no-repeat;
+    clear: both;
+}

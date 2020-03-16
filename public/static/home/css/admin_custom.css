@@ -1,0 +1,757 @@
+#top-alert {
+    display: none;
+    top: 50px;
+    left: 0;
+    right: 0;
+    z-index: 3000;
+	margin-top: 20px;
+	padding-top: 12px;
+	padding-bottom: 12px;
+    overflow: hidden;
+    font-size: 16px;
+    margin-top: 0;
+}
+#top-alert ul{
+    list-style: none;
+    text-align: center;
+    margin: 0;
+}
+
+#top-alert .close{
+    right:10px;
+    position: fixed;
+    margin-top: 0px;
+    top: initial;
+    height: 19px;
+    line-height: 19px;
+    font-size: 31px;
+}
+
+#top-alert .close:hover{
+    background:transparent;
+}
+
+.upload-img-box {
+    margin-top: 4px;
+}
+.upload-img-box .upload-pre-item {
+    padding: 1px;
+    width: 120px;
+    max-height: 120px;
+    overflow: hidden;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    transition: all .3s linear;
+}
+.upload-img-box .upload-pre-item img {
+    vertical-align: top;
+}
+.upload-img-box .upload-pre-file {
+    padding: 0 10px;
+    width: 380px;
+    height: 35px;
+    line-height: 35px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border: 1px dashed #ccc;
+    background-color: #fff;
+}
+/* 上传图片点击弹出层 */
+.upload-img-popup {
+    position: fixed;
+    z-index: 9999;
+    padding: 3px;
+    border: 1px solid #c3c3c3;
+    background-color: #fff;
+    box-shadow: 0 0 4px rgba(0,0,0,.5);
+}
+.upload-img-popup .close-pop {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    width: 17px;
+    height: 17px;
+    background: url(../images/bg_icon.png) no-repeat -25px 0;
+}
+.upload-img-popup .close-pop:hover {
+    text-decoration: none;
+    border-bottom: 0 none;
+}
+.upload-img-popup img {
+    display: block;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    background: #F6F6F3;
+    color: #444;
+    font-size: 87.5%;
+    line-height: 1.5;
+}
+
+a {
+    color: #467B96;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #499BC3;
+    text-decoration: underline;
+}
+
+code,pre,.mono {
+    font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
+}
+
+.p {
+    margin: 1em 0;
+}
+
+.body-100 {
+    height: 100%;
+}
+.navbar .nav>li>a{
+    color: #BBB;
+}
+a.balloon-button {
+    display: inline-block;
+    padding: 0 6px;
+    min-width: 12px;
+    height: 18px;
+    line-height: 18px;
+    background: #D8E7EE;
+    font-size: .85714em;
+    text-align: center;
+    text-decoration: none;
+    zoom: 1;
+    -moz-border-radius: 30px;
+    -webkit-border-radius: 30px;
+    border-radius: 30px;
+}
+
+a.button:hover,a.balloon-button:hover {
+    background-color: #A5CADC;
+    color: #FFF;
+    text-decoration: none;
+}
+
+input[type=text],input[type=password],input[type=email],textarea {
+    background: #FFF;
+    border: 1px solid #D9D9D6;
+    padding: 7px;
+    border-radius: 2px;
+/*    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;*/
+}
+
+textarea {
+    resize: vertical;
+    line-height: 1.5;
+}
+
+form textarea {
+    width: 100%;
+    height: 100px;
+}
+
+input[type="radio"],input[type="checkbox"] {
+    margin-right: 3px;
+}
+
+input.text-s,textarea.text-s {
+    padding: 5px;
+}
+
+input.text-l,textarea.text-l {
+    padding: 10px;
+    font-size: 1.14286em;
+}
+
+.hidden{
+    display: none;
+}
+
+.w-10 {
+    width: 10%;
+}
+
+.w-20 {
+    width: 20%;
+}
+
+.w-30 {
+    width: 30%;
+}
+
+.w-40 {
+    width: 40%;
+}
+
+.w-50 {
+    width: 50%;
+}
+
+.w-60 {
+    width: 60%;
+}
+
+.w-70 {
+    width: 70%;
+}
+
+.w-80 {
+    width: 80%;
+}
+
+.w-90 {
+    width: 90%;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+select {
+    border: 1px solid #CCC;
+    height: 28px;
+}
+
+.btn, button {
+    border: none;
+    background-color: #e9e9e6;
+    cursor: pointer;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -o-border-radius: 2px;
+    border-radius: 2px;
+    display: inline-block;
+    padding: 0 12px;
+    height: 32px;
+    color: #666;
+    vertical-align: middle;
+    zoom: 1;
+}
+
+.btn:hover, button:hover {
+    -webkit-transition-duration: .4s;
+    -moz-transition-duration: .4s;
+    -o-transition-duration: .4s;
+    transition-duration: .4s;
+    background-color: #dbdbd6;
+}
+
+.btn:active, button.active {
+    background-color: #d6d6d0;
+}
+
+.btn:disabled, button:disabled {
+    background-color: #f7f7f6;
+    cursor: default;
+    color: #999;
+}
+
+.btn-xs {
+    padding: 0 10px;
+    height: 25px;
+}
+
+.btn-s {
+    height: 28px;
+}
+
+.btn-l {
+    height: 40px;
+    font-size: 1.14286em;
+    font-weight: bold;
+}
+
+.primary {
+    border: none;
+    background-color: #467b96;
+    cursor: pointer;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -o-border-radius: 2px;
+    border-radius: 2px;
+    color: #FFF;
+}
+
+.primary:hover {
+    -webkit-transition-duration: .4s;
+    -moz-transition-duration: .4s;
+    -o-transition-duration: .4s;
+    transition-duration: .4s;
+    background-color: #3c6a81;
+}
+
+.primary:active,.primary.active {
+    background-color: #39647a;
+}
+
+.primary:disabled {
+    background-color: #508cab;
+    cursor: default;
+}
+
+.btn-group {
+    display: inline-block;
+}
+
+.btn-warn {
+    border: none;
+    background-color: #b94a48;
+    cursor: pointer;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -o-border-radius: 2px;
+    border-radius: 2px;
+    color: #FFF;
+}
+
+.btn-warn:hover {
+    -webkit-transition-duration: .4s;
+    -moz-transition-duration: .4s;
+    -o-transition-duration: .4s;
+    transition-duration: .4s;
+    background-color: #a4403f;
+}
+
+.btn-warn:active,.btn-warn.active {
+    background-color: #9c3e3c;
+}
+
+.btn-warn:disabled {
+    background-color: #c1605e;
+    cursor: default;
+}
+
+.btn-drop {
+    position: relative;
+}
+
+.dropdown-toggle {
+    padding-right: 8px;
+}
+
+.dropdown-menu {
+    list-style: none;
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    border: 1px solid #D9D9D6;
+    background: #FFF;
+    text-align: left;
+    min-width: 108px;
+    display: none;
+}
+
+.dropdown-menu li {
+    white-space: nowrap;
+}
+
+.dropdown-menu li.multiline {
+    padding: 5px 12px 12px;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 5px 12px;
+    color: #666;
+}
+
+.dropdown-menu a:hover {
+    background: #F6F6F3;
+    text-decoration: none!important;
+}
+
+.message {
+    padding: 8px 10px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -o-border-radius: 2px;
+    border-radius: 2px;
+}
+
+.message a {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.error {
+    background: #FBE3E4;
+    color: #8A1F11;
+}
+
+.error a {
+    color: #8A1F11;
+}
+
+.notice {
+    background: #FFF6BF;
+    color: #8A6D3B;
+}
+
+.notice a {
+    color: #8A6D3B;
+}
+
+.success {
+    background: #E6EFC2;
+    color: #264409;
+}
+
+.success a {
+    color: #264409;
+}
+
+.balloon {
+    display: inline-block;
+    padding: 0 4px;
+    min-width: 10px;
+    height: 14px;
+    line-height: 14px;
+    background: #B9B9B6;
+    vertical-align: text-top;
+    text-align: center;
+    font-size: 12px;
+    color: #FFF;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+    border-radius: 20px;
+}
+.pagination ul{
+    margin: 0;
+}
+
+/** 下面是定制样式 **/
+.main-title h2 {
+    margin: 25px 0 10px;
+    font-size: 1.28571em;
+}
+
+.main-title h2 a {
+    margin-left: 10px;
+    padding: 3px 8px;
+    background: #E9E9E6;
+    font-size: .8em;
+    border-radius: 2px;
+}
+
+.main-title h2 a:hover {
+    text-decoration: none;
+}
+
+.typecho-table-wrap {
+    padding: 30px;
+    background: #FFF;
+}
+
+#sortUl li {
+    border: 1px solid #DBD8D8;
+    height: 22px;
+    line-height: 22px;
+    margin: 3px auto 0;
+    overflow: hidden;
+    padding: 0 4px;
+    text-align: left;
+    width: 80%
+}
+/* 分组按钮 */
+.tab-nav {
+    list-style: none;
+    margin: 1em 0 0;
+    padding: 0;
+    font-size: 13px;
+    text-align: center;
+}
+
+.tab-nav.fix-tabs {
+    margin-bottom: 1em;
+}
+
+.tab-nav a {
+    display: block;
+    margin-right: -1px;
+    border: 1px solid #D9D9D6;
+    padding: 0 15px;
+    height: 26px;
+    line-height: 26px;
+    color: #666;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.tab-nav a:hover {
+    background-color: #E9E9E6;
+    color: #666;
+    text-decoration: none;
+}
+
+.tab-nav li {
+    float: left;
+}
+
+.tab-nav li:first-child a {
+    -webkit-border-radius: 2px 0 0 2px;
+    -moz-border-radius: 2px 0 0 2px;
+    -ms-border-radius: 2px 0 0 2px;
+    -o-border-radius: 2px 0 0 2px;
+    border-radius: 2px 0 0 2px;
+}
+
+.tab-nav li:last-child a {
+    -webkit-border-radius: 0 2px 2px 0;
+    -moz-border-radius: 0 2px 2px 0;
+    -ms-border-radius: 0 2px 2px 0;
+    -o-border-radius: 0 2px 2px 0;
+    border-radius: 0 2px 2px 0;
+}
+
+.tab-nav.right {
+    float: right;
+}
+
+.tab-nav li.current a,.tab-nav li.active a {
+    background-color: #E9E9E6;
+}
+
+/* 表单提示 */
+
+.item-label .check-tips {
+    margin-left: 8px;
+    color: #AAA;
+    font-weight: normal;
+}
+
+label.item-label,
+.form-horizontal .item-label {
+    display: block;
+    margin-right: 5px;
+    height: 30px;
+    line-height: 30px;
+    font-weight: bold;
+}
+
+/* 自动完成样式 */
+ul.token-input-list {
+    list-style: none;
+    margin: 0;
+    padding: 0 4px;
+    min-height: 32px;
+    border: 1px solid #D9D9D6;
+    cursor: text;
+    z-index: 999;
+    background-color: #FFF;
+    clear: left;
+    border-radius: 2px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+ul.token-input-list li {
+    margin: 4px 0;
+}
+
+ul.token-input-list li input {
+    padding: 0;
+    border: 0;
+    width: 100%;
+    -webkit-appearance: caret;
+}
+
+li.token-input-token {
+    float:left;
+    padding:5px;
+    font-size: .92857em;
+    text-align: right;
+    white-space: nowrap;
+    background-color: #F3F3F0;
+    cursor: default;
+    color:#000;
+    list-style:none;
+    display:block;
+    outline:none;
+    margin:3px 3px 3px 0px !important;
+}
+
+li.token-input-token p {
+    float: left;
+    display: inline;
+    margin: 0;
+}
+
+li.token-input-token span {
+    color: #BBB;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+li.token-input-selected-token {
+    background-color: #E9E9E6;
+}
+
+li.token-input-input-token {
+    padding: 0 4px;
+}
+
+div.token-input-dropdown {
+    position: absolute;
+    background-color: #FFF;
+    overflow: hidden;
+    border: 1px solid #D9D9D6;
+    border-top-width: 0;
+    cursor: default;
+    z-index: 1;
+    font-size: .92857em;
+}
+
+div.token-input-dropdown p {
+    margin: 0;
+    padding: 5px 10px;
+    color: #777;
+    font-weight: bold;
+}
+
+div.token-input-dropdown ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+div.token-input-dropdown ul li {
+    padding: 4px 10px;
+    background-color: #FFF;
+}
+
+div.token-input-dropdown ul li.token-input-dropdown-item {
+    background-color: #FFF;
+}
+
+div.token-input-dropdown ul li em {
+    font-style: normal;
+}
+
+div.token-input-dropdown ul li.token-input-selected-dropdown-item {
+    background-color: #467B96;
+    color: #FFF;
+}
+
+.typecho-edit-theme textarea {
+    font-size: 0.92857em;
+    height: 500px;
+    line-height: 1.2;
+}
+.typecho-list-table {
+    width: 100%;
+}
+
+.typecho-theme-list tbody tr.current td {
+    background-color: #FFF9E8;
+}
+.typecho-list-table td {
+    border-top: 1px solid #F0F0EC;
+    padding: 10px;
+    word-break: break-all;
+}
+
+.typecho-theme-list cite {
+    color: #999;
+    font-style: normal;
+}
+
+.typecho-theme-list p{
+    margin: 14px 0;
+}
+
+/*==========以下部分是Validform必须的===========*/
+.Validform_checktip{
+    margin-left:8px;
+    line-height:20px;
+    height:20px;
+    overflow:hidden;
+    color:#999;
+    font-size:12px;
+}
+.Validform_right{
+    color:#71b83d;
+    padding-left:20px;
+    background:url(../images/right.png) no-repeat left center;
+}
+.Validform_wrong{
+    color:red;
+    padding-left:20px;
+    white-space:nowrap;
+    background:url(../images/error.png) no-repeat left center;
+}
+.Validform_loading{
+    padding-left:20px;
+    background:url(../images/onLoad.gif) no-repeat left center;
+}
+.Validform_error{
+    background-color:#ffe7e7;
+}
+#Validform_msg{color:#7d8289; font: 12px/1.5 tahoma, arial, \5b8b\4f53, sans-serif; width:280px; -webkit-box-shadow:2px 2px 3px #aaa; -moz-box-shadow:2px 2px 3px #aaa; background:#fff; position:absolute; top:0px; right:50px; z-index:99999; display:none;filter: progid:DXImageTransform.Microsoft.Shadow(Strength=3, Direction=135, Color='#999999');}
+#Validform_msg .iframe{position:absolute; left:0px; top:-1px; z-index:-1;}
+#Validform_msg .Validform_title{line-height:25px; height:25px; text-align:left; font-weight:bold; padding:0 8px; color:#fff; position:relative; background-color:#000;}
+#Validform_msg a.Validform_close:link,#Validform_msg a.Validform_close:visited{line-height:22px; position:absolute; right:8px; top:0px; color:#fff; text-decoration:none;}
+#Validform_msg a.Validform_close:hover{color:#cc0;}
+#Validform_msg .Validform_info{padding:8px;border:1px solid #000; border-top:none; text-align:left;}
+
+.input-min {
+    width: 20px
+}
+.editable-buttons .btn:hover{transition: none;}
+.editable-submit:hover{ background-color: #04C}
+.editable-cancel:hover{ background-color: #E9E9E6}
+
+/** 登录页**/
+.login-form h3 {
+    font-size: 26px;
+    font-weight: normal;
+    margin: 0 0 20px;
+    padding: 0;
+    line-height: 44px;
+    text-align: center;
+    color: #8D9CAA;
+}
+
+.login-logo {
+    display: inline-block;
+    margin-right: 12px;
+    width: 30px;
+    height: 44px;
+    vertical-align: top;
+    background: url(../images/login_logo.png) no-repeat 0 0;
+}
+
+.tab-content{
+    width:100%;
+    margin-top: 50px;
+}
+.tab-content .tab-pane {
+    display: none;
+}
+.tab-content .in , .tab-content .active{
+    display: block;
+}
+
+.controls .radio, .controls .checkbox {
+    padding-left: 22px;
+}
