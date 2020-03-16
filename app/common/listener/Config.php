@@ -34,6 +34,7 @@ class Config
         if(defined('BIND_MODULE') && BIND_MODULE === 'install') return;
 
         $request = request();
+        dump($request->action());
         $module = explode('/', str_ireplace($request->baseFile().'/', '', $request->baseUrl()))[0];
         if(!defined('MODULE')){
         	define('MODULE', $module);

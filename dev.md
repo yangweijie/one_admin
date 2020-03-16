@@ -20,3 +20,9 @@
 ## model 助手函数没有了
 
 ## Db::name 变为了Db:table
+
+## helper 里hash arr类缺失
+
+## $this->fetch 变为 View::fetch();
+
+## application 目录变为app
