@@ -128,6 +128,7 @@ class Menu extends Model
                     continue;
                 }
                 if ($menu['url_value'] != '' && ($menu['url_type'] == 'module_admin' || $menu['url_type'] == 'module_home')) {
+                	$menu['params'] = parse_url($menu['params']);
                     $url = explode('/', $menu['url_value']);
                     $menu['controller'] = $url[1];
                     $menu['action']     = $url[2];
@@ -154,7 +155,7 @@ class Menu extends Model
      */
     public static function getSidebarMenu($id = '', $module = '', $controller = '')
     {
-        $module     = $module == '' ? request()->module() : $module;
+        $module     = $module == '' ? MODULE : $module;
         $controller = $controller == '' ? request()->controller() : $controller;
         $cache_tag  = strtolower('_sidebar_menus_' . $module . '_' . $controller).'_role_'.session('user_auth.role');
         $menus      = cache($cache_tag);
@@ -206,7 +207,7 @@ class Menu extends Model
      */
     public static function getLocation($id = '', $del_last_url = false, $check = true)
     {
-        $model      = request()->module();
+        $model      = MODULE;
         $controller = request()->controller();
         $action     = request()->action();
 

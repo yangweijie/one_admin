@@ -1322,7 +1322,7 @@ if (!function_exists('admin_url')) {
      * @author 小乌 <82950492@qq.com>
      * @return string
      */
-    function admin_url($url = '', $vars = '', $suffix = true, $domain = false) {
+    function admin_url($url = '', $vars = [], $suffix = true, $domain = false) {
         $url = url($url, $vars, $suffix, $domain);
         if (defined('ENTRANCE') && ENTRANCE == 'admin') {
             return $url;

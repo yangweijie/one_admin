@@ -11,6 +11,8 @@ namespace app\common\builder\aside;
 
 use app\common\builder\ZBuilder;
 
+use think\facade\View;
+
 /**
  * 侧栏构建器
  * @package app\common\builder\sidebar
@@ -193,6 +195,6 @@ class Builder extends ZBuilder
         }
 
         // 设置侧栏变量，供没有经过ZBuilder渲染页面的时候用
-        $this->assign('aside', static::$vars['aside']);
+        View::assign('aside', static::$vars['aside']);
     }
 }

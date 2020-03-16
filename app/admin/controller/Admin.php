@@ -17,7 +17,7 @@ use app\admin\model\Icon as IconModel;
 use app\user\model\Role as RoleModel;
 use app\user\model\Message as MessageModel;
 use think\facade\Cache;
-use think\Db;
+use think\facade\Db;
 use think\facade\App;
 use think\helper\Hash;
 use think\facade\View;
@@ -60,9 +60,11 @@ class Admin extends Common
             // 读取全部顶级菜单
             View::assign('_top_menus_all', MenuModel::getTopMenu('', '_top_menus_all'));
             // 获取侧边栏菜单
-            View::assign('_sidebar_menus', MenuModel::getSidebarMenu());
+            View::assign('_sidebar_menus', []);
+            // View::assign('_sidebar_menus', MenuModel::getSidebarMenu());
             // 获取面包屑导航
-            View::assign('_location', MenuModel::getLocation('', true));
+            View::assign('_location', []);
+            // View::assign('_location', MenuModel::getLocation('', true));
             // 获取当前用户未读消息数量
             View::assign('_message', MessageModel::getMessageCount());
             // 获取自定义图标

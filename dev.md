@@ -18,3 +18,5 @@
 ## module 为 app
 
 ## model 助手函数没有了
+
+## Db::name 变为了Db:table

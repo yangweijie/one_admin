@@ -153,6 +153,8 @@ class Role extends Model
      */
     public function roleAuth()
     {
+    	session('user_auth.role', 1); // MOCK
+
         $menu_auth = cache('role_menu_auth_'.session('user_auth.role'));
         if (!$menu_auth) {
             $menu_auth = self::where('id', session('user_auth.role'))->value('menu_auth');

@@ -12,6 +12,7 @@ namespace app\common\builder\form;
 use app\common\builder\ZBuilder;
 use think\Exception;
 use think\facade\Env;
+use think\facade\View;
 
 /**
  * 表单构建器

@@ -10,6 +10,7 @@
 namespace app\common\builder;
 
 use app\common\controller\Common;
+use think\facade\View;
 use think\Exception;
 
 /**

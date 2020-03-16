@@ -35,6 +35,9 @@ class Config
 
         $request = request();
         $module = explode('/', str_ireplace($request->baseFile().'/', '', $request->baseUrl()))[0];
+        if(!defined('MODULE')){
+        	define('MODULE', $module);
+        }
         // 获取入口目录
         $base_file = Request::baseFile();
         $base_dir  = substr($base_file, 0, strripos($base_file, '/') + 1);
@@ -74,7 +77,7 @@ class Config
             if ($module == '') {
                 header("Location: ".$base_file.'/admin', true, 302);exit();
             }
-            dump(config('module.default_controller_layer'));
+            // dump(config('module.default_controller_layer'));
             if (!in_array($module, config('module.default_controller_layer'))) {
                 // 修改默认访问控制器层
                 $route_config = config('route');

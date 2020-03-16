@@ -10,6 +10,7 @@
 namespace app\common\controller;
 
 use app\BaseController;
+use think\App;
 
 use think\facade\View;
 
@@ -19,6 +20,12 @@ use think\facade\View;
  */
 class Common extends BaseController
 {
+
+	function __construct(){
+		$app = app();
+		parent::__construct($app);
+	}
+
     /**
      * 初始化
      * @author 蔡伟明 <314013107@qq.com>
