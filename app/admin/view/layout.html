@@ -3,10 +3,10 @@
 <!--[if gt IE 9]><!--> <html class="no-focus" lang="zh"> <!--<![endif]-->
 <head>
     <meta charset="utf-8">
+    {block name="page-title"}<title>{$page_title|default='后台'} | {:config('app.web_site_title')} -
+    DolphinPHP</title>{/block}
 
-    {block name="page-title"}<title>{$page_title|default='后台'} | {:config('web_site_title')} - DolphinPHP</title>{/block}
-
-    <meta name="description" content="{:config('web_site_description')}">
+    <meta name="description" content="{:config('app.web_site_description')}">
     <meta name="author" content="caiweiming">
     <meta name="robots" content="noindex, nofollow">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -57,14 +57,14 @@
     {eq name="Think.config.minify_status" value="1"}
     <link rel="stylesheet" id="css-main" href="{:minify('group', 'libs_css,core_css')}">
     {else/}
-    <link rel="stylesheet" href="__LIBS__/sweetalert/sweetalert.min.css?v={:config('asset_version')}">
-    <link rel="stylesheet" href="__LIBS__/magnific-popup/magnific-popup.min.css?v={:config('asset_version')}">
-    <link rel="stylesheet" href="__ADMIN_CSS__/bootstrap.min.css?v={:config('asset_version')}">
-    <link rel="stylesheet" href="__ADMIN_CSS__/oneui.css?v={:config('asset_version')}">
-    <link rel="stylesheet" href="__ADMIN_CSS__/dolphin.css?v={:config('asset_version')}" id="css-main">
-    <link rel="stylesheet" href="__LIBS__/viewer/viewer.min.css?v={:config('asset_version')}">
+    <link rel="stylesheet" href="__LIBS__/sweetalert/sweetalert.min.css?v={:config('app.asset_version')}">
+    <link rel="stylesheet" href="__LIBS__/magnific-popup/magnific-popup.min.css?v={:config('app.asset_version')}">
+    <link rel="stylesheet" href="__ADMIN_CSS__/bootstrap.min.css?v={:config('app.asset_version')}">
+    <link rel="stylesheet" href="__ADMIN_CSS__/oneui.css?v={:config('app.asset_version')}">
+    <link rel="stylesheet" href="__ADMIN_CSS__/dolphin.css?v={:config('app.asset_version')}" id="css-main">
+    <link rel="stylesheet" href="__LIBS__/viewer/viewer.min.css?v={:config('app.asset_version')}">
     {/eq}
-    <link rel="stylesheet" id="css-theme" href="__ADMIN_CSS__/themes/{:config('system_color')}.min.css?v={:config('asset_version')}">
+    <link rel="stylesheet" id="css-theme" href="__ADMIN_CSS__/themes/{:config('app.system_color')}.min.css?v={:config('app.asset_version')}">
 
     <!--页面css-->
     {block name="style"}{/block}
@@ -81,25 +81,25 @@
     <!-- END Stylesheets -->
 
     <!--插件css钩子-->
-    {:hook('page_plugin_css')}
+    <!-- {:hook('page_plugin_css')} -->
 
     <!--自定义css-->
-    <link rel="stylesheet" href="__ADMIN_CSS__/custom.css?v={:config('asset_version')}">
+    <link rel="stylesheet" href="__ADMIN_CSS__/custom.css?v={:config('app.asset_version')}">
     <script>
         // url
         var dolphin = {
             'top_menu_url': '{:url("admin/ajax/getSidebarMenu")}',
             'theme_url': '{:url("admin/ajax/setTheme")}',
-            'jcrop_upload_url': '{$jcrop_upload_url ? $jcrop_upload_url : url("admin/attachment/upload", ["dir" => "images", "from" => "jcrop", "module" => request()->module()])}',
-            'editormd_upload_url': '{$editormd_upload_url ? $editormd_upload_url : url("admin/attachment/upload", ["dir" => "images", "from" => "editormd", "module" => request()->module()])}',
+            'jcrop_upload_url': '{$jcrop_upload_url ? $jcrop_upload_url : url("admin/attachment/upload", ["dir" => "images", "from" => "jcrop", "module" => MODULE])}',
+            'editormd_upload_url': '{$editormd_upload_url ? $editormd_upload_url : url("admin/attachment/upload", ["dir" => "images", "from" => "editormd", "module" => MODULE])}',
             'editormd_mudule_path': '__LIBS__/editormd/lib/',
-            'ueditor_upload_url': '{$ueditor_upload_url ? $ueditor_upload_url : url("admin/attachment/upload", ["dir" => "images", "from" => "ueditor", "module" => request()->module()])}',
-            'wangeditor_upload_url': '{$wangeditor_upload_url ? $wangeditor_upload_url : url("admin/attachment/upload", ["dir" => "images", "from" => "wangeditor", "module" => request()->module()])}',
+            'ueditor_upload_url': '{$ueditor_upload_url ? $ueditor_upload_url : url("admin/attachment/upload", ["dir" => "images", "from" => "ueditor", "module" => MODULE])}',
+            'wangeditor_upload_url': '{$wangeditor_upload_url ? $wangeditor_upload_url : url("admin/attachment/upload", ["dir" => "images", "from" => "wangeditor", "module" => MODULE])}',
             'wangeditor_emotions': "__LIBS__/wang-editor/emotions.data",
-            'ckeditor_img_upload_url': '{$ckeditor_img_upload_url ? $ckeditor_img_upload_url : url("admin/attachment/upload", ["dir" => "images", "from" => "ckeditor", "module" => request()->module()])}',
+            'ckeditor_img_upload_url': '{$ckeditor_img_upload_url ? $ckeditor_img_upload_url : url("admin/attachment/upload", ["dir" => "images", "from" => "ckeditor", "module" => MODULE])}',
             'WebUploader_swf': '__LIBS__/webuploader/Uploader.swf',
-            'file_upload_url': '{$file_upload_url ? $file_upload_url : url("admin/attachment/upload", ["dir" => "files", "module" => request()->module()])}',
-            'image_upload_url': '{$image_upload_url ? $image_upload_url : url("admin/attachment/upload", ["dir" => "images", "module" => request()->module()])}',
+            'file_upload_url': '{$file_upload_url ? $file_upload_url : url("admin/attachment/upload", ["dir" => "files", "module" => MODULE])}',
+            'image_upload_url': '{$image_upload_url ? $image_upload_url : url("admin/attachment/upload", ["dir" => "images", "module" => MODULE])}',
             'upload_check_url': '{$upload_check_url ? $upload_check_url : url("admin/ajax/check")}',
             'get_level_data': '{:url("admin/ajax/getLevelData")}',
             'quick_edit_url': '{$quick_edit_url ? $quick_edit_url : url("quickEdit")}',
@@ -207,15 +207,15 @@
                     </div>
                     <a class="h5 text-white" href="{:url('admin/index/index')}">
                         {notempty name="Think.config.web_site_logo"}
-                        <img src="{$Think.config.web_site_logo|get_file_path}" class="logo" alt="{$Think.config.web_site_title|default='Dolphin PHP'}">
+                        <img src="{$Think.config.app.web_site_logo|get_file_path}" class="logo" alt="{$Think.config.web_site_title|default='Dolphin PHP'}">
                         {else/}
-                        <img src="{$Think.config.public_static_path}admin/img/logo.png" class="logo" alt="Dolphin PHP">
+                        <img src="{$Think.config.app.public_static_path}admin/img/logo.png" class="logo" alt="Dolphin PHP">
                         {/notempty}
 
                         {notempty name="Think.config.web_site_logo_text"}
-                        <img src="{$Think.config.web_site_logo_text|get_file_path}" class="logo-text sidebar-mini-hide" alt="{$Think.config.web_site_title|default='Dolphin PHP'}">
+                        <img src="{$Think.config.app.web_site_logo_text|get_file_path}" class="logo-text sidebar-mini-hide" alt="{$Think.config.app.web_site_title|default='Dolphin PHP'}">
                         {else/}
-                        <img src="{$Think.config.public_static_path}admin/img/logo-text.png" class="logo-text sidebar-mini-hide" alt="Dolphin PHP">
+                        <img src="{$Think.config.app.public_static_path}admin/img/logo-text.png" class="logo-text sidebar-mini-hide" alt="Dolphin PHP">
                         {/notempty}
                     </a>
                 </div>
@@ -323,7 +323,7 @@
                 <!-- Layout API, functionality initialized in App() -> uiLayoutApi() -->
                 <a href="javascript:void(0)" title="打开/关闭左侧导航" data-toggle="layout" data-action="sidebar_mini_toggle"><i class="fa fa-bars"></i></a>
             </li>
-            {notempty name="_top_menus"}
+            {empty name="_top_menus"}
             {volist name="_top_menus" id="menu"}
             <li class="hidden-xs hidden-sm {$menu['id'] == $_location[0]['id'] ?= 'active'}">
                 {in name="menu.url_type" value="module_admin,module_home"}
@@ -333,7 +333,7 @@
                 {/in}
             </li>
             {/volist}
-            {/notempty}
+            {/empty}
             <li>
                 <!-- Opens the Apps modal found at the bottom of the page, before including JS code -->
                 <a href="#" data-toggle="modal" data-target="#apps-modal"><i class="si si-grid"></i></a>
@@ -367,7 +367,7 @@
         <!-- Page Content -->
         <div class="content">
             {// 页面提示钩子}
-            {:hook('page_tips')}
+            <!-- {:hook('page_tips')} -->
             {// 主体内容}
             {block name="content"}{/block}
         </div>
@@ -407,7 +407,7 @@
                 </div>
                 <div class="block-content">
                     <div class="row text-center">
-                        {notempty name="_top_menus_all"}
+                        {empty name="_top_menus_all"}
                         {volist name="_top_menus_all" id="menu"}
                         <div class="col-xs-6 col-sm-3">
                             {in name="menu.url_type" value="module_admin,module_home"}
@@ -427,7 +427,7 @@
                             {/in}
                         </div>
                         {/volist}
-                        {/notempty}
+                        {/empty}
                     </div>
                 </div>
             </div>
@@ -440,28 +440,28 @@
 {eq name="Think.config.minify_status" value="1"}
 <script src="{:minify('group', 'core_js,libs_js')}"></script>
 {else/}
-<script src="__ADMIN_JS__/core/jquery.min.js?v={:config('asset_version')}"></script>
-<script src="__ADMIN_JS__/core/bootstrap.min.js?v={:config('asset_version')}"></script>
-<script src="__ADMIN_JS__/core/jquery.slimscroll.min.js?v={:config('asset_version')}"></script>
-<script src="__ADMIN_JS__/core/jquery.scrollLock.min.js?v={:config('asset_version')}"></script>
-<script src="__ADMIN_JS__/core/jquery.appear.min.js?v={:config('asset_version')}"></script>
-<script src="__ADMIN_JS__/core/jquery.countTo.min.js?v={:config('asset_version')}"></script>
-<script src="__ADMIN_JS__/core/jquery.placeholder.min.js?v={:config('asset_version')}"></script>
-<script src="__ADMIN_JS__/core/js.cookie.min.js?v={:config('asset_version')}"></script>
-<script src="__LIBS__/magnific-popup/magnific-popup.min.js?v={:config('asset_version')}"></script>
-<script src="__ADMIN_JS__/app.js?v={:config('asset_version')}"></script>
-<script src="__ADMIN_JS__/dolphin.js?v={:config('asset_version')}"></script>
-<script src="__ADMIN_JS__/builder/form.js?v={:config('asset_version')}"></script>
-<script src="__ADMIN_JS__/builder/aside.js?v={:config('asset_version')}"></script>
-<script src="__ADMIN_JS__/builder/table.js?v={:config('asset_version')}"></script>
-<script src="__LIBS__/bootstrap-notify/bootstrap-notify.min.js?v={:config('asset_version')}"></script>
-<script src="__LIBS__/sweetalert/sweetalert.min.js?v={:config('asset_version')}"></script>
-<script src="__LIBS__/js-xss/xss.min.js?v={:config('asset_version')}"></script>
-<script src="__LIBS__/viewer/viewer.min.js?v={:config('asset_version')}"></script>
+<script src="__ADMIN_JS__/core/jquery.min.js?v={:config('app.asset_version')}"></script>
+<script src="__ADMIN_JS__/core/bootstrap.min.js?v={:config('app.asset_version')}"></script>
+<script src="__ADMIN_JS__/core/jquery.slimscroll.min.js?v={:config('app.asset_version')}"></script>
+<script src="__ADMIN_JS__/core/jquery.scrollLock.min.js?v={:config('app.asset_version')}"></script>
+<script src="__ADMIN_JS__/core/jquery.appear.min.js?v={:config('app.asset_version')}"></script>
+<script src="__ADMIN_JS__/core/jquery.countTo.min.js?v={:config('app.asset_version')}"></script>
+<script src="__ADMIN_JS__/core/jquery.placeholder.min.js?v={:config('app.asset_version')}"></script>
+<script src="__ADMIN_JS__/core/js.cookie.min.js?v={:config('app.asset_version')}"></script>
+<script src="__LIBS__/magnific-popup/magnific-popup.min.js?v={:config('app.asset_version')}"></script>
+<script src="__ADMIN_JS__/app.js?v={:config('app.asset_version')}"></script>
+<script src="__ADMIN_JS__/dolphin.js?v={:config('app.asset_version')}"></script>
+<script src="__ADMIN_JS__/builder/form.js?v={:config('app.asset_version')}"></script>
+<script src="__ADMIN_JS__/builder/aside.js?v={:config('app.asset_version')}"></script>
+<script src="__ADMIN_JS__/builder/table.js?v={:config('app.asset_version')}"></script>
+<script src="__LIBS__/bootstrap-notify/bootstrap-notify.min.js?v={:config('app.asset_version')}"></script>
+<script src="__LIBS__/sweetalert/sweetalert.min.js?v={:config('app.asset_version')}"></script>
+<script src="__LIBS__/js-xss/xss.min.js?v={:config('app.asset_version')}"></script>
+<script src="__LIBS__/viewer/viewer.min.js?v={:config('app.asset_version')}"></script>
 {/eq}
 
 <!-- Page JS Plugins -->
-<script src="__LIBS__/layer/layer.js?v={:config('asset_version')}"></script>
+<script src="__LIBS__/layer/layer.js?v={:config('app.asset_version')}"></script>
 {notempty name="_js_files"}
     {eq name="Think.config.minify_status" value="1"}
         <script src="{:minify('group', $_js_files)}"></script>
@@ -485,7 +485,7 @@
 {block name="script"}{/block}
 
 <!--插件js钩子-->
-{:hook('page_plugin_js')}
+<!-- {:hook('page_plugin_js')} -->
 
 {// 额外HTML代码 }
 {$extra_html|raw|default=''}

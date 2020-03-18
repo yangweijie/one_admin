@@ -126,10 +126,11 @@ if (!function_exists('get_avatar')) {
      */
     function get_avatar($uid = 0)
     {
-        $avatar = Db::name('admin_user')->where('id', $uid)->value('avatar');
-        $path = model('admin/attachment')->getFilePath($avatar);
+        $avatar = \app\user\model\User::where('id', $uid)->value('avatar');
+        $attachment = new \app\admin\model\Attachment;
+        $path = $attachment->getFilePath($avatar);
         if (!$path) {
-            return config('public_static_path').'admin/img/avatar.jpg';
+            return config('app.public_static_path').'admin/img/avatar.jpg';
         }
         return $path;
     }
@@ -404,7 +405,7 @@ if (!function_exists('hook')) {
      * @alter 小乌 <82950492@qq.com>
      */
     function hook($name = '', $params = null, $once = false) {
-        \think\facade\Hook::listen($name, $params, $once);
+        // \think\facade\Hook::listen($name, $params, $once);
     }
 }
 
@@ -1300,7 +1301,7 @@ if (!function_exists('home_url')) {
      * @author 小乌 <82950492@qq.com>
      * @return string
      */
-    function home_url($url = '', $vars = '', $suffix = true, $domain = false) {
+    function home_url($url = '', $vars = [], $suffix = true, $domain = false) {
         $url = url($url, $vars, $suffix, $domain);
         if (defined('ENTRANCE') && ENTRANCE == 'admin') {
             $base_file = request()->baseFile();

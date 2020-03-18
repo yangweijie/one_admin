@@ -35,9 +35,9 @@ class Common extends BaseController
         // 后台公共模板
         View::assign('_admin_base_layout', config('admin_base_layout'));
         // 当前配色方案
-         View::assign('system_color', config('system_color'));
+        View::assign('system_color', config('system_color'));
         // 输出弹出层参数
-         View::assign('_pop', $this->request->param('_pop'));
+        View::assign('_pop', $this->request->param('_pop'));
     }
 
     /**

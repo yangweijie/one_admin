@@ -34,7 +34,6 @@ class Config
         if(defined('BIND_MODULE') && BIND_MODULE === 'install') return;
 
         $request = request();
-        dump($request->action());
         $module = explode('/', str_ireplace($request->baseFile().'/', '', $request->baseUrl()))[0];
         if(!defined('MODULE')){
         	define('MODULE', $module);
@@ -68,8 +67,15 @@ class Config
             // 表单项扩展目录
             '__EXTEND_FORM__' => PUBLIC_PATH.'extend/form'
         ];
-        $template = config('template');
-        $template['tpl_replace_string'] = $view_replace_str;
+        $view = config('view');
+        // 插件静态资源目录
+        $view_replace_str['__PLUGINS__'] = '/plugins';
+        // 定义模块资源目录
+        $view_replace_str['__MODULE_CSS__'] = PUBLIC_PATH. 'static/'. $module .'/css';
+        $view_replace_str['__MODULE_JS__'] = PUBLIC_PATH. 'static/'. $module .'/js';
+        $view_replace_str['__MODULE_IMG__'] = PUBLIC_PATH. 'static/'. $module .'img';
+        $view_replace_str['__MODULE_LIBS__'] = PUBLIC_PATH. 'static/'. $module .'/libs';
+        $view['tpl_replace_string'] = $view_replace_str;
 
         // 如果定义了入口为admin，则修改默认的访问控制器层
         if(defined('ENTRANCE') && ENTRANCE == 'admin') {
@@ -85,16 +91,15 @@ class Config
             	$route_config['controller_layer'] = 'admin';
             	config($route_config, 'route');
                 // 修改视图模板路径
-                $template['view_path'] = Env::get('app_path'). $module. '/view/admin/';
+                $view['view_path'] = app_path(). $module. '/view/admin/';
             }else{
-            	$template['view_path'] = Env::get('app_path'). $module. '/view/';
+            	$module_dir = $module == 'index'?'admin':$module;
+            	$view['view_path'] = app_path(). $module_dir. '/view/';
             	$route_config                     = config('route');
             	$route_config['controller_layer'] = 'controller';
             	config($route_config, 'route');
             }
 
-            // 插件静态资源目录
-            config('template.tpl_replace_string.__PLUGINS__', '/plugins');
         } else {
             if ($module == 'admin') {
                 header("Location: ".$base_dir.ADMIN_FILE.'/admin', true, 302);exit();
@@ -107,14 +112,7 @@ class Config
             }
         }
 
-        // 定义模块资源目录
-        $template['__MODULE_CSS__'] = PUBLIC_PATH. 'static/'. $module .'/css';
-        $template['__MODULE_JS__'] = PUBLIC_PATH. 'static/'. $module .'/js';
-        $template['__MODULE_IMG__'] = PUBLIC_PATH. 'static/'. $module .'img';
-        $template['__MODULE_LIBS__'] = PUBLIC_PATH. 'static/'. $module .'/libs';
-
-
-        config($template, 'template');
+        config($view, 'view');
         // 静态文件目录
         config('public_static_path', PUBLIC_PATH. 'static/');
 
@@ -129,10 +127,9 @@ class Config
             }
             // 非开发模式，缓存系统配置
             if ($system_config['develop_mode'] == 0) {
-                cache('system_config', $system_config);
+                cache($system_config, 'system_config');
             }
         }
-
         // 设置配置信息
         config($system_config, 'app');
     }
