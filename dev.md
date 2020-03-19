@@ -26,3 +26,5 @@
 ## $this->fetch 变为 View::fetch();
 
 ## application 目录变为app
+
+## token 使用 要开启session

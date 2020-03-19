@@ -1224,7 +1224,8 @@ if (!function_exists('get_location')) {
      */
     function get_location($id = '', $del_last_url = false, $check = true)
     {
-        $location = model('admin/menu')->getLocation($id, $del_last_url, $check);
+    	$menuModel = new app\admin\model\Menu;
+        $location = $menuModel->getLocation($id, $del_last_url, $check);
         return $location;
     }
 }

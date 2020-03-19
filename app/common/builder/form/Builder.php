@@ -76,10 +76,10 @@ class Builder extends ZBuilder
      */
     public function initialize()
     {
-        $this->_template = Env::get('app_path'). 'common/builder/form/layout.html';
+        $this->_template = APP_PATH. 'common/builder/form/layout.html';
         $this->_vars['post_url'] = $this->request->url(true);
         $this->_vars['_token_name'] = config('zbuilder.form_token_name');
-        $this->_vars['_token_value'] = $this->request->token($this->_vars['_token_name']);
+        $this->_vars['_token_value'] = $this->request->buildToken($this->_vars['_token_name']);
     }
 
     /**
@@ -693,8 +693,8 @@ class Builder extends ZBuilder
      */
     public function addFile($name = '', $title = '', $tips = '', $default = '', $size = '', $ext = '', $extra_class = '')
     {
-        $size = ($size != '' ? $size : config('upload_file_size')) * 1024;
-        $ext  = $ext != '' ? $ext : config('upload_file_ext');
+        $size = ($size != '' ? $size : config('app.upload_file_size')) * 1024;
+        $ext  = $ext != '' ? $ext : config('app.upload_file_ext');
 
         $item = [
             'type'        => 'file',
@@ -729,8 +729,8 @@ class Builder extends ZBuilder
      */
     public function addFiles($name = '', $title = '', $tips = '', $default = '', $size = '', $ext = '', $extra_class = '')
     {
-        $size = ($size != '' ? $size : config('upload_file_size')) * 1024;
-        $ext  = $ext != '' ? $ext : config('upload_file_ext');
+        $size = ($size != '' ? $size : config('app.upload_file_size')) * 1024;
+        $ext  = $ext != '' ? $ext : config('app.upload_file_ext');
 
         $item = [
             'type'        => 'files',
@@ -895,8 +895,8 @@ class Builder extends ZBuilder
      */
     public function addImage($name = '', $title = '', $tips = '', $default = '', $size = '', $ext = '', $extra_class = '', $thumb = '', $watermark = '')
     {
-        $size = ($size != '' ? $size : config('upload_image_size')) * 1024;
-        $ext  = $ext != '' ? $ext : config('upload_image_ext');
+        $size = ($size != '' ? $size : config('app.upload_image_size')) * 1024;
+        $ext  = $ext != '' ? $ext : config('app.upload_image_ext');
 
         $item = [
             'type'        => 'image',
@@ -947,8 +947,8 @@ class Builder extends ZBuilder
      */
     public function addImages($name = '', $title = '', $tips = '', $default = '', $size = '', $ext = '', $extra_class = '', $thumb = '', $watermark = '')
     {
-        $size = ($size != '' ? $size : config('upload_image_size')) * 1024;
-        $ext  = $ext != '' ? $ext : config('upload_image_ext');
+        $size = ($size != '' ? $size : config('app.upload_image_size')) * 1024;
+        $ext  = $ext != '' ? $ext : config('app.upload_image_ext');
 
         $item = [
             'type'        => 'images',
@@ -1879,7 +1879,7 @@ class Builder extends ZBuilder
             if (!preg_match('/__.*?__/', $item)) {
                 $urls[$key] = '__EXTEND_FORM__/'.$type.'/'.$item;
             }
-            $urls[$key] = str_replace(array_keys(config('template.tpl_replace_string')), array_values(config('template.tpl_replace_string')), $urls[$key]);
+            $urls[$key] = str_replace(array_keys(config('view.tpl_replace_string')), array_values(config('view.tpl_replace_string')), $urls[$key]);
         }
         return $urls;
     }
@@ -2353,6 +2353,6 @@ class Builder extends ZBuilder
         $this->_vars['btn_extra'] = implode(' ', $this->_vars['btn_extra']);
 
         // 实例化视图并渲染
-        return parent::fetch($this->_template, $this->_vars, $config);
+        return View::fetch($this->_template, $this->_vars, $config);
     }
 }
