@@ -565,7 +565,7 @@
 
 {block name="style"}
     {volist name="css_list" id="vo"}
-    <link rel="stylesheet" href="{$vo}?v={:config('asset_version')}">
+    <link rel="stylesheet" href="{$vo}?v={:config('app.asset_version')}">
     {/volist}
 
     {// 额外CSS代码 }
@@ -707,7 +707,7 @@
         });
     </script>
     {volist name="js_list" id="vo"}
-    <script src="{$vo}?v={:config('asset_version')}"></script>
+    <script src="{$vo}?v={:config('app.asset_version')}"></script>
     {/volist}
 
     {// 额外JS代码 }

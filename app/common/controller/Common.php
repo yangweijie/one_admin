@@ -32,7 +32,6 @@ class Common extends BaseController
      */
     protected function initialize()
     {
-    	dump(config('app.admin_base_layout'));
         // 后台公共模板
         View::assign('_admin_base_layout', config('app.admin_base_layout'));
         // 当前配色方案

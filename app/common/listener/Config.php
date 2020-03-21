@@ -114,7 +114,10 @@ class Config
 
         config($view, 'view');
         // 静态文件目录
-        config('public_static_path', PUBLIC_PATH. 'static/');
+
+        $app_config = config('app');
+        $app_config['public_static_path'] =   PUBLIC_PATH. 'static/';
+        config($app_config, 'app');
 
         // 读取系统配置
         $system_config = cache('system_config');
