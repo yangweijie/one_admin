@@ -36,4 +36,6 @@ return [
     'show_error_msg'   => true,
 
     'admin_base_layout'  => app_path() . 'admin/view/layout.html',
+
+    'plugin_path' => '../extend/plugins/'
 ];

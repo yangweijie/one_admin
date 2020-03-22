@@ -14,7 +14,10 @@ namespace app\common\listener;
 use app\admin\model\Hook as HookModel;
 use app\admin\model\HookPlugin as HookPluginModel;
 use app\admin\model\Plugin as PluginModel;
+
+use think\helper\Str;
 use think\facade\Cache;
+use think\facade\Event;
 
 /**
  * 注册钩子
@@ -51,11 +54,11 @@ class Hook
                 Cache::set('plugins', $plugins);
             }
         }
-
         if ($hook_plugins) {
             foreach ($hook_plugins as $value) {
                 if (isset($hooks[$value['hook']]) && isset($plugins[$value['plugin']])) {
-                    // \think\facade\Hook::add($value['hook'], get_plugin_class($value['plugin']));
+                	$event = Str::studly($value['hook']);
+                	Event::listen($event, '\\'.get_plugin_class($value['plugin']));
                 }
             }
         }

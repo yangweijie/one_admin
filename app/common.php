@@ -405,6 +405,8 @@ if (!function_exists('hook')) {
      * @alter 小乌 <82950492@qq.com>
      */
     function hook($name = '', $params = null, $once = false) {
+    	$event = \think\helper\Str::studly($name);
+    	event($event);
         // \think\facade\Hook::listen($name, $params, $once);
     }
 }
@@ -460,16 +462,17 @@ if (!function_exists('plugin_config')) {
      */
     function plugin_config($name = '', $value = '')
     {
+    	$plugin = new \app\admin\model\Plugin;
         if ($value === '') {
             // 获取插件配置
             if (strpos($name, '.')) {
                 list($name, $item) = explode('.', $name);
-                return model('admin/plugin')->getConfig($name, $item);
+                return $plugin->getConfig($name, $item);
             } else {
-                return model('admin/plugin')->getConfig($name);
+                return $plugin->getConfig($name);
             }
         } else {
-            return model('admin/plugin')->setConfig($name, $value);
+            return $plugin->setConfig($name, $value);
         }
     }
 }
@@ -1476,4 +1479,29 @@ if (!function_exists('dp_send_message')) {
         $MessageModel = model('user/message');
         return false !== $MessageModel->saveAll($list);
     }
+
+	function tree($directory)
+	{
+		$mydir = dir($directory);
+		$files = [];
+		$ds = DIRECTORY_SEPARATOR;
+		while($file = $mydir->read())
+		{
+			if((is_dir("{$directory}{$ds}{$file}")) AND ($file!=".") AND ($file!=".."))
+			{
+				$temps = tree("{$directory}{$ds}{$file}");
+				if($temps){
+					foreach ($temps as $temp) {
+						$files[] = $temp;
+					}
+				}
+			}elseif(!is_dir("{$directory}{$ds}{$file}")){
+				$files[] = $directory.DIRECTORY_SEPARATOR.$file;
+			}
+		}
+		$mydir->close();
+		return $files;
+	}
+
+
 }

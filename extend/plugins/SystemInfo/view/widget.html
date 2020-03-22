@@ -16,7 +16,7 @@
                 </tr>
                 <tr>
                     <td>ThinkPHP版本</td>
-                    <td>{$Think.VERSION}</td>
+                    <td>{:\\think\\facade\\App::version()}</td>
                 </tr>
                 <tr>
                     <td>服务器操作系统</td>
@@ -28,7 +28,7 @@
                 </tr>
                 <tr>
                     <td>MYSQL版本</td>
-                    <td>{:db()->query('select version() as version')[0]['version']}</td>
+                    <td>{:\\think\\facade\\Db::query('select version() as version')[0]['version']}</td>
                 </tr>
                 <tr>
                     <td>PHP版本</td>

@@ -11,6 +11,7 @@ namespace app\common\controller;
 
 use think\Container;
 use think\Exception;
+use think\facade\View;
 
 /**
  * 插件类
@@ -44,8 +45,7 @@ abstract class Plugin
      */
     public function __construct()
     {
-        $this->view = Container::get('view');
-        $this->plugin_path = config('plugin_path').$this->getName().'/';
+        $this->plugin_path = config('app.plugin_path').$this->getName().'/';
         if (is_file($this->plugin_path.'config.php')) {
             $this->config_file = $this->plugin_path.'config.php';
         }
@@ -78,13 +78,13 @@ abstract class Plugin
     {
         if ($template != '') {
             if (!is_file($template)) {
-                $template = $this->plugin_path. 'view/'. $template . '.' . config('template.view_suffix');
+                $template = $this->plugin_path. 'view/'. $template . '.' . config('view.view_suffix');
                 if (!is_file($template)) {
                     throw new Exception('模板不存在：'.$template, 5001);
                 }
             }
 
-            echo $this->view->fetch($template, $vars, $config, $renderContent);
+            echo View::fetch($template, $vars, $config, $renderContent);
         }
     }
 
@@ -97,7 +97,7 @@ abstract class Plugin
      */
     final protected function assign($name = '', $value='')
     {
-        $this->view->assign($name, $value);
+        View::assign($name, $value);
         return $this;
     }
 

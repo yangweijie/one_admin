@@ -43,17 +43,10 @@ class DevTeam extends Plugin
     ];
 
     /**
-     * @var array 插件钩子
-     */
-    public $hooks = [
-        'admin_index'
-    ];
-
-    /**
      * 后台首页钩子
      * @author 蔡伟明 <314013107@qq.com>
      */
-    public function adminIndex()
+    public function handle()
     {
         $config = $this->getConfigValue();
         if ($config['display']) {
