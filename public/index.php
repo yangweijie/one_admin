@@ -14,6 +14,9 @@ namespace think;
 
 require __DIR__ . '/../vendor/autoload.php';
 
+// 定义后台入口文件
+define('ADMIN_FILE', 'admin.php');
+
 // 执行HTTP应用并响应
 $http = (new App())->http;
 

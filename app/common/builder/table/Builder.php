@@ -164,11 +164,11 @@ class Builder extends ZBuilder
      */
     public function initialize()
     {
-        $this->_module     = $this->request->module();
+        $this->_module     = MODULE;
         $this->_controller = parse_name($this->request->controller());
         $this->_action     = $this->request->action();
         $this->_table_name = strtolower($this->_module.'_'.$this->_controller);
-        $this->_template   = Env::get('app_path'). 'common/builder/table/layout.html';
+        $this->_template   = APP_PATH. 'common/builder/table/layout.html';
 
         // 默认加载快速编辑所需js和css
         $this->_vars['_js_files'][]  = 'editable_js';
@@ -1930,32 +1930,32 @@ class Builder extends ZBuilder
                             }
                             break;
                         case 'text.edit': // 可编辑的单行文本
-                            $row[$column['name'].'__'.$column['type']] = '<a href="javascript:void(0);" 
-                                class="text-edit" 
-                                data-placeholder="请输入'.$column['title'].'" 
-                                data-table="'.$this->createTableToken($_table_name == '' ? $this->_table_name : $_table_name, $this->_prefix).'" 
-                                data-type="text" 
-                                data-pk="'.$row['_primary_key_value'].'" 
+                            $row[$column['name'].'__'.$column['type']] = '<a href="javascript:void(0);"
+                                class="text-edit"
+                                data-placeholder="请输入'.$column['title'].'"
+                                data-table="'.$this->createTableToken($_table_name == '' ? $this->_table_name : $_table_name, $this->_prefix).'"
+                                data-type="text"
+                                data-pk="'.$row['_primary_key_value'].'"
                                 data-name="'.$_name.'">'.$row[$column['name']].'</a>';
                             break;
                         case 'textarea.edit': // 可编辑的多行文本
-                            $row[$column['name'].'__'.$column['type']] = '<a href="javascript:void(0);" 
-                                class="textarea-edit" 
-                                data-placeholder="请输入'.$column['title'].'" 
-                                data-table="'.$this->createTableToken($_table_name == '' ? $this->_table_name : $_table_name, $this->_prefix).'" 
-                                data-type="textarea" 
-                                data-pk="'.$row['_primary_key_value'].'" 
+                            $row[$column['name'].'__'.$column['type']] = '<a href="javascript:void(0);"
+                                class="textarea-edit"
+                                data-placeholder="请输入'.$column['title'].'"
+                                data-table="'.$this->createTableToken($_table_name == '' ? $this->_table_name : $_table_name, $this->_prefix).'"
+                                data-type="textarea"
+                                data-pk="'.$row['_primary_key_value'].'"
                                 data-name="'.$_name.'">'.$row[$column['name']].'</a>';
                             break;
                         case 'password': // 密码框
                             $column['param'] = $column['param'] != '' ? $column['param'] : $column['name'];
-                            $row[$column['name'].'__'.$column['type']] = '<a href="javascript:void(0);" 
-                                class="text-edit" 
-                                data-placeholder="请输入'.$column['title'].'" 
-                                data-table="'.$this->createTableToken($_table_name == '' ? $this->_table_name : $_table_name, $this->_prefix).'" 
-                                data-type="password" 
-                                data-value="" 
-                                data-pk="'.$row['_primary_key_value'].'" 
+                            $row[$column['name'].'__'.$column['type']] = '<a href="javascript:void(0);"
+                                class="text-edit"
+                                data-placeholder="请输入'.$column['title'].'"
+                                data-table="'.$this->createTableToken($_table_name == '' ? $this->_table_name : $_table_name, $this->_prefix).'"
+                                data-type="password"
+                                data-value=""
+                                data-pk="'.$row['_primary_key_value'].'"
                                 data-name="'.$_name.'">******</a>';
                             break;
                         case 'email': // 邮箱地址
@@ -1964,13 +1964,13 @@ class Builder extends ZBuilder
                         case 'number': // 数字
                         case 'range': // 范围
                             $column['param'] = $column['param'] != '' ? $column['param'] : $column['name'];
-                            $row[$column['name'].'__'.$column['type']] = '<a href="javascript:void(0);" 
-                                class="text-edit" 
-                                data-placeholder="请输入'.$column['title'].'" 
-                                data-table="'.$this->createTableToken($_table_name == '' ? $this->_table_name : $_table_name, $this->_prefix).'" 
-                                data-type="'.$column['type'].'" 
-                                data-value="'.$row[$column['name']].'" 
-                                data-pk="'.$row['_primary_key_value'].'" 
+                            $row[$column['name'].'__'.$column['type']] = '<a href="javascript:void(0);"
+                                class="text-edit"
+                                data-placeholder="请输入'.$column['title'].'"
+                                data-table="'.$this->createTableToken($_table_name == '' ? $this->_table_name : $_table_name, $this->_prefix).'"
+                                data-type="'.$column['type'].'"
+                                data-value="'.$row[$column['name']].'"
+                                data-pk="'.$row['_primary_key_value'].'"
                                 data-name="'.$_name.'">'.$row[$column['name']].'</a>';
                             break;
                         case 'icon': // 图标
@@ -2019,14 +2019,14 @@ class Builder extends ZBuilder
                             $format = $column['param'] == '' ? $format : $column['param'];
                             // 时间戳
                             $timestamp = $row[$column['name']];
-                            $row[$column['name'].'__'.$column['type']] = '<a href="javascript:void(0);" 
-                                class="combodate-edit" 
-                                data-format="'.$format.'" 
-                                data-name="'.$_name.'" 
-                                data-template="'.$format.'" 
-                                data-callback="" 
-                                data-table="'.$this->createTableToken($_table_name == '' ? $this->_table_name : $_table_name, $this->_prefix).'" 
-                                data-type="combodate" 
+                            $row[$column['name'].'__'.$column['type']] = '<a href="javascript:void(0);"
+                                class="combodate-edit"
+                                data-format="'.$format.'"
+                                data-name="'.$_name.'"
+                                data-template="'.$format.'"
+                                data-callback=""
+                                data-table="'.$this->createTableToken($_table_name == '' ? $this->_table_name : $_table_name, $this->_prefix).'"
+                                data-type="combodate"
                                 data-pk="'.$row['_primary_key_value'].'">';
                             if ($row[$column['name']] == '') {
                                 $row[$column['name'].'__'.$column['type']] .= $column['default'].'</a>';
@@ -2086,13 +2086,13 @@ class Builder extends ZBuilder
                                 }
                                 $class   = ($prepend == '无对应值' || $prepend == '空值') ? 'select-edit text-danger' : 'select-edit';
                                 $source = json_encode($column['default'], JSON_FORCE_OBJECT);
-                                $row[$column['name'].'__'.$column['type']] = '<a href="javascript:void(0);" 
+                                $row[$column['name'].'__'.$column['type']] = '<a href="javascript:void(0);"
                                     class="'.$class.'"
-                                    data-table="'.$this->createTableToken($_table_name == '' ? $this->_table_name : $_table_name, $this->_prefix).'" 
-                                    data-type="select" 
-                                    data-value="'.$row[$column['name']].'" 
-                                    data-source=\''.$source.'\' 
-                                    data-pk="'.$row['_primary_key_value'].'" 
+                                    data-table="'.$this->createTableToken($_table_name == '' ? $this->_table_name : $_table_name, $this->_prefix).'"
+                                    data-type="select"
+                                    data-value="'.$row[$column['name']].'"
+                                    data-source=\''.$source.'\'
+                                    data-pk="'.$row['_primary_key_value'].'"
                                     data-name="'.$_name.'">'.$prepend.'</a>';
                             }
                             break;

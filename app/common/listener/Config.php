@@ -34,7 +34,15 @@ class Config
         if(defined('BIND_MODULE') && BIND_MODULE === 'install') return;
 
         $request = request();
-        $module = explode('/', str_ireplace($request->baseFile().'/', '', $request->baseUrl()))[0];
+        $baseUrl = $request->baseUrl();
+        if(stripos($baseUrl, '.php') === false){
+        	if($baseUrl[0] == '/'){
+        		$baseUrl = substr($baseUrl, 1);
+        		$module  = explode('/', str_ireplace($request->baseFile().'/', '', $baseUrl))[0];
+        	}
+        }else{
+	    	$module = explode('/', str_ireplace($request->baseFile().'/', '', $baseUrl))[0];
+        }
         if(!defined('MODULE')){
         	define('MODULE', $module);
         }
@@ -84,8 +92,8 @@ class Config
             if ($module == '') {
                 header("Location: ".$base_file.'/admin', true, 302);exit();
             }
-            // dump(config('module.default_controller_layer'));
             if (!in_array($module, config('module.default_controller_layer'))) {
+
                 // 修改默认访问控制器层
                 $route_config = config('route');
             	$route_config['controller_layer'] = 'admin';

@@ -85,6 +85,6 @@ class ZBuilder extends Common
     public function fetch($template = '', $vars = [], $config = [])
     {
         $vars = array_merge($vars, self::$vars);
-        return parent::fetch($template, $vars, $config);
+        return View::fetch($template, $vars, $config);
     }
 }
