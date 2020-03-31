@@ -151,7 +151,6 @@ class Admin extends Common
      */
     final protected function isLogin()
     {
-    	return 1;
         // 判断是否登录
         if ($uid = is_signin()) {
             // 已登录

@@ -15,6 +15,7 @@ use app\user\model\User as UserModel;
 use app\user\model\Role as RoleModel;
 use app\admin\model\Module as ModuleModel;
 use app\admin\model\Access as AccessModel;
+use think\facade\View;
 use util\Tree;
 use think\Db;
 use think\facade\Hook;
@@ -112,7 +113,7 @@ class Index extends Admin
             }
 
             if ($user = UserModel::create($data)) {
-                Hook::listen('user_add', $user);
+                hook('user_add', $user);
                 // 记录行为
                 action_log('user_add', 'admin_user', $user['id'], UID);
                 $this->success('新增成功', url('index'));
@@ -204,7 +205,7 @@ class Index extends Admin
 
             if (UserModel::update($data)) {
                 $user = UserModel::get($data['id']);
-                Hook::listen('user_edit', $user);
+                hook('user_edit', $user);
                 // 记录行为
                 action_log('user_edit', 'admin_user', $user['id'], UID, get_nickname($user['id']));
                 $this->success('编辑成功', cookie('__forward__'));
@@ -433,7 +434,7 @@ class Index extends Admin
         $this->assign('uid', $uid);
         $this->assign('tab', $tab);
         $this->assign('page_title', '数据授权');
-        return $this->fetch();
+        return View::fetch();
     }
 
     /**
@@ -476,7 +477,7 @@ class Index extends Admin
      */
     public function delete($ids = [])
     {
-        Hook::listen('user_delete', $ids);
+        hook('user_delete', $ids);
         return $this->setStatus('delete');
     }
 
@@ -489,7 +490,7 @@ class Index extends Admin
      */
     public function enable($ids = [])
     {
-        Hook::listen('user_enable', $ids);
+        hook('user_enable', $ids);
         return $this->setStatus('enable');
     }
 
@@ -502,7 +503,7 @@ class Index extends Admin
      */
     public function disable($ids = [])
     {
-        Hook::listen('user_disable', $ids);
+        hook('user_disable', $ids);
         return $this->setStatus('disable');
     }
 

@@ -13,6 +13,7 @@ use app\admin\controller\Admin;
 use app\common\builder\ZBuilder;
 use app\user\model\Role as RoleModel;
 use app\admin\model\Menu as MenuModel;
+use think\facade\View;
 use util\Tree;
 use think\Db;
 
@@ -175,7 +176,7 @@ class Role extends Admin
         $this->assign('module_list', MenuModel::where('pid', 0)->column('id,title'));
         $this->assign('menus', $menus);
         $this->assign('curr_tab', current(array_keys($menus)));
-        return $this->fetch();
+        return View::fetch();
     }
 
     /**

@@ -8,7 +8,7 @@
 // +----------------------------------------------------------------------
 
 namespace app\cms\home;
-
+use think\facade\View;
 /**
  * 前台首页控制器
  * @package app\cms\admin
@@ -22,6 +22,6 @@ class Index extends Common
      */
     public function index()
     {
-        return $this->fetch(); // 渲染模板
+        return View::fetch(); // 渲染模板
     }
 }

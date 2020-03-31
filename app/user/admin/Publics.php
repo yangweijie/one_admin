@@ -14,6 +14,7 @@ use app\user\model\User as UserModel;
 use app\user\model\Role as RoleModel;
 use app\admin\model\Menu as MenuModel;
 use think\facade\Hook;
+use think\facade\View;
 
 /**
  * 用户公开控制器，不经过权限认证
@@ -34,7 +35,7 @@ class Publics extends Common
             $rememberme = isset($data['remember-me']) ? true : false;
 
             // 登录钩子
-            $hook_result = Hook::listen('signin', $data);
+            $hook_result = hook('signin', $data);
             if (!empty($hook_result) && true !== $hook_result[0]) {
                 $this->error($hook_result[0]);
             }
@@ -68,7 +69,7 @@ class Publics extends Common
             }
         } else {
 
-            $hook_result = Hook::listen('signin_sso');
+            $hook_result = hook('signin_sso');
             if (!empty($hook_result) && true !== $hook_result[0]) {
                 if (isset($hook_result[0]['url'])) {
                     $this->redirect($hook_result[0]['url']);
@@ -81,7 +82,7 @@ class Publics extends Common
             if (is_signin()) {
                 $this->jumpUrl();
             } else {
-                return $this->fetch();
+                return View::fetch();
             }
         }
     }
@@ -136,7 +137,7 @@ class Publics extends Common
      */
     public function signout()
     {
-        $hook_result = Hook::listen('signout_sso');
+        $hook_result = hook('signout_sso');
         if (!empty($hook_result) && true !== $hook_result[0]) {
             if (isset($hook_result[0]['url'])) {
                 $this->redirect($hook_result[0]['url']);

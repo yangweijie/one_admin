@@ -10,6 +10,7 @@
 namespace app\cms\home;
 
 use app\cms\model\Page as PageModel;
+use think\facade\View;
 
 /**
  * 前台单页控制器
@@ -37,6 +38,6 @@ class Page extends Common
         PageModel::where('id', $id)->setInc('view');
 
         $this->assign('page_info', $info);
-        return $this->fetch(); // 渲染模板
+        return View::fetch(); // 渲染模板
     }
 }

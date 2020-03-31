@@ -8,7 +8,7 @@
 // +----------------------------------------------------------------------
 
 namespace app\cms\home;
-
+use think\facade\View;
 use think\Db;
 
 /**
@@ -43,6 +43,6 @@ class Search extends Common
         $this->assign('lists', $data_list);
         $this->assign('pages', $data_list->render());
 
-        return $this->fetch(); // 渲染模板
+        return View::fetch(); // 渲染模板
     }
 }
