@@ -11,7 +11,7 @@ namespace app\user\model;
 
 use think\Model;
 use app\user\model\Role as RoleModel;
-use think\Db;
+use think\facade\Db;
 
 /**
  * 后台用户模型
@@ -88,7 +88,7 @@ class User extends Model
 
                 // 更新登录信息
                 $user['last_login_time'] = request()->time();
-                $user['last_login_ip']   = request()->ip(1);
+                $user['last_login_ip']   = ip2long(request()->ip());
                 if ($user->save()) {
                     // 自动登录
                     return $this->autoLogin(self::where($uid)->find(), $rememberme);
