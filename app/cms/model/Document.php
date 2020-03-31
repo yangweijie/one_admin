@@ -19,6 +19,8 @@ use app\cms\model\Field as FieldModel;
  */
 class Document extends ThinkModel
 {
+	use \app\common\traits\model\Error;
+
     // 设置当前模型对应的完整数据表名称
     protected $name = 'cms_document';
 
