@@ -91,18 +91,18 @@
     },
     {
         "name": "league/flysystem",
-        "version": "1.0.65",
-        "version_normalized": "1.0.65.0",
+        "version": "1.0.66",
+        "version_normalized": "1.0.66.0",
         "source": {
             "type": "git",
             "url": "https://github.com/thephpleague/flysystem.git",
-            "reference": "8f17b3ba67097aafb8318cd5c553b1acf7c891c8"
+            "reference": "021569195e15f8209b1c4bebb78bd66aa4f08c21"
         },
         "dist": {
             "type": "zip",
-            "url": "https://mirrors.huaweicloud.com/repository/php/dist/league/flysystem/league-flysystem-1.0.65-8f17b3ba.zip",
-            "reference": "8f17b3ba67097aafb8318cd5c553b1acf7c891c8",
-            "shasum": "8fc7ee949a375febb5f0f5b198c2cc8b783b752d"
+            "url": "https://mirrors.huaweicloud.com/repository/php/dist/league/flysystem/league-flysystem-1.0.66-02156919.zip",
+            "reference": "021569195e15f8209b1c4bebb78bd66aa4f08c21",
+            "shasum": "c856333e60d3050c4f48e31aaf22817faf7e6936"
         },
         "require": {
             "ext-fileinfo": "*",
@@ -131,7 +131,7 @@
             "spatie/flysystem-dropbox": "Allows you to use Dropbox storage",
             "srmklive/flysystem-dropbox-v2": "Allows you to use Dropbox storage for PHP 5 applications"
         },
-        "time": "2020-03-08T18:53:20+00:00",
+        "time": "2020-03-17T18:58:12+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -224,25 +224,25 @@
     },
     {
         "name": "liliuwei/thinkphp-jump",
-        "version": "v1.4",
-        "version_normalized": "1.4.0.0",
+        "version": "1.5",
+        "version_normalized": "1.5.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/liliuwei/thinkphp-jump.git",
-            "reference": "413db004881eaac0bf03b0f84f95d2f6f9dd83fa"
+            "reference": "481d41b922095f08230609919be5d19354c50540"
         },
         "dist": {
             "type": "zip",
-            "url": "https://mirrors.huaweicloud.com/repository/php/dist/liliuwei/thinkphp-jump/liliuwei-thinkphp-jump-v1.4-413db004.zip",
-            "reference": "413db004881eaac0bf03b0f84f95d2f6f9dd83fa",
-            "shasum": "c05f59d68624ae9c3249ff0ce14fc8e004554770"
+            "url": "https://mirrors.huaweicloud.com/repository/php/dist/liliuwei/thinkphp-jump/liliuwei-thinkphp-jump-1.5-481d41b9.zip",
+            "reference": "481d41b922095f08230609919be5d19354c50540",
+            "shasum": "3bf224a1911aa1d495ecec46beb98f99205ce3c8"
         },
         "require": {
             "php": ">=7.1.0",
             "topthink/framework": "^6.0",
             "topthink/think-view": "^1.0"
         },
-        "time": "2019-12-04T06:29:00+00:00",
+        "time": "2020-03-20T15:11:56+00:00",
         "type": "think-extend",
         "extra": {
             "think": {
@@ -550,23 +550,23 @@
     },
     {
         "name": "psr/log",
-        "version": "1.1.2",
-        "version_normalized": "1.1.2.0",
+        "version": "1.1.3",
+        "version_normalized": "1.1.3.0",
         "source": {
             "type": "git",
             "url": "https://github.com/php-fig/log.git",
-            "reference": "446d54b4cb6bf489fc9d75f55843658e6f25d801"
+            "reference": "0f73288fd15629204f9d42b7055f72dacbe811fc"
         },
         "dist": {
             "type": "zip",
-            "url": "https://mirrors.huaweicloud.com/repository/php/dist/psr/log/psr-log-1.1.2-446d54b4.zip",
-            "reference": "446d54b4cb6bf489fc9d75f55843658e6f25d801",
-            "shasum": "235d9fe64c7d0bc175704bdb192e40d63d40dd20"
+            "url": "https://api.github.com/repos/php-fig/log/zipball/0f73288fd15629204f9d42b7055f72dacbe811fc",
+            "reference": "0f73288fd15629204f9d42b7055f72dacbe811fc",
+            "shasum": ""
         },
         "require": {
             "php": ">=5.3.0"
         },
-        "time": "2019-11-01T11:05:21+00:00",
+        "time": "2020-03-23T09:12:05+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -647,18 +647,18 @@
     },
     {
         "name": "symfony/polyfill-mbstring",
-        "version": "v1.14.0",
-        "version_normalized": "1.14.0.0",
+        "version": "v1.15.0",
+        "version_normalized": "1.15.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/polyfill-mbstring.git",
-            "reference": "34094cfa9abe1f0f14f48f490772db7a775559f2"
+            "reference": "81ffd3a9c6d707be22e3012b827de1c9775fc5ac"
         },
         "dist": {
             "type": "zip",
-            "url": "https://mirrors.huaweicloud.com/repository/php/dist/symfony/polyfill-mbstring/symfony-polyfill-mbstring-v1.14.0-34094cfa.zip",
-            "reference": "34094cfa9abe1f0f14f48f490772db7a775559f2",
-            "shasum": "f58e3b016a0560dfaf0b6e4b0486494198724fb2"
+            "url": "https://mirrors.huaweicloud.com/repository/php/dist/symfony/polyfill-mbstring/symfony-polyfill-mbstring-v1.15.0-81ffd3a9.zip",
+            "reference": "81ffd3a9c6d707be22e3012b827de1c9775fc5ac",
+            "shasum": "53e8b62e38dee668af5eac88c5a8dc3b6c956b09"
         },
         "require": {
             "php": ">=5.3.3"
@@ -666,11 +666,11 @@
         "suggest": {
             "ext-mbstring": "For best performance"
         },
-        "time": "2020-01-13T11:15:53+00:00",
+        "time": "2020-03-09T19:04:49+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-master": "1.14-dev"
+                "dev-master": "1.15-dev"
             }
         },
         "installation-source": "dist",
@@ -707,27 +707,27 @@
     },
     {
         "name": "symfony/polyfill-php72",
-        "version": "v1.14.0",
-        "version_normalized": "1.14.0.0",
+        "version": "v1.15.0",
+        "version_normalized": "1.15.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/polyfill-php72.git",
-            "reference": "46ecacf4751dd0dc81e4f6bf01dbf9da1dc1dadf"
+            "reference": "37b0976c78b94856543260ce09b460a7bc852747"
         },
         "dist": {
             "type": "zip",
-            "url": "https://mirrors.huaweicloud.com/repository/php/dist/symfony/polyfill-php72/symfony-polyfill-php72-v1.14.0-46ecacf4.zip",
-            "reference": "46ecacf4751dd0dc81e4f6bf01dbf9da1dc1dadf",
-            "shasum": "dc2d6dc61aeda30f6a6062c0d133c7da32ae2bc4"
+            "url": "https://mirrors.huaweicloud.com/repository/php/dist/symfony/polyfill-php72/symfony-polyfill-php72-v1.15.0-37b0976c.zip",
+            "reference": "37b0976c78b94856543260ce09b460a7bc852747",
+            "shasum": "a82b1123c3858ca5295c696c0f9e86fc52659386"
         },
         "require": {
             "php": ">=5.3.3"
         },
-        "time": "2020-01-13T11:15:53+00:00",
+        "time": "2020-02-27T09:26:54+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-master": "1.14-dev"
+                "dev-master": "1.15-dev"
             }
         },
         "installation-source": "dist",
@@ -763,23 +763,23 @@
     },
     {
         "name": "symfony/process",
-        "version": "v4.4.5",
-        "version_normalized": "4.4.5.0",
+        "version": "v4.4.6",
+        "version_normalized": "4.4.6.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/process.git",
-            "reference": "bf9166bac906c9e69fb7a11d94875e7ced97bcd7"
+            "reference": "b9863d0f7b684d7c4c13e665325b5ff047de0aee"
         },
         "dist": {
             "type": "zip",
-            "url": "https://mirrors.huaweicloud.com/repository/php/dist/symfony/process/symfony-process-v4.4.5-bf9166ba.zip",
-            "reference": "bf9166bac906c9e69fb7a11d94875e7ced97bcd7",
-            "shasum": "70be477167542f1912ccd6ac86512a666b12f3de"
+            "url": "https://mirrors.huaweicloud.com/repository/php/dist/symfony/process/symfony-process-v4.4.6-b9863d0f.zip",
+            "reference": "b9863d0f7b684d7c4c13e665325b5ff047de0aee",
+            "shasum": "e97bb6d3c31b747db9588c3f32ae257ef2c2bab6"
         },
         "require": {
             "php": "^7.1.3"
         },
-        "time": "2020-02-07T20:06:44+00:00",
+        "time": "2020-03-23T12:37:11+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -813,18 +813,18 @@
     },
     {
         "name": "symfony/var-dumper",
-        "version": "v4.4.5",
-        "version_normalized": "4.4.5.0",
+        "version": "v4.4.7",
+        "version_normalized": "4.4.7.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/var-dumper.git",
-            "reference": "2572839911702b0405479410ea7a1334bfab0b96"
+            "reference": "5a0c2d93006131a36cf6f767d10e2ca8333b0d4a"
         },
         "dist": {
             "type": "zip",
-            "url": "https://mirrors.huaweicloud.com/repository/php/dist/symfony/var-dumper/symfony-var-dumper-v4.4.5-25728399.zip",
-            "reference": "2572839911702b0405479410ea7a1334bfab0b96",
-            "shasum": "6f2a5ce0814142928a72ddc30066ee84b1e36409"
+            "url": "https://mirrors.huaweicloud.com/repository/php/dist/symfony/var-dumper/symfony-var-dumper-v4.4.7-5a0c2d93.zip",
+            "reference": "5a0c2d93006131a36cf6f767d10e2ca8333b0d4a",
+            "shasum": "b76dc334a12f5c3ca7dbaeb5b0d33eb160e28bf5"
         },
         "require": {
             "php": "^7.1.3",
@@ -846,7 +846,7 @@
             "ext-intl": "To show region name in time zone dump",
             "symfony/console": "To use the ServerDumpCommand and/or the bin/var-dump-server script"
         },
-        "time": "2020-02-24T13:10:00+00:00",
+        "time": "2020-03-27T16:54:36+00:00",
         "bin": [
             "Resources/bin/var-dump-server"
         ],
@@ -895,13 +895,13 @@
         "source": {
             "type": "git",
             "url": "https://github.com/top-think/framework.git",
-            "reference": "198445bc3e2b082ee8b95db0b94cf38300bfb624"
+            "reference": "e97afa07e919e786da44b1ba436edc1f7a4ae060"
         },
         "dist": {
             "type": "zip",
-            "url": "https://mirrors.huaweicloud.com/repository/php/dist/topthink/framework/topthink-framework-6.0.x-dev-8c479e40.zip",
-            "reference": "198445bc3e2b082ee8b95db0b94cf38300bfb624",
-            "shasum": "994ff5c54e5f20886312d7d2cbd33c23470529a1"
+            "url": "https://mirrors.huaweicloud.com/repository/php/dist/topthink/framework/topthink-framework-6.0.x-dev-d34a6954.zip",
+            "reference": "e97afa07e919e786da44b1ba436edc1f7a4ae060",
+            "shasum": "536f394782b79de0684b7eb27f2c7f13853ccc2f"
         },
         "require": {
             "ext-json": "*",
@@ -921,7 +921,7 @@
             "mockery/mockery": "^1.2",
             "phpunit/phpunit": "^7.0"
         },
-        "time": "2020-03-01T13:33:21+00:00",
+        "time": "2020-03-24T14:36:17+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -1043,13 +1043,13 @@
         "source": {
             "type": "git",
             "url": "https://github.com/top-think/think-orm.git",
-            "reference": "8dbe81233505734c087f46d504c362b3300452d4"
+            "reference": "0a49e735c811aa20f48eac93e2572f8c4a2fe347"
         },
         "dist": {
             "type": "zip",
-            "url": "https://mirrors.huaweicloud.com/repository/php/dist/topthink/think-orm/topthink-think-orm-2.0.x-dev-6de47522.zip",
-            "reference": "8dbe81233505734c087f46d504c362b3300452d4",
-            "shasum": "7754b1735cbfc6bfe2ca88e8db1f704bcfb6ed15"
+            "url": "https://mirrors.huaweicloud.com/repository/php/dist/topthink/think-orm/topthink-think-orm-2.0.x-dev-ac7db819.zip",
+            "reference": "0a49e735c811aa20f48eac93e2572f8c4a2fe347",
+            "shasum": "aa8f92b2d41bd5f5c6133914fb3d4068dc4e5912"
         },
         "require": {
             "ext-json": "*",
@@ -1058,7 +1058,7 @@
             "psr/simple-cache": "^1.0",
             "topthink/think-helper": "^3.1"
         },
-        "time": "2020-03-05T03:54:46+00:00",
+        "time": "2020-03-24T14:39:05+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
