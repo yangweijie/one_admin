@@ -22,7 +22,7 @@ use think\Db;
  */
 class Field extends Admin
 {
-	use \app\pizhi\traits\model\Error;
+
 
     /**
      * 字段列表
