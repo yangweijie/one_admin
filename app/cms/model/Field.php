@@ -10,7 +10,7 @@
 namespace app\cms\model;
 
 use think\Model as ThinkModel;
-use think\Db;
+use think\facade\Db;
 
 /**
  * 字段模型
