@@ -121,7 +121,7 @@ class AdvertType extends Admin
             }
         }
 
-        $info = AdvertTypeModel::get($id);
+        $info = AdvertTypeModel::find($id);
 
         // 显示编辑页面
         return ZBuilder::make('form')

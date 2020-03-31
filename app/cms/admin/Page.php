@@ -124,7 +124,7 @@ class Page extends Admin
             }
         }
 
-        $info = PageModel::get($id);
+        $info = PageModel::find($id);
 
         // 显示编辑页面
         return ZBuilder::make('form')

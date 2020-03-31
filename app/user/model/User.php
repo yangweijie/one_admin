@@ -10,7 +10,6 @@
 namespace app\user\model;
 
 use think\Model;
-use think\helper\Hash;
 use app\user\model\Role as RoleModel;
 use think\Db;
 
@@ -66,7 +65,7 @@ class User extends Model
         $map['status'] = 1;
 
         // 查找用户
-        $user = $this::get($map);
+        $user = self::where($map)->find();
         if (!$user) {
             $this->error = '用户不存在或被禁用！';
         } else {
@@ -80,7 +79,7 @@ class User extends Model
                 $this->error = '禁止访问，用户所在角色未启用或禁止访问后台！';
                 return false;
             }
-            if (!Hash::check((string)$password, $user['password'])) {
+            if (!\Hash::check((string)$password, $user['password'])) {
                 $this->error = '账号或者密码错误！';
             } else {
                 $uid = $user['id'];
@@ -90,7 +89,7 @@ class User extends Model
                 $user['last_login_ip']   = request()->ip(1);
                 if ($user->save()) {
                     // 自动登录
-                    return $this->autoLogin($this::get($uid), $rememberme);
+                    return $this->autoLogin(self::where($uid)->find(), $rememberme);
                 } else {
                     // 更新登录信息失败
                     $this->error = '登录信息更新失败，请重新登录！';

@@ -183,7 +183,7 @@ class Menu extends Admin
                 ['text', 'sort', '排序', '', 100],
                 ['radio', 'status', '立即启用', '', ['否', '是'], 1]
             ])
-            ->setFormData(MenuModel::get($id))
+            ->setFormData(MenuModel::find($id))
             ->setTrigger('type', '0', 'column')
             ->setTrigger('type', '1', 'page')
             ->setTrigger('type', '2', 'title,url')

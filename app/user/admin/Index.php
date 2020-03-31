@@ -204,7 +204,7 @@ class Index extends Admin
             }
 
             if (UserModel::update($data)) {
-                $user = UserModel::get($data['id']);
+                $user = UserModel::find($data['id']);
                 hook('user_edit', $user);
                 // 记录行为
                 action_log('user_edit', 'admin_user', $user['id'], UID, get_nickname($user['id']));

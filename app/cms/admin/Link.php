@@ -127,7 +127,7 @@ class Link extends Admin
             }
         }
 
-        $info = LinkModel::get($id);
+        $info = LinkModel::find($id);
 
         // 显示编辑页面
         return ZBuilder::make('form')

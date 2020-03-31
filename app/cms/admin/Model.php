@@ -168,7 +168,7 @@ class Model extends Admin
         $list_model_type = ['系统模型', '普通模型', '独立模型(不使用主表)'];
 
         // 模型信息
-        $info = DocumentModel::get($id);
+        $info = DocumentModel::find($id);
         $info['type'] = $list_model_type[$info['type']];
 
         // 显示编辑页面

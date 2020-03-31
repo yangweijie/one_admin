@@ -212,7 +212,7 @@ class Field extends Admin
         }
 
         // 获取数据
-        $info = FieldModel::get($id);
+        $info = FieldModel::find($id);
 
         // 显示编辑页面
         return ZBuilder::make('form')

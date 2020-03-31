@@ -246,7 +246,7 @@ class Role extends Admin
         }
 
         // 获取数据
-        $info = RoleModel::get($id);
+        $info = RoleModel::find($id);
 
         if (session('user_auth.role') != 1) {
             $role_list = RoleModel::getTree($id, false, session('user_auth.role'));

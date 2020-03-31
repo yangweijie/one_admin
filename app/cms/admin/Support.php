@@ -132,7 +132,7 @@ class Support extends Admin
             }
         }
 
-        $info = SupportModel::get($id);
+        $info = SupportModel::find($id);
 
         // 显示编辑页面
         return ZBuilder::make('form')

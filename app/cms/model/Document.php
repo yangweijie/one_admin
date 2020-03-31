@@ -58,7 +58,7 @@ class Document extends ThinkModel
     public static function getOne($id = '', $model = '', $map = [])
     {
         if ($model == '') {
-            $document    = self::get($id);
+            $document    = self::find($id);
             $extra_table = get_model_table($document['model']);
 
             $data = self::view('cms_document', true);

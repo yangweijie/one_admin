@@ -214,7 +214,7 @@ class Advert extends Admin
         $list_type = AdvertTypeModel::where('status', 1)->column('id,name');
         array_unshift($list_type, '默认分类');
 
-        $info = AdvertModel::get($id);
+        $info = AdvertModel::find($id);
         $info['ad_type'] = ['代码', '文字', '图片', 'flash'][$info['ad_type']];
 
         // 显示编辑页面

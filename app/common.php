@@ -27,7 +27,7 @@ if (!function_exists('is_signin')) {
             // 判断是否记住登录
             if (cookie('?uid') && cookie('?signin_token')) {
                 $UserModel = new User();
-                $user = $UserModel::get(cookie('uid'));
+                $user = $UserModel::find(cookie('uid'));
                 if ($user) {
                     $signin_token = data_auth_sign($user['username'].$user['id'].$user['last_login_time']);
                     if (cookie('signin_token') == $signin_token) {
