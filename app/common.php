@@ -1,7 +1,6 @@
 <?php
 // 应用公共文件
 
-
 use think\Db;
 use think\Container;
 use think\facade\Env;
@@ -10,8 +9,8 @@ use app\user\model\User;
 // 应用公共文件
 
 // 加载自定义公共文件
-if (is_file(base_path() . 'function.php')) {
-    include_once base_path() . 'function.php';
+if (is_file( 'function.php')) {
+    include_once 'function.php';
 }
 
 if (!function_exists('is_signin')) {
@@ -1209,7 +1208,7 @@ if (!function_exists('execute_action')) {
             $map = [
                 ['action_id', '=', $action_id],
                 ['user_id', '=', $user_id],
-                ['create_time', 'gt', request()->time() - intval($rule['cycle']) * 3600],
+                ['create_time', '>', request()->time() - intval($rule['cycle']) * 3600],
             ];
             $model = new \app\admin\model\Log;
             $exec_count = $model->where($map)->count();
