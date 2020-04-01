@@ -1598,7 +1598,7 @@ class Builder extends ZBuilder
     public function setExtraHtmlFile($template = '', $tag = '', $vars = [])
     {
         $template = $template == '' ? $this->_action : $template;
-        $file = Env::get('app_path'). $this->_module.'/view/admin/'.$this->_controller.'/'.$template.'.html';
+        $file = base_path(). $this->_module.'/view/admin/'.$this->_controller.'/'.$template.'.html';
         if (file_exists($file)) {
             $content = file_get_contents($file);
             $content = $this->view->display($content, $vars);

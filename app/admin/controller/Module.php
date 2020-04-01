@@ -147,13 +147,13 @@ class Module extends Admin
         }
 
         // 执行安装文件
-        $install_file = realpath(Env::get('app_path').$name.'/install.php');
+        $install_file = realpath(base_path().$name.'/install.php');
         if (file_exists($install_file)) {
             @include($install_file);
         }
 
         // 执行安装模块sql文件
-        $sql_file = realpath(Env::get('app_path').$name.'/sql/install.sql');
+        $sql_file = realpath(base_path().$name.'/sql/install.sql');
         if (file_exists($sql_file)) {
             if (isset($module_info['database_prefix']) && !empty($module_info['database_prefix'])) {
                 $sql_statement = Sql::getSqlFromFile($sql_file, false, [$module_info['database_prefix'] => config('database.prefix')]);
@@ -205,9 +205,9 @@ class Module extends Admin
 
         if ($ModuleModel->allowField($allowField)->save()) {
             // 复制静态资源目录
-            File::copy_dir(Env::get('app_path'). $name. '/public', Env::get('root_path'). 'public');
+            File::copy_dir(base_path(). $name. '/public', Env::get('root_path'). 'public');
             // 删除静态资源目录
-            File::del_dir(Env::get('app_path'). $name. '/public');
+            File::del_dir(base_path(). $name. '/public');
             cache('modules', null);
             cache('module_all', null);
             // 记录行为
@@ -243,7 +243,7 @@ class Module extends Admin
         }
 
         // 执行卸载文件
-        $uninstall_file = realpath(Env::get('app_path').$name.'/uninstall.php');
+        $uninstall_file = realpath(base_path().$name.'/uninstall.php');
         if (file_exists($uninstall_file)) {
             @include($uninstall_file);
         }
@@ -251,7 +251,7 @@ class Module extends Admin
         // 执行卸载模块sql文件
         $clear = $this->request->get('clear');
         if ($clear == 1) {
-            $sql_file = realpath(Env::get('app_path').$name.'/sql/uninstall.sql');
+            $sql_file = realpath(base_path().$name.'/sql/uninstall.sql');
             if (file_exists($sql_file)) {
                 if (isset($module_info['database_prefix']) && !empty($module_info['database_prefix'])) {
                     $sql_statement = Sql::getSqlFromFile($sql_file, false, [$module_info['database_prefix'] => config('database.prefix')]);
@@ -289,7 +289,7 @@ class Module extends Admin
         // 删除模块信息
         if (ModuleModel::where('name', $name)->delete()) {
             // 复制静态资源目录
-            File::copy_dir(Env::get('root_path'). 'public/static/'. $name, Env::get('app_path').$name.'/public/static/'. $name);
+            File::copy_dir(Env::get('root_path'). 'public/static/'. $name, base_path().$name.'/public/static/'. $name);
             // 删除静态资源目录
             File::del_dir(Env::get('root_path'). 'public/static/'. $name);
             cache('modules', null);
@@ -367,7 +367,7 @@ class Module extends Admin
         }
 
         // 复制模块目录到导出目录
-        File::copy_dir(Env::get('app_path'). $name, $module_dir);
+        File::copy_dir(base_path(). $name, $module_dir);
         // 复制静态资源目录
         File::copy_dir(Env::get('root_path'). 'public/static/'. $name, $module_dir.'/public/static/'. $name);
 

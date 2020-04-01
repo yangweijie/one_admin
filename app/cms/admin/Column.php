@@ -110,8 +110,8 @@ class Column extends Admin
             }
         }
 
-        $template_list   = File::get_dirs(Env::get('app_path').'cms/view/column/')['file'];
-        $template_detail = File::get_dirs(Env::get('app_path').'cms/view/document/')['file'];
+        $template_list   = File::get_dirs(base_path().'cms/view/column/')['file'];
+        $template_detail = File::get_dirs(base_path().'cms/view/document/')['file'];
 
         // 显示添加页面
         return ZBuilder::make('form')
@@ -170,8 +170,8 @@ class Column extends Admin
         // 获取数据
         $info = ColumnModel::find($id);
 
-        $template_list   = File::get_dirs(Env::get('app_path').'cms/view/column/')['file'];
-        $template_detail = File::get_dirs(Env::get('app_path').'cms/view/document/')['file'];
+        $template_list   = File::get_dirs(base_path().'cms/view/column/')['file'];
+        $template_detail = File::get_dirs(base_path().'cms/view/document/')['file'];
 
         // 显示编辑页面
         return ZBuilder::make('form')

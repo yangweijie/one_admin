@@ -55,8 +55,8 @@ class Module extends Model
     {
         $result = cache('module_all');
         if (!$result) {
-            $dirs = array_map('basename', glob(Env::get('app_path').'*', GLOB_ONLYDIR));
-            if ($dirs === false || !file_exists(Env::get('app_path'))) {
+            $dirs = array_map('basename', glob(base_path().'*', GLOB_ONLYDIR));
+            if ($dirs === false || !file_exists(base_path())) {
                 $this->error = '模块目录不可读或者不存在';
                 return false;
             }
@@ -334,9 +334,9 @@ class Module extends Model
     public static function getMenusFromFile($name = '')
     {
         $menus = [];
-        if ($name != '' && is_file(Env::get('app_path'). $name . '/menus.php')) {
+        if ($name != '' && is_file(base_path(). $name . '/menus.php')) {
             // 从菜单文件获取
-            $menus = include Env::get('app_path'). $name . '/menus.php';
+            $menus = include base_path(). $name . '/menus.php';
         }
         return $menus;
     }
