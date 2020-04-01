@@ -534,12 +534,12 @@ class Index extends Admin
 
         switch ($type) {
             case 'enable':
-                if (false === UserModel::where('id', 'in', $ids)->setField('status', 1)) {
+                if (false === UserModel::where('id', 'in', $ids)->update(['status'=>1])) {
                     $this->error('启用失败');
                 }
                 break;
             case 'disable':
-                if (false === UserModel::where('id', 'in', $ids)->setField('status', 0)) {
+                if (false === UserModel::where('id', 'in', $ids)->update(['status'=>0])) {
                     $this->error('禁用失败');
                 }
                 break;

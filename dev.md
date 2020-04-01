@@ -33,3 +33,4 @@
 
 * think\Db => think\facade\Db;
 * config('develop_mode') => config('app.develop_mode')
+* setField 取消了 改为update

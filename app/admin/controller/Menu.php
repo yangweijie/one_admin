@@ -531,7 +531,7 @@ class Menu extends Admin
 
         $status = $type == 'enable' ? 1 : 0;
 
-        if (false !== MenuModel::where('id', $id)->setField('status', $status)) {
+        if (false !== MenuModel::where('id', $id)->update(['status'=>$status])) {
             Cache::clear();
             // 记录行为日志
             if (!empty($record)) {

@@ -293,7 +293,7 @@ class Plugin extends Model
             $config[$item] = $value;
         }
 
-        if (false === $this->where('name', $name)->setField('config', json_encode($config))) {
+        if (false === $this->where('name', $name)->update(['config'=>json_encode($config)])) {
             return false;
         }
 

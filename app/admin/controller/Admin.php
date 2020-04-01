@@ -253,7 +253,7 @@ class Admin extends Common
 
         // 主键名
         $pk     = $Model->getPk();
-        $result = $Model->where($pk, $id)->setField($field, $value);
+        $result = $Model->where($pk, $id)->update([$field=>$value]);
 
         cache('hook_plugins', null);
         cache('system_config', null);
@@ -440,10 +440,10 @@ class Admin extends Common
         $result = false;
         switch ($type) {
             case 'disable': // 禁用
-                $result = $Model->where($map)->setField($field, 0);
+                $result = $Model->where($map)->update([$field=> 0]);
                 break;
             case 'enable': // 启用
-                $result = $Model->where($map)->setField($field, 1);
+                $result = $Model->where($map)->update([$field=>1]);
                 break;
             case 'delete': // 删除
                 $result = $Model->where($map)->delete();

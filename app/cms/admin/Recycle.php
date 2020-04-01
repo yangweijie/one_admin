@@ -142,7 +142,7 @@ class Recycle extends Admin
         $document_title = Db::name($table)->where('id', 'in', $ids)->column('title');
 
         // 还原文档
-        if (false === Db::name($table)->where('id', 'in', $ids)->setField('trash', 0)) {
+        if (false === Db::name($table)->where('id', 'in', $ids)->update(['trash'=>0])) {
             $this->error('还原失败');
         }
 

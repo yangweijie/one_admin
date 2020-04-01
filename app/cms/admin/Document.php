@@ -258,7 +258,7 @@ class Document extends Admin
         $document_title = Db::name($table)->where('id', 'in', $ids)->column('title');
 
         // 移动文档到回收站
-        if (false === Db::name($table)->where('id', 'in', $ids)->setField('trash', 1)) {
+        if (false === Db::name($table)->where('id', 'in', $ids)->update(['trash'=>1])) {
             $this->error('删除失败');
         }
 

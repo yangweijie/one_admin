@@ -524,9 +524,9 @@ INFO;
             'pid'    => 0,
             'module' => $module['name']
         ];
-        MenuModel::where($map)->setField('status', $status);
+        MenuModel::where($map)->update(['status'=>$status]);
 
-        if (false !== ModuleModel::where('id', $ids)->setField('status', $status)) {
+        if (false !== ModuleModel::where('id', $ids)->update(['status'=>$status])) {
             // 记录日志
             call_user_func_array('action_log', ['module_'.$type, 'admin_module', 0, UID, $module['title']]);
             $this->success('操作成功');

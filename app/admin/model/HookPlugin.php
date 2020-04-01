@@ -32,7 +32,7 @@ class HookPlugin extends Model
      */
     public static function enable($plugin = '')
     {
-        return self::where('plugin', $plugin)->setField('status', 1);
+        return self::where('plugin', $plugin)->update(['status'=>1]);
     }
 
     /**
@@ -43,7 +43,7 @@ class HookPlugin extends Model
      */
     public static function disable($plugin = '')
     {
-        return self::where('plugin', $plugin)->setField('status', 0);
+        return self::where('plugin', $plugin)->update(['status'=>0]);
     }
 
     /**
@@ -121,7 +121,7 @@ class HookPlugin extends Model
                     'hook'   => $hook,
                     'plugin' => $plugin
                 ];
-                self::where($map)->setField('sort', $key + 1);
+                self::where($map)->update(['sort'=>($key + 1)]);
             }
         }
 

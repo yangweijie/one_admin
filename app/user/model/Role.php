@@ -208,7 +208,7 @@ class Role extends Model
             foreach ($data as $id => $menu_auth) {
                 $menu_auth = json_decode($menu_auth, true);
                 $menu_auth = json_encode(array_intersect($menu_auth, $new_auth));
-                self::where('id', $id)->setField('menu_auth', $menu_auth);
+                self::where('id', $id)->update(['menu_auth'=>$menu_auth]);
                 self::resetAuth($id, $new_auth);
             }
         }

@@ -399,12 +399,12 @@ class Role extends Admin
 
             switch ($type) {
                 case 'enable':
-                    if (false === RoleModel::where('id', $id)->setField('status', 1)) {
+                    if (false === RoleModel::where('id', $id)->update(['status'=>1])) {
                         $this->error('启用失败，角色ID：'.$id);
                     }
                     break;
                 case 'disable':
-                    if (false === RoleModel::where('id', $id)->setField('status', 0)) {
+                    if (false === RoleModel::where('id', $id)->update(['status'=>0])) {
                         $this->error('禁用失败，角色ID：'.$id);
                     }
                     break;

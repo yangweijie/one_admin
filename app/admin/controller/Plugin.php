@@ -486,7 +486,7 @@ class Plugin extends Admin
                 HookPluginModel::$type($plugins);
             }
 
-            if (false !== PluginModel::where('id', 'in', $ids)->setField('status', $status)) {
+            if (false !== PluginModel::where('id', 'in', $ids)->update(['status'=>$status])) {
                 $this->success('操作成功');
             } else {
                 $this->error('操作失败');

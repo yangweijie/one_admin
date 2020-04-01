@@ -163,7 +163,7 @@ class Ajax extends Common
     public function setTheme($theme = '') {
         $map['name']  = 'system_color';
         $map['group'] = 'system';
-        if (Db::name('admin_config')->where($map)->setField('value', $theme)) {
+        if (Db::name('admin_config')->where($map)->update(['value'=>$theme]) {
             $this->success('设置成功');
         } else {
             $this->error('设置失败，请重试');

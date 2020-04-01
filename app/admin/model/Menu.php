@@ -47,7 +47,7 @@ class Menu extends Model
             $ids = self::where('pid', $id)->column('id');
             if ($ids) {
                 foreach ($ids as $id) {
-                    self::where('id', $id)->setField('module', $module);
+                    self::where('id', $id)->update(['module'=>$module]);
                     self::changeModule($id, $module);
                 }
             }
