@@ -129,7 +129,7 @@ class Index extends Admin
         $params                    = http_build_query($params);
 
         $opts = [
-            CURLOPT_TIMEOUT        => 20,
+            CURLOPT_TIMEOUT        => 3,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_URL            => config('dolphin.product_update'),
             CURLOPT_USERAGENT      => $_SERVER['HTTP_USER_AGENT'],
@@ -143,6 +143,12 @@ class Index extends Admin
         $data  = curl_exec($ch);
         curl_close($ch);
 
+        if($data === false){
+        	return json([
+                'update' => '',
+                'auth'   => '暂无授权',
+            ]);
+        }
         $result = json_decode($data, true);
 
         if ($result['code'] == 1) {

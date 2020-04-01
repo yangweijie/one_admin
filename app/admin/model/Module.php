@@ -210,8 +210,8 @@ class Module extends Model
         $info = [];
         if ($name != '') {
             // 从配置文件获取
-            if (is_file(Env::get('app_path'). $name . '/info.php')) {
-                $info = include Env::get('app_path'). $name . '/info.php';
+            if (is_file(base_path(). $name . '/info.php')) {
+                $info = include base_path(). $name . '/info.php';
             }
         }
         return $info;

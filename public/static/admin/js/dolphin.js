@@ -557,10 +557,17 @@ var Dolphin = function () {
                 location.href = $('#nav-' + data.module_id).find('a').not('.nav-submenu').first().attr('href');
             } else {
                 $.post(dolphin.top_menu_url, data, function (res) {
+					if(typeof res == 'string') {
+						res = {
+							code:1,
+							data:res
+						};
+					}
                     if (res.code) {
                         if (res.data === '') {
                             tips('暂无无节点权限', 'danger');return false;
                         }
+                        console.log(res.data);
                         if ($target === '_self') {
                             location.href = res.data;
                         } else {

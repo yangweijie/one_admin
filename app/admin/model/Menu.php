@@ -184,7 +184,7 @@ class Menu extends Model
                 }
                 if ($menu['url_value'] != '' && ($menu['url_type'] == 'module_admin' || $menu['url_type'] == 'module_home')) {
                 	parse_str($menu['params'], $params);
-                	$menu['params'] = parse_url($menu['params']);
+                	$menu['params'] = $params;
                     $menu['url_value'] = $menu['url_type'] == 'module_admin' ? admin_url($menu['url_value'], $params) : home_url($menu['url_value'], $params);
                 }
             }

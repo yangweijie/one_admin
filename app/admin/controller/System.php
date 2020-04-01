@@ -87,7 +87,7 @@ class System extends Admin
             $list_group = config('config_group');
 
             // 读取模型配置
-            $modules = ModuleModel::where('config', 'neq', '')
+            $modules = ModuleModel::where('config', '<>', '')
                 ->where('status', 1)
                 ->column('config,title,name', 'name');
             foreach ($modules as $name => $module) {
@@ -132,7 +132,7 @@ class System extends Admin
             } else {
                 // 模块配置
                 $module_info = ModuleModel::getInfoFromFile($group);
-                $config      = $module_info['config'];
+                $config      = $module_info['config']??[];
                 $trigger     = isset($module_info['trigger']) ? $module_info['trigger'] : [];
 
                 // 数据库内的模块信息
