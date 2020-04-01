@@ -77,7 +77,8 @@ if (!function_exists('get_file_path')) {
      */
     function get_file_path($id = 0)
     {
-        $path = model('admin/attachment')->getFilePath($id);
+    	$model = new \app\admin\model\Attachment;
+        $path = $model->getFilePath($id);
         if (!$path) {
             return config('app.public_static_path').'admin/img/none.png';
         }
@@ -94,7 +95,8 @@ if (!function_exists('get_files_path')) {
      */
     function get_files_path($ids = [])
     {
-        $paths = model('admin/attachment')->getFilePath($ids);
+    	$model = new \app\admin\model\Attachment;
+        $paths = $model->getFilePath($ids);
         return !$paths ? [] : $paths;
     }
 }
@@ -108,7 +110,8 @@ if (!function_exists('get_thumb')) {
      */
     function get_thumb($id = 0)
     {
-        $path = model('admin/attachment')->getThumbPath($id);
+    	$model = new \app\admin\model\Attachment;
+        $path = $model->getThumbPath($id);
         if (!$path) {
             return config('app.public_static_path').'admin/img/none.png';
         }
@@ -145,7 +148,8 @@ if (!function_exists('get_file_name')) {
      */
     function get_file_name($id = '')
     {
-        $name = model('admin/attachment')->getFileName($id);
+    	$model = new \app\admin\model\Attachment;
+        $name = $model->getFileName($id);
         if (!$name) {
             return '没有找到文件';
         }
@@ -425,16 +429,18 @@ if (!function_exists('module_config')) {
             // 显示模块配置页面
             return action('admin/admin/moduleConfig');
         } elseif ($value === '') {
+        	$model = new \app\admin\model\Module;
             // 获取模块配置
             if (strpos($name, '.')) {
                 list($name, $item) = explode('.', $name);
-                return model('admin/module')->getConfig($name, $item);
+                return $model->getConfig($name, $item);
             } else {
-                return model('admin/module')->getConfig($name);
+                return $model->getConfig($name);
             }
         } else {
+        	$model = new \app\admin\model\Module;
             // 设置值
-            return model('admin/module')->setConfig($name, $value);
+            return $model->setConfig($name, $value);
         }
     }
 }
@@ -688,7 +694,8 @@ if (!function_exists('get_auth_node')) {
      */
     function get_auth_node($uid = 0, $group = '')
     {
-        return model('admin/access')->getAuthNode($uid, $group);
+    	$model = new \app\admin\model\Access;
+        return $model->getAuthNode($uid, $group);
     }
 }
 
@@ -703,7 +710,8 @@ if (!function_exists('check_auth_node')) {
      */
     function check_auth_node($uid = 0, $group = '', $node = 0)
     {
-        return model('admin/access')->checkAuthNode($uid, $group, $node);
+    	$model = new \app\admin\model\Access;
+        return $model->checkAuthNode($uid, $group, $node);
     }
 }
 
@@ -1002,7 +1010,8 @@ if (!function_exists('get_nickname')) {
             $name = $list[$key];
         } else {
             // 调用接口获取用户信息
-            $info = model('user/user')->field('nickname')->find($uid);
+            $model = new \app\user\model\User;
+            $info = $model->field('nickname')->find($uid);
             if ($info !== false && $info['nickname']) {
                 $nickname = $info['nickname'];
                 $name = $list[$key] = $nickname;
@@ -1047,11 +1056,12 @@ if (!function_exists('action_log')) {
             if (strpos($action, '.')) {
                 list($module, $action) = explode('.', $action);
             } else {
-                $module = request()->module();
+                $module = MODULE;
             }
 
             // 查询行为,判断是否执行
-            $action_info = model('admin/action')->where('module', $module)->getByName($action);
+            $model = new \app\admin\model\Action;
+            $action_info = $model->where('module', $module)->getByName($action);
             if($action_info['status'] != 1){
                 return '该行为被禁用或删除';
             }
@@ -1098,7 +1108,8 @@ if (!function_exists('action_log')) {
             }
 
             // 保存日志
-            model('admin/log')->insert($data);
+            $model = new \app\admin\model\Log;
+            $model->create($data);
 
             if(!empty($action_info['rule'])){
                 // 解析行为
@@ -1148,7 +1159,8 @@ if (!function_exists('parse_action')) {
         }
 
         // 查询行为信息
-        $info = model('admin/action')->where($map)->find();
+        $model = new \app\admin\model\Action;
+        $info = $model->where($map)->find();
         if(!$info || $info['status'] != 1){
             return false;
         }
@@ -1199,7 +1211,8 @@ if (!function_exists('execute_action')) {
                 ['user_id', '=', $user_id],
                 ['create_time', 'gt', request()->time() - intval($rule['cycle']) * 3600],
             ];
-            $exec_count = model('admin/log')->where($map)->count();
+            $model = new \app\admin\model\Log;
+            $exec_count = $model->where($map)->count();
             if($exec_count > $rule['max']){
                 continue;
             }
@@ -1475,8 +1488,8 @@ if (!function_exists('dp_send_message')) {
                 'content'     => $content,
             ];
         }
-
-        $MessageModel = model('user/message');
+        $model = new \app\user\model\Message;
+        $MessageModel = $model;
         return false !== $MessageModel->saveAll($list);
     }
 
