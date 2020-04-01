@@ -139,7 +139,7 @@ class Menu extends Admin
                 "可留空，如果是模块链接，请填写<code>模块/控制器/操作</code>，如：<code>admin/menu/add</code>。如果是普通链接，则直接填写url地址，如：<code>http://www.dolphinphp.com</code>"
             )
             ->addText('params', '参数', '如：a=1&b=2')
-            ->addSelect('role', '角色', '除超级管理员外，拥有该节点权限的角色', RoleModel::where('id', 'neq', 1)->column('id,name'), '', 'multiple')
+            ->addSelect('role', '角色', '除超级管理员外，拥有该节点权限的角色', RoleModel::where('id', '<>', 1)->column('id,name'), '', 'multiple')
             ->addRadio('auto_create', '自动添加子节点', '选择【是】则自动添加指定的子节点', ['否', '是'], 0)
             ->addCheckbox('child_node', '子节点', '仅上面选项为【是】时起作用', ['add' => '新增', 'edit' => '编辑', 'delete' => '删除', 'enable' => '启用', 'disable' => '禁用', 'quickedit' => '快速编辑'], 'add,edit,delete,enable,disable,quickedit')
             ->addRadio('url_target', '打开方式', '', ['_self' => '当前窗口', '_blank' => '新窗口'], '_self')
@@ -219,7 +219,7 @@ class Menu extends Admin
                 "可留空，如果是模块链接，请填写<code>模块/控制器/操作</code>，如：<code>admin/menu/add</code>。如果是普通链接，则直接填写url地址，如：<code>http://www.dolphinphp.com</code>"
             )
             ->addText('params', '参数', '如：a=1&b=2')
-            ->addSelect('role', '角色', '除超级管理员外，拥有该节点权限的角色', RoleModel::where('id', 'neq', 1)->column('id,name'), '', 'multiple')
+            ->addSelect('role', '角色', '除超级管理员外，拥有该节点权限的角色', RoleModel::where('id', '<>', 1)->column('id,name'), '', 'multiple')
             ->addRadio('url_target', '打开方式', '', ['_self' => '当前窗口', '_blank' => '新窗口'], '_self')
             ->addIcon('icon', '图标', '导航图标')
             ->addRadio('online_hide', '网站上线后隐藏', '关闭开发模式后，则隐藏该菜单节点', ['否', '是'])

@@ -67,7 +67,7 @@ class Menu extends Model
     {
         $result[0] = '顶级节点';
         $where = [
-            ['status', 'egt', 0]
+            ['status', '>=', 0]
         ];
         if ($module != '') {
             $where[] = ['module', '=', $module];

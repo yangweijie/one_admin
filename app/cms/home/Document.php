@@ -93,7 +93,7 @@ class Document extends Common
                 ['status', '=', 1],
                 ['trash', '=', 0],
                 ['cid', '=', $cid],
-                ['id', 'lt', $id]
+                ['id', '<', $id]
             ])->order('id desc')->find();
         } else {
             $table = get_model_table($model);
@@ -102,7 +102,7 @@ class Document extends Common
                 ['status', '=', 1],
                 ['trash', '=', 0],
                 ['cid', '=', $cid],
-                ['id', 'lt', $id]
+                ['id', '<', $id]
             ])->order('id desc')->find();
         }
 
@@ -130,7 +130,7 @@ class Document extends Common
                 ['status', '=', 1],
                 ['trash', '=', 0],
                 ['cid', '=', $cid],
-                ['id', 'gt', $id]
+                ['id', '>', $id]
             ])->find();
         } else {
             $table = get_model_table($model);
@@ -139,7 +139,7 @@ class Document extends Common
                 ['status', '=', 1],
                 ['trash', '=', 0],
                 ['cid', '=', $cid],
-                ['id', 'gt', $id]
+                ['id', '>', $id]
             ])->find();
         }
 

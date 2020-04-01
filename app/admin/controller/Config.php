@@ -41,7 +41,7 @@ class Config extends Admin
         // 查询
         $map   = $this->getMap();
         $map[] = ['group', '=', $group];
-        $map[] = ['status', 'egt', 0];
+        $map[] = ['status', '>=', 0];
 
         // 排序
         $order = $this->getOrder('sort asc,id asc');

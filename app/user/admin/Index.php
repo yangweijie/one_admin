@@ -269,8 +269,7 @@ class Index extends Admin
         }
 
         // 获取所有授权配置信息
-        $list_module = ModuleModel::where('access', 'neq', '')
-            ->where('access', 'neq', '')
+        $list_module = ModuleModel::where('access', '<>', '')
             ->where('status', 1)
             ->column('name,title,access');
 
@@ -289,7 +288,7 @@ class Index extends Admin
                 ];
             }
             $module = $module == '' ? current(array_keys($list_module)) : $module;
-            $this->assign('tab_nav', [
+            View::assign('tab_nav', [
                 'tab_list' => $tab_list,
                 'curr_tab' => $module
             ]);
@@ -313,8 +312,8 @@ class Index extends Admin
             }
             $curr_access_nodes = $curr_access['nodes'];
 
-            $this->assign('tab', $tab);
-            $this->assign('access', $access);
+            View::assign('tab', $tab);
+            View::assign('access', $access);
 
             if ($this->request->isPost()) {
                 $post = $this->request->param();
@@ -421,19 +420,19 @@ class Index extends Admin
                 }
 
                 $nodes = $this->buildJsTree($nodes, $curr_access_nodes, $user_access);
-                $this->assign('nodes', $nodes);
+                View::assign('nodes', $nodes);
             }
 
             $page_tips = isset($curr_access['page_tips']) ? $curr_access['page_tips'] : '';
             $tips_type = isset($curr_access['tips_type']) ? $curr_access['tips_type'] : 'info';
-            $this->assign('page_tips', $page_tips);
-            $this->assign('tips_type', $tips_type);
+            View::assign('page_tips', $page_tips);
+            View::assign('tips_type', $tips_type);
         }
 
-        $this->assign('module', $module);
-        $this->assign('uid', $uid);
-        $this->assign('tab', $tab);
-        $this->assign('page_title', '数据授权');
+        View::assign('module', $module);
+        View::assign('uid', $uid);
+        View::assign('tab', $tab);
+        View::assign('page_title', '数据授权');
         return View::fetch();
     }
 

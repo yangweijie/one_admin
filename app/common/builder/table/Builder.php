@@ -420,7 +420,7 @@ class Builder extends ZBuilder
                 $_field = $map;
             }
 
-            $_map[] = isset($_filter_content[$_pos]) ? [$_field, 'in', $_filter_content[$_pos]] : [$_field, 'eq', ''];
+            $_map[] = isset($_filter_content[$_pos]) ? [$_field, 'in', $_filter_content[$_pos]] : [$_field, '=', ''];
         }
 
         return $_map;
@@ -516,12 +516,12 @@ class Builder extends ZBuilder
                     if (is_array($value)) {
                         $op = strtolower($value[0]);
                         switch ($op) {
-                            case '=':  $op = 'eq';  break;
-                            case '<>': $op = 'neq'; break;
-                            case '>':  $op = 'gt';  break;
-                            case '<':  $op = 'lt';  break;
-                            case '>=': $op = 'egt'; break;
-                            case '<=': $op = 'elt'; break;
+                            case '=':  $op = '=';  break;
+                            case '<>': $op = '!='; break;
+                            case '>':
+                            case '<':
+                            case '>=':
+                            case '<=':
                             case 'in':
                             case 'not in':
                             case 'between':
@@ -1155,14 +1155,14 @@ class Builder extends ZBuilder
                 $item[5] = isset($item[5]) ? $item[5] : [];
 
                 switch ($op) {
-                    case '=':  $op = 'eq';  break;
-                    case '<>': $op = 'neq'; break;
-                    case '>':  $op = 'gt';  break;
-                    case '<':  $op = 'lt';  break;
-                    case '>=': $op = 'egt'; break;
-                    case '<=': $op = 'elt'; break;
+                    case '=':
+                    case '<>':
+                    case '>':
+                    case '<':
+                    case '>=':
+                    case '<=':
                     default:
-                        $op = $op == '' ? 'eq' : $op;
+                        $op = $op == '' ? '=' : $op;
                 }
 
                 switch ($type) {
@@ -1675,12 +1675,12 @@ class Builder extends ZBuilder
                     $this->_tr_class[$class][] = [$field, 'eq', $op];
                 } else {
                     switch ($op) {
-                        case '=':  $op = 'eq';  break;
-                        case '<>': $op = 'neq'; break;
-                        case '>':  $op = 'gt';  break;
-                        case '<':  $op = 'lt';  break;
-                        case '>=': $op = 'egt'; break;
-                        case '<=': $op = 'elt'; break;
+                        case '=':
+                        case '<>':
+                        case '>':
+                        case '<':
+                        case '>=':
+                        case '<=':
                         case 'in':
                         case 'not in':
                         case 'between':
