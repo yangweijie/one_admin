@@ -1,7 +1,7 @@
 <?php
 // 应用公共文件
 
-use think\Db;
+use think\facade\Db;
 use think\Container;
 use think\facade\Env;
 use app\user\model\User;

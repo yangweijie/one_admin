@@ -14,7 +14,7 @@ use app\admin\model\Plugin as PluginModel;
 use app\admin\model\HookPlugin as HookPluginModel;
 use think\facade\Cache;
 use util\Sql;
-use think\Db;
+use think\facade\Db;
 use think\facade\Hook;
 use think\facade\View;
 

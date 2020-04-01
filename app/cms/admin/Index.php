@@ -11,7 +11,7 @@ namespace app\cms\admin;
 
 use app\admin\controller\Admin;
 use think\facade\View;
-use think\Db;
+use think\facade\Db;
 
 /**
  * 仪表盘控制器

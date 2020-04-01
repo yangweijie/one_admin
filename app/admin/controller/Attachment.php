@@ -14,7 +14,7 @@ use app\admin\model\Attachment as AttachmentModel;
 use think\Image;
 use think\File;
 use think\facade\Hook;
-use think\Db;
+use think\facade\Db;
 use think\facade\Env;
 
 /**

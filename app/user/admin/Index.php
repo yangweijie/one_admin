@@ -17,7 +17,7 @@ use app\admin\model\Module as ModuleModel;
 use app\admin\model\Access as AccessModel;
 use think\facade\View;
 use util\Tree;
-use think\Db;
+use think\facade\Db;
 use think\facade\Hook;
 
 /**

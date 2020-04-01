@@ -14,7 +14,7 @@ namespace app\cms\admin;
 use app\admin\controller\Admin;
 use app\common\builder\ZBuilder;
 use app\cms\model\Field as FieldModel;
-use think\Db;
+use think\facade\Db;
 
 /**
  * 字段管理控制器

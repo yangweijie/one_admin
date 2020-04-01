@@ -13,7 +13,7 @@ use app\admin\controller\Admin;
 use app\common\builder\ZBuilder;
 use app\cms\model\Model as DocumentModel;
 use app\admin\model\Menu as MenuModel;
-use think\Db;
+use think\facade\Db;
 use think\facade\Cache;
 
 /**

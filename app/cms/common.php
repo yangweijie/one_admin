@@ -10,7 +10,7 @@
 // +----------------------------------------------------------------------
 
 // 门户模块公共函数库
-use think\Db;
+use think\facade\Db;
 
 if (!function_exists('get_column_name')) {
     /**

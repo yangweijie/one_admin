@@ -12,7 +12,7 @@ namespace app\cms\admin;
 use app\admin\controller\Admin;
 use app\common\builder\ZBuilder;
 use app\cms\model\Document;
-use think\Db;
+use think\facade\Db;
 
 /**
  * 内容控制器

@@ -9,7 +9,7 @@
 
 namespace app\cms\home;
 use think\facade\View;
-use think\Db;
+use think\facade\Db;
 use think\facade\View;
 
 /**

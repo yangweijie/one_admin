@@ -12,7 +12,7 @@ namespace app\cms\home;
 use app\cms\model\Column as ColumnModel;
 use app\cms\model\Document as DocumentModel;
 use util\Tree;
-use think\Db;
+use think\facade\Db;
 use think\facade\View;
 
 /**

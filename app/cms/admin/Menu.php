@@ -15,7 +15,7 @@ use app\cms\model\Menu as MenuModel;
 use app\cms\model\Column as ColumnModel;
 use app\cms\model\Page as PageModel;
 use util\Tree;
-use think\Db;
+use think\facade\Db;
 
 /**
  * 菜单控制器

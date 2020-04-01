@@ -15,7 +15,7 @@ use app\user\model\Role as RoleModel;
 use app\admin\model\Menu as MenuModel;
 use think\facade\View;
 use util\Tree;
-use think\Db;
+use think\facade\Db;
 
 /**
  * 角色控制器

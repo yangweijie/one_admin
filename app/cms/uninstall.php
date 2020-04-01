@@ -9,7 +9,7 @@
 // | 开源协议 ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
 
-use think\Db;
+use think\facade\Db;
 use think\Exception;
 // cms模块卸载文件
 

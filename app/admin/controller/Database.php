@@ -10,7 +10,7 @@
 namespace app\admin\controller;
 
 use app\common\builder\ZBuilder;
-use think\Db;
+use think\facade\Db;
 use util\Database as DatabaseModel;
 
 /**

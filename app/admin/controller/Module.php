@@ -19,7 +19,7 @@ use util\Sql;
 use util\File;
 use util\PHPZip;
 use util\Tree;
-use think\Db;
+use think\facade\Db;
 use think\facade\Hook;
 use think\facade\Env;
 use think\facade\View;

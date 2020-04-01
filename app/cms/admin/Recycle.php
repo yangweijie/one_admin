@@ -12,7 +12,7 @@ namespace app\cms\admin;
 use app\admin\controller\Admin;
 use app\common\builder\ZBuilder;
 use app\cms\model\Document as DocumentModel;
-use think\Db;
+use think\facade\Db;
 
 /**
  * 回收站控制器

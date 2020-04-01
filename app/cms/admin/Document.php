@@ -14,7 +14,7 @@ use app\common\builder\ZBuilder;
 use app\cms\model\Column as ColumnModel;
 use app\cms\model\Document as DocumentModel;
 use app\cms\model\Field as FieldModel;
-use think\Db;
+use think\facade\Db;
 use util\Tree;
 
 /**

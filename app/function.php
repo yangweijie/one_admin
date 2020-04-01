@@ -1,6 +1,6 @@
 <?php
 use think\facade\Cache;
-use think\Db;
+use think\facade\Db;
 use util\File;
 use util\Tree;
 
