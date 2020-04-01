@@ -236,6 +236,10 @@ class Menu extends Model
             if ($check && empty($location)) {
                 throw new Exception('获取不到当前节点地址，可能未添加节点', 9001);
             }
+            foreach ($location as &$local){
+            	parse_str($local['params'], $params);
+            	$local['params'] = $params;
+            }
 
             // 剔除最后一个节点url
             if ($del_last_url) {
