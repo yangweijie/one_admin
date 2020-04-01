@@ -37,7 +37,7 @@ class Page extends Common
         // 更新阅读量
         PageModel::where('id', $id)->setInc('view');
 
-        $this->assign('page_info', $info);
+        View::assign('page_info', $info);
         return View::fetch(); // 渲染模板
     }
 }

@@ -22,6 +22,7 @@ use util\Tree;
 use think\Db;
 use think\facade\Hook;
 use think\facade\Env;
+use think\facade\View;
 
 /**
  * 模块管理控制器
@@ -72,11 +73,11 @@ class Module extends Admin
                 Cache::set('module_type_show', $type_show);
                 $type = $type_show == 'block' ? 'list' : 'block';
 
-                $this->assign('page_title', '模块管理');
-                $this->assign('modules', $result['modules']);
-                $this->assign('total', $result['total']);
-                $this->assign('tab_nav', ['tab_list' => $tab_list, 'curr_tab' => $group]);
-                $this->assign('type', $type);
+                View::assign('page_title', '模块管理');
+                View::assign('modules', $result['modules']);
+                View::assign('total', $result['total']);
+                View::assign('tab_nav', ['tab_list' => $tab_list, 'curr_tab' => $group]);
+                View::assign('type', $type);
                 return $this->fetch();
                 break;
             case 'online':
@@ -138,11 +139,11 @@ class Module extends Admin
                 }
             }
 
-            $this->assign('need_module', $need_module);
-            $this->assign('need_plugin', $need_plugin);
-            $this->assign('table_check', $table_check);
-            $this->assign('name', $name);
-            $this->assign('page_title', '安装模块：'. $name);
+            View::assign('need_module', $need_module);
+            View::assign('need_plugin', $need_plugin);
+            View::assign('table_check', $table_check);
+            View::assign('name', $name);
+            View::assign('page_title', '安装模块：'. $name);
             return $this->fetch();
         }
 
@@ -237,8 +238,8 @@ class Module extends Admin
         $module_info = ModuleModel::getInfoFromFile($name);
 
         if ($confirm == 0) {
-            $this->assign('name', $name);
-            $this->assign('page_title', '卸载模块：'. $name);
+            View::assign('name', $name);
+            View::assign('page_title', '卸载模块：'. $name);
             return $this->fetch();
         }
 
@@ -354,7 +355,7 @@ class Module extends Admin
 
         $export_data = $this->request->get('export_data', '');
         if ($export_data == '') {
-            $this->assign('page_title', '导出模块：'. $name);
+            View::assign('page_title', '导出模块：'. $name);
             return $this->fetch();
         }
 

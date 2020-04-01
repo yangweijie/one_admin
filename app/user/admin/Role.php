@@ -171,11 +171,11 @@ class Role extends Admin
             $role_list = RoleModel::getTree();
         }
 
-        $this->assign('page_title', '新增');
-        $this->assign('role_list', $role_list);
-        $this->assign('module_list', MenuModel::where('pid', 0)->column('id,title'));
-        $this->assign('menus', $menus);
-        $this->assign('curr_tab', current(array_keys($menus)));
+        View::assign('page_title', '新增');
+        View::assign('role_list', $role_list);
+        View::assign('module_list', MenuModel::where('pid', 0)->column('id,title'));
+        View::assign('menus', $menus);
+        View::assign('curr_tab', current(array_keys($menus)));
         return View::fetch();
     }
 
@@ -288,12 +288,12 @@ class Role extends Admin
             $moduleMenus[$key]['menus'] = $this->buildJsTree($menu, $info);
         }
 
-        $this->assign('page_title', '编辑');
-        $this->assign('role_list', $role_list);
-        $this->assign('module_list', MenuModel::where('pid', 0)->column('id,title'));
-        $this->assign('menus', $moduleMenus);
-        $this->assign('curr_tab', current(array_keys($moduleMenus)));
-        $this->assign('info', $info);
+        View::assign('page_title', '编辑');
+        View::assign('role_list', $role_list);
+        View::assign('module_list', MenuModel::where('pid', 0)->column('id,title'));
+        View::assign('menus', $moduleMenus);
+        View::assign('curr_tab', current(array_keys($moduleMenus)));
+        View::assign('info', $info);
         return $this->fetch('edit');
     }
 

@@ -14,6 +14,7 @@ use app\admin\model\Module as ModuleModel;
 use app\admin\model\Menu as MenuModel;
 use app\user\model\Role as RoleModel;
 use think\facade\Cache;
+use think\facade\View;
 
 /**
  * 节点管理
@@ -63,18 +64,18 @@ class Menu extends Admin
             $map['status'] = 1;
             $map['pid']    = 0;
             $modules = MenuModel::where($map)->order('sort,id')->column('icon,title', 'id');
-            $this->assign('modules', $modules);
+            View::assign('modules', $modules);
         } else {
             // 获取节点数据
             $data_list = MenuModel::getMenusByGroup($group);
 
             $max_level = $this->request->get('max', 0);
 
-            $this->assign('menus', $this->getNestMenu($data_list, $max_level));
+            View::assign('menus', $this->getNestMenu($data_list, $max_level));
         }
 
-        $this->assign('tab_nav', ['tab_list' => $tab_list, 'curr_tab' => $group]);
-        $this->assign('page_title', '节点管理');
+        View::assign('tab_nav', ['tab_list' => $tab_list, 'curr_tab' => $group]);
+        View::assign('page_title', '节点管理');
         return $this->fetch();
     }
 

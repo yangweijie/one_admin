@@ -16,6 +16,7 @@ use think\facade\Cache;
 use util\Sql;
 use think\Db;
 use think\facade\Hook;
+use think\facade\View;
 
 /**
  * 插件管理控制器
@@ -66,11 +67,11 @@ class Plugin extends Admin
                 Cache::set('plugin_type_show', $type_show);
                 $type = $type_show == 'block' ? 'list' : 'block';
 
-                $this->assign('page_title', '插件管理');
-                $this->assign('plugins', $result['plugins']);
-                $this->assign('total', $result['total']);
-                $this->assign('tab_nav', ['tab_list' => $tab_list, 'curr_tab' => $group]);
-                $this->assign('type', $type);
+                View::assign('page_title', '插件管理');
+                View::assign('plugins', $result['plugins']);
+                View::assign('total', $result['total']);
+                View::assign('tab_nav', ['tab_list' => $tab_list, 'curr_tab' => $group]);
+                View::assign('type', $type);
                 return $this->fetch();
                 break;
             case 'online':

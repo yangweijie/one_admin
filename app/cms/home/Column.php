@@ -12,6 +12,7 @@ namespace app\cms\home;
 use app\cms\model\Column as ColumnModel;
 use think\Db;
 use util\Tree;
+use think\facade\View;
 
 /**
  * 前台栏目文档列表控制器
@@ -56,7 +57,7 @@ class Column extends Common
                 ->where($map)
                 ->order('create_time desc')
                 ->paginate(config('app.list_rows'));
-            $this->assign('model', $column['model']);
+            View::assign('model', $column['model']);
         } else {
             $cid_all   = ColumnModel::getChildsId($id);
             $cid_all[] = (int)$id;
@@ -73,13 +74,13 @@ class Column extends Common
                 ->where($map)
                 ->order('create_time desc')
                 ->paginate(config('app.list_rows'));
-            $this->assign('model', '');
+            View::assign('model', '');
         }
 
-        $this->assign('lists', $data_list);
-        $this->assign('pages', $data_list->render());
-        $this->assign('breadcrumb', $this->getBreadcrumb($id));
-        $this->assign('column_info', $column);
+        View::assign('lists', $data_list);
+        View::assign('pages', $data_list->render());
+        View::assign('breadcrumb', $this->getBreadcrumb($id));
+        View::assign('column_info', $column);
 
         $template = $column['list_template'] == '' ? 'list' : substr($column['list_template'], 0, strpos($column['list_template'], '.'));
         return $this->fetch($template);

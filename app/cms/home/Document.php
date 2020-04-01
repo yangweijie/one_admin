@@ -13,6 +13,7 @@ use app\cms\model\Column as ColumnModel;
 use app\cms\model\Document as DocumentModel;
 use util\Tree;
 use think\Db;
+use think\facade\View;
 
 /**
  * 文档控制器
@@ -49,10 +50,10 @@ class Document extends Common
             $info['tags'] = explode(',', $info['tags']);
         }
 
-        $this->assign('document', $info);
-        $this->assign('breadcrumb', $this->getBreadcrumb($info['cid']));
-        $this->assign('prev', $this->getPrev($id, $model));
-        $this->assign('next', $this->getNext($id, $model));
+        View::assign('document', $info);
+        View::assign('breadcrumb', $this->getBreadcrumb($info['cid']));
+        View::assign('prev', $this->getPrev($id, $model));
+        View::assign('next', $this->getNext($id, $model));
 
         $template = $info['detail_template'] == '' ? 'detail' : substr($info['detail_template'], 0, strpos($info['detail_template'], '.'));
         return $this->fetch($template);

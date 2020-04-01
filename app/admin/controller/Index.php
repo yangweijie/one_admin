@@ -27,7 +27,7 @@ class Index extends Admin
         $admin_pass = Db::name('admin_user')->where('id', 1)->value('password');
 
         if (UID == 1 && $admin_pass && \Hash::check('admin', $admin_pass)) {
-            $this->assign('default_pass', 1);
+            View::assign('default_pass', 1);
         }
         return View::fetch();
     }

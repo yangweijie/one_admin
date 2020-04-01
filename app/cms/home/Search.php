@@ -10,6 +10,7 @@
 namespace app\cms\home;
 use think\facade\View;
 use think\Db;
+use think\facade\View;
 
 /**
  * 前台搜索控制器
@@ -39,9 +40,9 @@ class Search extends Common
             ->order('create_time desc')
             ->paginate(config('app.list_rows'));
 
-        $this->assign('keyword', $keyword);
-        $this->assign('lists', $data_list);
-        $this->assign('pages', $data_list->render());
+        View::assign('keyword', $keyword);
+        View::assign('lists', $data_list);
+        View::assign('pages', $data_list->render());
 
         return View::fetch(); // 渲染模板
     }

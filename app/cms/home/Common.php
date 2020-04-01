@@ -12,6 +12,7 @@ namespace app\cms\home;
 use app\index\controller\Home;
 use think\Db;
 use util\Tree;
+use think\facade\View;
 
 /**
  * 前台公共控制器
@@ -30,9 +31,9 @@ class Common extends Home
         // 获取菜单
         $this->getNav();
         // 获取滚动图片
-        $this->assign('slider', $this->getSlider());
+        View::assign('slider', $this->getSlider());
         // 获取客服
-        $this->assign('support', $this->getSupport());
+        View::assign('support', $this->getSupport());
     }
 
     /**
@@ -66,7 +67,7 @@ class Common extends Home
                 }
             }
 
-            $this->assign($tag, Tree::toLayer($data_list));
+            View::assign($tag, Tree::toLayer($data_list));
         }
     }
 
