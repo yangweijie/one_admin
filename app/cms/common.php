@@ -21,7 +21,8 @@ if (!function_exists('get_column_name')) {
      */
     function get_column_name($cid = 0)
     {
-        $column_list = model('cms/column')->getList();
+    	$model = new \app\cms\models\Column;
+        $column_list = $model->getList();
         return isset($column_list[$cid]) ? $column_list[$cid]['name'] : '';
     }
 }
@@ -35,7 +36,8 @@ if (!function_exists('get_model_name')) {
      */
     function get_model_name($id = '')
     {
-        $model_list = model('cms/model')->getList();
+        $model = new \app\cms\models\Model;
+        $model_list = $model->getList();
         return isset($model_list[$id]) ? $model_list[$id]['name'] : '';
     }
 }
@@ -49,7 +51,8 @@ if (!function_exists('get_model_title')) {
      */
     function get_model_title($id = '')
     {
-        $model_list = model('cms/model')->getList();
+    	$model = new \app\cms\models\Model;
+        $model_list = $model->getList();
         return isset($model_list[$id]) ? $model_list[$id]['title'] : '';
     }
 }
@@ -63,7 +66,8 @@ if (!function_exists('get_model_type')) {
      */
     function get_model_type($id = 0)
     {
-        $model_list = model('cms/model')->getList();
+    	$model = new \app\cms\model\Model;
+        $model_list = $model->getList();
         return isset($model_list[$id]) ? $model_list[$id]['type'] : '';
     }
 }
@@ -77,7 +81,8 @@ if (!function_exists('get_model_table')) {
      */
     function get_model_table($id = 0)
     {
-        $model_list = model('cms/model')->getList();
+    	$model = new \app\cms\model\Model;
+        $model_list = $model->getList();
         return isset($model_list[$id]) ? $model_list[$id]['table'] : '';
     }
 }

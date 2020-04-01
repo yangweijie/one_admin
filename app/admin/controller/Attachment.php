@@ -695,7 +695,8 @@ class Attachment extends Admin
      */
     private function create_water($file = '', $watermark_img = '', $watermark_pos = '', $watermark_alpha = '')
     {
-        $path = model('admin/attachment')->getFilePath($watermark_img, 1);
+    	$model = new \app\admin\models\Attachment;
+        $path = $$model->getFilePath($watermark_img, 1);
         $thumb_water_pic = realpath(Env::get('root_path') . 'public/' . $path);
         if (is_file($thumb_water_pic)) {
             // 读取图片

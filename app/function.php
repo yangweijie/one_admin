@@ -14,9 +14,10 @@ if (!function_exists('get_front_cache')) {
 				->where(['cms_document.status' => 1])
 				->order('update_time DESC')
 				->limit(3)->select();
-
-		$category = model('cms/column')->where('status = 1')->order('sort asc')->select();
-		$count = model('cms/document')->group('cid')->where('status=1')->column('cid, count(*) as num');
+		$column_model = new \app\cms\model\Column;
+		$category = $column_model->where('status = 1')->order('sort asc')->select();
+		$document_model = new \app\cms\model\Document;
+		$count = $document_model->group('cid')->where('status=1')->column('cid, count(*) as num');
 		foreach ($category as $key => $value) {
 			$category[$key]['article_num'] = isset($count[$value['id']]) ? $count[$value['id']] : 0;
 		}

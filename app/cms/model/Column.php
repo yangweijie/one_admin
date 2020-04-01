@@ -120,7 +120,7 @@ class Column extends ThinkModel
     {
         $result = cache('cms_column_info_'. $cid);
         if (!$result) {
-            $result = self::get($cid);
+            $result = self::find($cid);
             // 非开发模式，缓存数据
             if (config('app.develop_mode') == 0) {
                 cache('cms_column_info_'. $cid, $result);
