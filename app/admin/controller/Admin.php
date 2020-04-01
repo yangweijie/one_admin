@@ -56,15 +56,13 @@ class Admin extends Common
         // 如果不是ajax请求，则读取菜单
         if (!$this->request->isAjax()) {
             // 读取顶部菜单
-            View::assign('_top_menus', MenuModel::getTopMenu(config('top_menu_max'), '_top_menus'));
+            View::assign('_top_menus', MenuModel::getTopMenu(config('app.top_menu_max'), '_top_menus'));
             // 读取全部顶级菜单
             View::assign('_top_menus_all', MenuModel::getTopMenu('', '_top_menus_all'));
             // 获取侧边栏菜单
-            View::assign('_sidebar_menus', []);
-            // View::assign('_sidebar_menus', MenuModel::getSidebarMenu());
+            View::assign('_sidebar_menus', MenuModel::getSidebarMenu());
             // 获取面包屑导航
-            View::assign('_location', []);
-            // View::assign('_location', MenuModel::getLocation('', true));
+            View::assign('_location', MenuModel::getLocation('', true));
             // 获取当前用户未读消息数量
             View::assign('_message', MessageModel::getMessageCount());
             // 获取自定义图标
@@ -139,9 +137,11 @@ class Admin extends Common
     final protected function setPageParam()
     {
         _system_check();
-        $list_rows = input('?param.list_rows') ? input('param.list_rows') : config('list_rows');
-        config('paginate.list_rows', $list_rows);
-        config('paginate.query', input('get.'));
+        $list_rows = input('?param.list_rows') ? input('param.list_rows') : config('paginate.list_rows');
+        $paginate = config('paginate');
+        $paginate['list_rows'] = $list_rows;
+        $paginate['query'] = input('get.');
+        config($paginate, 'paginate');
     }
 
     /**

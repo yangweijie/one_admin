@@ -76,7 +76,7 @@ function base64DecodeImage($base64)
         } else {
             $image_name = time() . '.' . $result[2];
         }
-        $file_url = config('upload_path') . DS .'images'.DS. date("Ymd") . DS;
+        $file_url = config('app.upload_path') . DS .'images'.DS. date("Ymd") . DS;
         $create   = create_folder($file_url);
         if (!$create) {
             if(PHP_SAPI == 'cli'){
@@ -229,7 +229,7 @@ if(!function_exists('is_online')){
 		if(PHP_SAPI == 'cli'){
 			return isset($_SERVER['LOGNAME']) && $_SERVER['LOGNAME'] != 'jay';
 		}else{
-			return stripos($_SERVER['HTTP_HOST'], config('web_site_domain')) !== false;
+			return stripos($_SERVER['HTTP_HOST'], config('app.web_site_domain')) !== false;
 		}
 	}
 }

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 
-    <title>跳转提示 | {:config('web_site_title')} - DolphinPHP</title>
+    <title>跳转提示 | {:config('app.web_site_title')} - DolphinPHP</title>
 
     <meta name="robots" content="noindex, nofollow">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0">

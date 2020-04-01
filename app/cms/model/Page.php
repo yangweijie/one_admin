@@ -34,7 +34,7 @@ class Page extends ThinkModel
         if (!$result) {
             $result = self::where('status', 1)->column('id,title');
             // 非开发模式，缓存数据
-            if (config('develop_mode') == 0) {
+            if (config('app.develop_mode') == 0) {
                 cache('cms_page_title_list', $result);
             }
         }

@@ -28,3 +28,8 @@
 ## application 目录变为app
 
 ## token 使用 要开启session
+
+## 后台移植过来时要做的处理
+
+* think\Db => think\facade\Db;
+* config('develop_mode') => config('app.develop_mode')

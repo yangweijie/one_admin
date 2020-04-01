@@ -323,7 +323,7 @@
                 <!-- Layout API, functionality initialized in App() -> uiLayoutApi() -->
                 <a href="javascript:void(0)" title="打开/关闭左侧导航" data-toggle="layout" data-action="sidebar_mini_toggle"><i class="fa fa-bars"></i></a>
             </li>
-            {empty name="_top_menus"}
+            {notempty name="_top_menus"}
             {volist name="_top_menus" id="menu"}
             <li class="hidden-xs hidden-sm {$menu['id'] == $_location[0]['id'] ?= 'active'}">
                 {in name="menu.url_type" value="module_admin,module_home"}
@@ -333,7 +333,7 @@
                 {/in}
             </li>
             {/volist}
-            {/empty}
+            {/notempty}
             <li>
                 <!-- Opens the Apps modal found at the bottom of the page, before including JS code -->
                 <a href="#" data-toggle="modal" data-target="#apps-modal"><i class="si si-grid"></i></a>
@@ -407,7 +407,7 @@
                 </div>
                 <div class="block-content">
                     <div class="row text-center">
-                        {empty name="_top_menus_all"}
+                        {notempty name="_top_menus_all"}
                         {volist name="_top_menus_all" id="menu"}
                         <div class="col-xs-6 col-sm-3">
                             {in name="menu.url_type" value="module_admin,module_home"}
@@ -427,7 +427,7 @@
                             {/in}
                         </div>
                         {/volist}
-                        {/empty}
+                        {/notempty}
                     </div>
                 </div>
             </div>

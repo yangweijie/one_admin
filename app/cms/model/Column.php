@@ -50,7 +50,7 @@ class Column extends ThinkModel
         if (!$data_list) {
             $data_list = self::where('status', 1)->column(true, 'id');
             // 非开发模式，缓存数据
-            if (config('develop_mode') == 0) {
+            if (config('app.develop_mode') == 0) {
                 cache('cms_column_list', $data_list);
             }
         }
@@ -122,7 +122,7 @@ class Column extends ThinkModel
         if (!$result) {
             $result = self::get($cid);
             // 非开发模式，缓存数据
-            if (config('develop_mode') == 0) {
+            if (config('app.develop_mode') == 0) {
                 cache('cms_column_info_'. $cid, $result);
             }
         }

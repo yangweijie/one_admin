@@ -873,7 +873,7 @@ class Builder extends ZBuilder
             ];
 
             // 开发模式
-            if (config('develop_mode')) {
+            if (config('app.develop_mode')) {
                 Cache::set($cache_name, $form);
             }
 

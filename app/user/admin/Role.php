@@ -160,7 +160,7 @@ class Role extends Admin
             $menus = $moduleMenus;
 
             // 非开发模式，缓存菜单
-            if (config('develop_mode') == 0) {
+            if (config('app.develop_mode') == 0) {
                 cache('access_menus', $menus);
             }
         }

@@ -111,7 +111,7 @@ class Menu extends Model
         $menus = cache($cache_tag);
         if (!$menus) {
             // 非开发模式，只显示可以显示的菜单
-            if (config('develop_mode') == 0) {
+            if (config('app.develop_mode') == 0) {
                 $map['online_hide'] = 0;
             }
             $map['status'] = 1;
@@ -138,7 +138,7 @@ class Menu extends Model
                 $i++;
             }
             // 非开发模式，缓存菜单
-            if (config('develop_mode') == 0) {
+            if (config('app.develop_mode') == 0) {
                 cache($cache_tag, $menus);
             }
         }
@@ -170,7 +170,7 @@ class Menu extends Model
                 'status' => 1
             ];
             // 非开发模式，只显示可以显示的菜单
-            if (config('develop_mode') == 0) {
+            if (config('app.develop_mode') == 0) {
                 $map['online_hide'] = 0;
             }
             $menus = self::where($map)->order('sort,id')->column('id,pid,module,title,url_value,url_type,url_target,icon,params');
@@ -183,13 +183,15 @@ class Menu extends Model
                     continue;
                 }
                 if ($menu['url_value'] != '' && ($menu['url_type'] == 'module_admin' || $menu['url_type'] == 'module_home')) {
-                    $menu['url_value'] = $menu['url_type'] == 'module_admin' ? admin_url($menu['url_value'], $menu['params']) : home_url($menu['url_value'], $menu['params']);
+                	parse_str($menu['params'], $params);
+                	$menu['params'] = parse_url($menu['params']);
+                    $menu['url_value'] = $menu['url_type'] == 'module_admin' ? admin_url($menu['url_value'], $params) : home_url($menu['url_value'], $params);
                 }
             }
             $menus = Tree::toLayer($menus, $top_id, 2);
 
             // 非开发模式，缓存菜单
-            if (config('develop_mode') == 0) {
+            if (config('app.develop_mode') == 0) {
                 cache($cache_tag, $menus);
             }
         }
@@ -241,7 +243,7 @@ class Menu extends Model
             }
 
             // 非开发模式，缓存菜单
-            if (config('develop_mode') == 0) {
+            if (config('app.develop_mode') == 0) {
                 cache($cache_name, $location);
             }
         }

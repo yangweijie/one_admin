@@ -4,10 +4,10 @@
 <head>
     <meta charset="utf-8">
 
-    <title>{block name="title"}{:config('web_site_title')}{/block}</title>
+    <title>{block name="title"}{:config('app.web_site_title')}{/block}</title>
 
-    <meta name="description" content="{:config('web_site_description')}">
-    <meta name="keywords" content="{:config('web_site_keywords')}">
+    <meta name="description" content="{:config('app.web_site_description')}">
+    <meta name="keywords" content="{:config('app.web_site_keywords')}">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0">
     {block name="meta"}{/block}
 
@@ -128,7 +128,7 @@
                     Crafted with <i class="fa fa-heart text-city"></i> by <a class="font-w600" href="http://www.zrthink.com" target="_blank">卓锐软件</a>
                 </div>
                 <div class="pull-left">
-                    <a class="font-w600" href="http://www.dolphinphp.com" target="_blank">{:config('web_site_title')}</a> &copy; <span class="js-year-copy"></span>
+                    <a class="font-w600" href="http://www.dolphinphp.com" target="_blank">{:config('app.web_site_title')}</a> &copy; <span class="js-year-copy"></span>
                 </div>
             </div>
             <!-- END Copyright Info -->
@@ -142,7 +142,7 @@
 
 <div class="hidden">
     {// 站点统计代码}
-    {:config('web_site_statistics')}
+    {:config('app.web_site_statistics')}
     {block name="hidden"}{/block}
 </div>
 

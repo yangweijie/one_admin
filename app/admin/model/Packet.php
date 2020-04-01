@@ -33,8 +33,8 @@ class Packet extends Model
     public function getAll()
     {
         // 获取数据包目录下的所有插件目录
-        $dirs = array_map('basename', glob(config('packet_path').'*', GLOB_ONLYDIR));
-        if ($dirs === false || !file_exists(config('packet_path'))) {
+        $dirs = array_map('basename', glob(config('app.packet_path').'*', GLOB_ONLYDIR));
+        if ($dirs === false || !file_exists(config('app.packet_path'))) {
             $this->error = '插件目录不可读或者不存在';
             return false;
         }
@@ -65,8 +65,8 @@ class Packet extends Model
         $info = [];
         if ($name != '') {
             // 从配置文件获取
-            if (is_file(config('packet_path'). $name . '/info.php')) {
-                $info = include config('packet_path'). $name . '/info.php';
+            if (is_file(config('app.packet_path'). $name . '/info.php')) {
+                $info = include config('app.packet_path'). $name . '/info.php';
             }
         }
         return $info;
@@ -83,7 +83,7 @@ class Packet extends Model
         $info = self::getInfoFromFile($name);
 
         foreach ($info['tables'] as $table) {
-            $sql_file = realpath(config('packet_path').$name."/{$table}.sql");
+            $sql_file = realpath(config('app.packet_path').$name."/{$table}.sql");
             if (file_exists($sql_file)) {
                 if (isset($info['database_prefix']) && $info['database_prefix'] != '') {
                     $sql_statement = Sql::getSqlFromFile($sql_file, false, [$info['database_prefix'] => config('database.prefix')]);

@@ -162,7 +162,7 @@ class Role extends Model
             $menu_auth = MenuModel::where('id', 'in', $menu_auth)->column('id,url_value');
         }
         // 非开发模式，缓存数据
-        if (config('develop_mode') == 0) {
+        if (config('app.develop_mode') == 0) {
             cache('role_menu_auth_'.session('user_auth.role'), $menu_auth);
         }
         return $menu_auth;

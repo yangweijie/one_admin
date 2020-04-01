@@ -48,7 +48,7 @@ class Hook
             // 钩子对应的插件
             $hook_plugins = HookPluginModel::where('status', 1)->order('hook,sort')->select();
             // 非开发模式，缓存数据
-            if (config('develop_mode') == 0) {
+            if (config('app.develop_mode') == 0) {
                 Cache::set('hook_plugins', $hook_plugins);
                 Cache::set('hooks', $hooks);
                 Cache::set('plugins', $plugins);

@@ -37,7 +37,7 @@ class Module extends Model
         if (!$modules) {
             $modules = self::where('status', '>=', 0)->order('id')->column('name,title');
             // 非开发模式，缓存数据
-            if (config('develop_mode') == 0) {
+            if (config('app.develop_mode') == 0) {
                 cache('modules', $modules);
             }
         }
@@ -192,7 +192,7 @@ class Module extends Model
 
             $result = ['total' => $total, 'modules' => $modules];
             // 非开发模式，缓存数据
-            if (config('develop_mode') == 0) {
+            if (config('app.develop_mode') == 0) {
                 cache('module_all', $result);
             }
         }
@@ -254,7 +254,7 @@ class Module extends Model
 
             $config = json_decode($config, true);
             // 非开发模式，缓存数据
-            if (config('develop_mode') == 0) {
+            if (config('app.develop_mode') == 0) {
                 cache('module_config_'.$name, $config);
             }
         }
@@ -318,7 +318,7 @@ class Module extends Model
         }
 
         // 非开发模式，缓存数据
-        if (config('develop_mode') == 0) {
+        if (config('app.develop_mode') == 0) {
             cache('module_config_'.$name, $config);
         }
 

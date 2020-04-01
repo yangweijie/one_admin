@@ -79,7 +79,7 @@ if (!function_exists('get_file_path')) {
     {
         $path = model('admin/attachment')->getFilePath($id);
         if (!$path) {
-            return config('public_static_path').'admin/img/none.png';
+            return config('app.public_static_path').'admin/img/none.png';
         }
         return $path;
     }
@@ -110,7 +110,7 @@ if (!function_exists('get_thumb')) {
     {
         $path = model('admin/attachment')->getThumbPath($id);
         if (!$path) {
-            return config('public_static_path').'admin/img/none.png';
+            return config('app.public_static_path').'admin/img/none.png';
         }
         return $path;
     }
@@ -1008,7 +1008,7 @@ if (!function_exists('get_nickname')) {
                 $name = $list[$key] = $nickname;
                 /* 缓存用户 */
                 $count = count($list);
-                $max   = config('user_max_cache');
+                $max   = config('app.user_max_cache');
                 while ($count-- > $max) {
                     array_shift($list);
                 }
@@ -1036,7 +1036,7 @@ if (!function_exists('action_log')) {
     function action_log($action = null, $model = null, $record_id = '', $user_id = null, $details = '')
     {
         // 判断是否开启系统日志功能
-        if (config('system_log')) {
+        if (config('app.system_log')) {
             // 参数检查
             if(empty($action) || empty($model)){
                 return '参数不能为空';

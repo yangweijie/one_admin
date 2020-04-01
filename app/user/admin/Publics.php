@@ -48,7 +48,7 @@ class Publics extends Common
             }
 
             // 验证码
-            if (config('captcha_signin')) {
+            if (config('app.captcha_signin')) {
                 $captcha = $this->request->post('captcha', '');
                 $captcha == '' && $this->error('请输入验证码');
                 if(!captcha_check($captcha, '')){

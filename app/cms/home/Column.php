@@ -55,7 +55,7 @@ class Column extends Common
                 ->view('admin_user', 'username', $model['table'].'.uid=admin_user.id', 'left')
                 ->where($map)
                 ->order('create_time desc')
-                ->paginate(config('list_rows'));
+                ->paginate(config('app.list_rows'));
             $this->assign('model', $column['model']);
         } else {
             $cid_all   = ColumnModel::getChildsId($id);
@@ -72,7 +72,7 @@ class Column extends Common
                 ->view($model['table'], '*', 'cms_document.id='. $model['table'] . '.aid', 'left')
                 ->where($map)
                 ->order('create_time desc')
-                ->paginate(config('list_rows'));
+                ->paginate(config('app.list_rows'));
             $this->assign('model', '');
         }
 
