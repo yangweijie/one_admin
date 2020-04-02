@@ -136,7 +136,7 @@ class Recycle extends Admin
     public function restore($ids = null, $table = '')
     {
         if ($ids === null) $this->error('请选择要操作的数据');
-        $table = $table != '' ? substr($table, strlen(config('database.prefix'))) : 'cms_document';
+        $table = $table != '' ? substr($table, strlen(database_config('database.prefix'))) : 'cms_document';
 
         $document_id    = is_array($ids) ? '' : $ids;
         $document_title = Db::name($table)->where('id', 'in', $ids)->column('title');

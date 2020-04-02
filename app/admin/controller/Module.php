@@ -124,14 +124,14 @@ class Module extends Admin
             // 检查数据表
             if (isset($module_info['tables']) && !empty($module_info['tables'])) {
                 foreach ($module_info['tables'] as $table) {
-                    if (Db::query("SHOW TABLES LIKE '".config('database.prefix')."{$table}'")) {
+                    if (Db::query("SHOW TABLES LIKE '".database_config('database.prefix')."{$table}'")) {
                         $table_check[] = [
-                            'table' => config('database.prefix')."{$table}",
+                            'table' => database_config('database.prefix')."{$table}",
                             'result' => '<span class="text-danger">存在同名</span>'
                         ];
                     } else {
                         $table_check[] = [
-                            'table' => config('database.prefix')."{$table}",
+                            'table' => database_config('database.prefix')."{$table}",
                             'result' => '<i class="fa fa-check text-success"></i>'
                         ];
                     }
@@ -156,7 +156,7 @@ class Module extends Admin
         $sql_file = realpath(base_path().$name.'/sql/install.sql');
         if (file_exists($sql_file)) {
             if (isset($module_info['database_prefix']) && !empty($module_info['database_prefix'])) {
-                $sql_statement = Sql::getSqlFromFile($sql_file, false, [$module_info['database_prefix'] => config('database.prefix')]);
+                $sql_statement = Sql::getSqlFromFile($sql_file, false, [$module_info['database_prefix'] => database_config('database.prefix')]);
             } else {
                 $sql_statement = Sql::getSqlFromFile($sql_file);
             }
@@ -254,7 +254,7 @@ class Module extends Admin
             $sql_file = realpath(base_path().$name.'/sql/uninstall.sql');
             if (file_exists($sql_file)) {
                 if (isset($module_info['database_prefix']) && !empty($module_info['database_prefix'])) {
-                    $sql_statement = Sql::getSqlFromFile($sql_file, false, [$module_info['database_prefix'] => config('database.prefix')]);
+                    $sql_statement = Sql::getSqlFromFile($sql_file, false, [$module_info['database_prefix'] => database_config('database.prefix')]);
                 } else {
                     $sql_statement = Sql::getSqlFromFile($sql_file);
                 }
@@ -408,10 +408,10 @@ class Module extends Admin
             if (!is_dir($module_dir. '/sql')) {
                 mkdir($module_dir. '/sql', 644, true);
             }
-            if (!Database::export($module_info['tables'], $module_dir. '/sql/install.sql', config('database.prefix'), $export_data)) {
+            if (!Database::export($module_info['tables'], $module_dir. '/sql/install.sql', database_config('database.prefix'), $export_data)) {
                 $this->error('数据库文件创建失败，请重新导出');
             }
-            if (!Database::exportUninstall($module_info['tables'], $module_dir. '/sql/uninstall.sql', config('database.prefix'))) {
+            if (!Database::exportUninstall($module_info['tables'], $module_dir. '/sql/uninstall.sql', database_config('database.prefix'))) {
                 $this->error('数据库文件创建失败，请重新导出');
             }
         }

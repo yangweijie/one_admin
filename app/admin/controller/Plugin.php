@@ -115,10 +115,10 @@ class Plugin extends Admin
         }
 
         // 执行安装插件sql文件
-        $sql_file = realpath(config('plugin_path').$name.'/install.sql');
+        $sql_file = realpath(config('app.plugin_path').$name.'/install.sql');
         if (file_exists($sql_file)) {
             if (isset($plugin->database_prefix) && $plugin->database_prefix != '') {
-                $sql_statement = Sql::getSqlFromFile($sql_file, false, [$plugin->database_prefix => config('database.prefix')]);
+                $sql_statement = Sql::getSqlFromFile($sql_file, false, [$plugin->database_prefix => database_config('database.prefix')]);
             } else {
                 $sql_statement = Sql::getSqlFromFile($sql_file);
             }
@@ -186,7 +186,7 @@ class Plugin extends Admin
         $sql_file = realpath(config('plugin_path').$plug_name.'/uninstall.sql');
         if (file_exists($sql_file)) {
             if (isset($plugin->database_prefix) && $plugin->database_prefix != '') {
-                $sql_statement = Sql::getSqlFromFile($sql_file, true, [$plugin->database_prefix => config('database.prefix')]);
+                $sql_statement = Sql::getSqlFromFile($sql_file, true, [$plugin->database_prefix => database_config('database.prefix')]);
             } else {
                 $sql_statement = Sql::getSqlFromFile($sql_file, true);
             }

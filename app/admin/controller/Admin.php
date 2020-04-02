@@ -218,8 +218,8 @@ class Admin extends Common
         $protect_table = [
             '__ADMIN_USER__',
             '__ADMIN_ROLE__',
-            config('database.prefix').'admin_user',
-            config('database.prefix').'admin_role',
+            database_config('database.prefix').'admin_user',
+            database_config('database.prefix').'admin_role',
         ];
 
         // 验证是否操作管理员
@@ -421,9 +421,9 @@ class Admin extends Common
             '__ADMIN_USER__',
             '__ADMIN_ROLE__',
             '__ADMIN_MODULE__',
-            config('database.prefix').'admin_user',
-            config('database.prefix').'admin_role',
-            config('database.prefix').'admin_module',
+            database_config('database.prefix').'admin_user',
+            database_config('database.prefix').'admin_role',
+            database_config('database.prefix').'admin_module',
         ];
 
         // 禁止操作核心表的主要数据

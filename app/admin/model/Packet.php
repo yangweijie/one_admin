@@ -87,7 +87,7 @@ class Packet extends Model
             $sql_file = realpath(config('app.packet_path').$name."/{$table}.sql");
             if (file_exists($sql_file)) {
                 if (isset($info['database_prefix']) && $info['database_prefix'] != '') {
-                    $sql_statement = Sql::getSqlFromFile($sql_file, false, [$info['database_prefix'] => config('database.prefix')]);
+                    $sql_statement = Sql::getSqlFromFile($sql_file, false, [$info['database_prefix'] => database_config('database.prefix')]);
                 } else {
                     $sql_statement = Sql::getSqlFromFile($sql_file);
                 }
@@ -117,7 +117,7 @@ class Packet extends Model
     {
         $info = self::getInfoFromFile($name);
         foreach ($info['tables'] as $table) {
-            $sql = "DROP TABLE IF EXISTS `". config('database.prefix') ."{$table}`;";
+            $sql = "DROP TABLE IF EXISTS `". database_config('database.prefix') ."{$table}`;";
             Db::execute($sql);
             self::where('name', $name)->delete();
         }

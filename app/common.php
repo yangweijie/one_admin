@@ -1515,5 +1515,14 @@ if (!function_exists('dp_send_message')) {
 		return $files;
 	}
 
-
+	// 获取数据库配置
+	function database_config($name, $connection_name = ''){
+		$name = str_ireplace('database.', '', $name);
+		$db_config = config('database');
+		if(isset($db_config[$name])){
+			return $db_config[$name];
+		}else{
+			return $db_config['connections'][$connection_name?:$db_config['default']][$name]??'';
+		}
+	}
 }

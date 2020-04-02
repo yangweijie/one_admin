@@ -38,7 +38,7 @@ class Content extends Admin
 
         // 独立模型
         if ($model['type'] == 2) {
-            $table_name = substr($model['table'], strlen(config('database.prefix')));
+            $table_name = substr($model['table'], strlen(database_config('database.prefix')));
 
             // 查询
             $map   = $this->getMap();

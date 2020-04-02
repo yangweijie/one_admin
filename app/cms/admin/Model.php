@@ -75,9 +75,9 @@ class Model extends Admin
             $data = $this->request->post();
 
             if ($data['table'] == '') {
-                $data['table'] = config('database.prefix') . 'cms_document_' . $data['name'];
+                $data['table'] = database_config('database.prefix') . 'cms_document_' . $data['name'];
             } else {
-                $data['table'] = str_replace('#@__', config('database.prefix'), $data['table']);
+                $data['table'] = str_replace('#@__', database_config('database.prefix'), $data['table']);
             }
 
             // 验证
@@ -127,7 +127,7 @@ class Model extends Admin
             ->addFormItems([
                 ['text', 'name', '模型标识', '由小写字母、数字或下划线组成，不能以数字开头'],
                 ['text', 'title', '模型标题', '可填写中文'],
-                ['text', 'table', '附加表', '创建后不可更改。由小写字母、数字或下划线组成，如果不填写默认为 <code>'. config('database.prefix') . 'cms_document_模型标识</code>，如果需要自定义，请务必填写系统表前缀，<code>#@__</code>表示当前系统表前缀'],
+                ['text', 'table', '附加表', '创建后不可更改。由小写字母、数字或下划线组成，如果不填写默认为 <code>'. database_config('database.prefix') . 'cms_document_模型标识</code>，如果需要自定义，请务必填写系统表前缀，<code>#@__</code>表示当前系统表前缀'],
                 ['radio', 'type', '模型类别', $type_tips, ['系统模型', '普通模型', '独立模型(不使用主表)'], 1],
                 ['icon', 'icon', '图标'],
                 ['radio', 'status', '立即启用', '', ['否', '是'], 1],
