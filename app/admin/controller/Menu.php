@@ -76,7 +76,7 @@ class Menu extends Admin
 
         View::assign('tab_nav', ['tab_list' => $tab_list, 'curr_tab' => $group]);
         View::assign('page_title', '节点管理');
-        return $this->fetch();
+        return View::fetch();
     }
 
     /**

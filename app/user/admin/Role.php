@@ -294,7 +294,7 @@ class Role extends Admin
         View::assign('menus', $moduleMenus);
         View::assign('curr_tab', current(array_keys($moduleMenus)));
         View::assign('info', $info);
-        return $this->fetch('edit');
+        return View::fetch('edit');
     }
 
     /**

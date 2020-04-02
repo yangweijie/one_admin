@@ -71,7 +71,7 @@ class Plugin extends Admin
                 View::assign('total', $result['total']);
                 View::assign('tab_nav', ['tab_list' => $tab_list, 'curr_tab' => $group]);
                 View::assign('type', $type);
-                return $this->fetch();
+                return View::fetch();
                 break;
             case 'online':
                 break;

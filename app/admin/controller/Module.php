@@ -77,7 +77,7 @@ class Module extends Admin
                 View::assign('total', $result['total']);
                 View::assign('tab_nav', ['tab_list' => $tab_list, 'curr_tab' => $group]);
                 View::assign('type', $type);
-                return $this->fetch();
+                return View::fetch();
                 break;
             case 'online':
                 return '<h2>正在建设中...</h2>';
@@ -143,7 +143,7 @@ class Module extends Admin
             View::assign('table_check', $table_check);
             View::assign('name', $name);
             View::assign('page_title', '安装模块：'. $name);
-            return $this->fetch();
+            return View::fetch();
         }
 
         // 执行安装文件
@@ -239,7 +239,7 @@ class Module extends Admin
         if ($confirm == 0) {
             View::assign('name', $name);
             View::assign('page_title', '卸载模块：'. $name);
-            return $this->fetch();
+            return View::fetch();
         }
 
         // 执行卸载文件
@@ -355,7 +355,7 @@ class Module extends Admin
         $export_data = $this->request->get('export_data', '');
         if ($export_data == '') {
             View::assign('page_title', '导出模块：'. $name);
-            return $this->fetch();
+            return View::fetch();
         }
 
         // 模块导出目录

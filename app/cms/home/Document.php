@@ -56,7 +56,7 @@ class Document extends Common
         View::assign('next', $this->getNext($id, $model));
 
         $template = $info['detail_template'] == '' ? 'detail' : substr($info['detail_template'], 0, strpos($info['detail_template'], '.'));
-        return $this->fetch($template);
+        return View::fetch($template);
     }
 
     /**

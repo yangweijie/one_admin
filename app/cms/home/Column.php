@@ -83,7 +83,7 @@ class Column extends Common
         View::assign('column_info', $column);
 
         $template = $column['list_template'] == '' ? 'list' : substr($column['list_template'], 0, strpos($column['list_template'], '.'));
-        return $this->fetch($template);
+        return View::fetch($template);
     }
 
     /**

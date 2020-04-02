@@ -10,6 +10,7 @@
 namespace app\admin\controller;
 
 use app\common\controller\Common;
+use think\facade\View;
 
 /**
  * ie提示页面控制器
@@ -25,7 +26,7 @@ class Ie extends Common
     public function index(){
         // ie浏览器判断
         if (get_browser_type() == 'ie') {
-            return $this->fetch();
+            return View::fetch();
         } else {
             $this->redirect('admin/index/index');
         }
