@@ -15,7 +15,6 @@ use app\admin\model\HookPlugin as HookPluginModel;
 use think\facade\Cache;
 use util\Sql;
 use think\facade\Db;
-use think\facade\Hook;
 use think\facade\View;
 
 /**
@@ -42,7 +41,7 @@ class Plugin extends Admin
         }
 
         // 监听tab钩子
-        Hook::listen('plugin_index_tab_list', $tab_list);
+        hook('plugin_index_tab_list', $tab_list);
 
         switch ($group) {
             case 'local':

@@ -13,7 +13,6 @@ use app\common\builder\ZBuilder;
 use app\admin\model\Attachment as AttachmentModel;
 use think\Image;
 use think\File;
-use think\facade\Hook;
 use think\facade\Db;
 use think\facade\Env;
 
@@ -241,7 +240,7 @@ class Attachment extends Admin
 
         // 附件上传钩子，用于第三方文件上传扩展
         if (config('upload_driver') != 'local') {
-            $hook_result = Hook::listen('upload_attachment', ['file' => $file, 'from' => $from, 'module' => $module], true);
+            $hook_result = hook('upload_attachment', ['file' => $file, 'from' => $from, 'module' => $module], true);
             if (false !== $hook_result) {
                 return $hook_result;
             }
