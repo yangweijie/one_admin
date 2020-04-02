@@ -208,7 +208,7 @@ class Ajax extends Common
         $md5 == '' && $this->error('参数错误');
 
         // 判断附件是否已存在
-        if ($file_exists = AttachmentModel::get(['md5' => $md5])) {
+        if ($file_exists = AttachmentModel::where(['md5' => $md5])->find()) {
             if ($file_exists['driver'] == 'local') {
                 $file_path = PUBLIC_PATH.$file_exists['path'];
             } else {
