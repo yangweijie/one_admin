@@ -20,6 +20,7 @@ use think\facade\Env;
  */
 class Module extends Model
 {
+	use \app\common\traits\model\Error;
     // 设置当前模型对应的完整数据表名称
     protected $name = 'admin_module';
 

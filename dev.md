@@ -38,3 +38,8 @@
 * $this->assign => View::assign
 * column('true', 'id' 等字段) => column('\*', 'id' 等字段)
 * column(true) => column(true, 'id')
+
+
+## 容易犯的错误
+
+* 获取数据后 不判断是否为空 就 foreach 遍历

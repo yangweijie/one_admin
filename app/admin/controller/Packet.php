@@ -37,10 +37,12 @@ class Packet extends Admin
 
         $PacketModel = new PacketModel;
         $data_list = $PacketModel->getAll();
-        foreach ($data_list as &$value) {
-            if (isset($value['author_url']) && !empty($value['author_url'])) {
-                $value['author'] = '<a href="'. $value['author_url']. '" target="_blank">'. $value['author'] .'</a>';
-            }
+        if($data_list){
+	        foreach ($data_list as &$value) {
+	            if (isset($value['author_url']) && !empty($value['author_url'])) {
+	                $value['author'] = '<a href="'. $value['author_url']. '" target="_blank">'. $value['author'] .'</a>';
+	            }
+	        }
         }
 
         if ($data_list === false) {
