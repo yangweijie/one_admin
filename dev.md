@@ -27,6 +27,7 @@
 ## application 目录变为app
 
 ## token 使用 要开启session
+## token 函数不返回表单了 自己拼
 
 ## 后台移植过来时要做的处理
 
