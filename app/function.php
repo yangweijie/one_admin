@@ -21,7 +21,7 @@ if (!function_exists('get_front_cache')) {
 		foreach ($category as $key => $value) {
 			$category[$key]['article_num'] = isset($count[$value['id']]) ? $count[$value['id']] : 0;
 		}
-		// $cate = \app\cms\model\Column::where('status=1')->column(true);
+		// $cate = \app\cms\model\Column::where('status=1')->column('*', 'id');
 		$cate = Tree::config(['title' => 'name'])->toList($category);
 		$list = app\cms\model\Document::getList([], 'create_time DESC, id DESC');
 		$date = $time = [];

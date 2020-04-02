@@ -62,12 +62,12 @@ class Module extends Model
             }
 
             // 不读取模块信息的目录
-            $except_module = config('system.except_module');
+            $except_module = config('system.except_module')?:[];
             // 正常模块(包括已安装和未安装)
             $dirs = array_diff($dirs, $except_module);
 
             // 读取数据库模块表
-            $modules = $this->order('sort asc,id desc')->column(true, 'name');
+            $modules = $this->order('sort asc,id desc')->column('*', 'name');
 
             // 读取未安装的模块
             foreach ($dirs as $module) {

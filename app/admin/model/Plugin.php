@@ -48,7 +48,7 @@ class Plugin extends Model
             }
 
             // 读取数据库插件表
-            $plugins = $this->order('sort asc,id desc')->column(true, 'name');
+            $plugins = $this->order('sort asc,id desc')->column('*', 'name');
 
             // 读取未安装的插件
             foreach ($dirs as $plugin) {

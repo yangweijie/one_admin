@@ -40,7 +40,7 @@ class Packet extends Model
         }
 
         // 读取数据库数据包表
-        $packets = $this->column(true, 'name');
+        $packets = $this->column('*', 'name');
 
         // 读取未安装的数据包
         foreach ($dirs as $packet) {

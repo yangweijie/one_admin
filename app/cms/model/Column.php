@@ -48,7 +48,7 @@ class Column extends ThinkModel
     {
         $data_list = cache('cms_column_list');
         if (!$data_list) {
-            $data_list = self::where('status', 1)->column(true, 'id');
+            $data_list = self::where('status', 1)->column('*', 'id');
             // 非开发模式，缓存数据
             if (config('app.develop_mode') == 0) {
                 cache('cms_column_list', $data_list);

@@ -35,9 +35,8 @@ class Column extends Admin
     {
         // 查询
         $map = $this->getMap();
-
         // 数据列表
-        $data_list = ColumnModel::where($map)->column(true);
+        $data_list = ColumnModel::where($map)->column('*', 'id');
         if (empty($map)) {
             $data_list = Tree::config(['title' => 'name'])->toList($data_list);
         }

@@ -36,3 +36,5 @@
 * setField 取消了 改为update
 * base_path() => base_path()
 * $this->assign => View::assign
+* column('true', 'id' 等字段) => column('\*', 'id' 等字段)
+* column(true) => column(true, 'id')
