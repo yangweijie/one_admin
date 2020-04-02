@@ -20,7 +20,6 @@ use util\File;
 use util\PHPZip;
 use util\Tree;
 use think\facade\Db;
-use think\facade\Hook;
 use think\facade\Env;
 use think\facade\View;
 
@@ -48,7 +47,7 @@ class Module extends Admin
         }
 
         // 监听tab钩子
-        Hook::listen('module_index_tab_list', $tab_list);
+        hook('module_index_tab_list', $tab_list);
 
         switch ($group) {
             case 'local':
