@@ -47,14 +47,14 @@ class Attachment extends Admin
                 } else {
                     $path = $value['path'];
                 }
-                if (is_file('.'.config('public_static_path').'admin/img/files/'.$value['ext'].'.png')) {
+                if (is_file('.'.config('app.public_static_path').'admin/img/files/'.$value['ext'].'.png')) {
                     $value['type'] = '<a href="'. $path.'"
                         data-toggle="tooltip" title="点击下载">
-                        <img class="image" src="'.config('public_static_path').'admin/img/files/'.$value['ext'].'.png"></a>';
+                        <img class="image" src="'.config('app.public_static_path').'admin/img/files/'.$value['ext'].'.png"></a>';
                 } else {
                     $value['type'] = '<a href="'. $path.'"
                         data-toggle="tooltip" title="点击下载">
-                        <img class="image" src="'.config('public_static_path').'admin/img/files/file.png"></a>';
+                        <img class="image" src="'.config('app.public_static_path').'admin/img/files/file.png"></a>';
                 }
             }
         }
@@ -107,10 +107,10 @@ class Attachment extends Admin
     private function saveFile($dir = '', $from = '', $module = '')
     {
         // 附件大小限制
-        $size_limit = $dir == 'images' ? config('upload_image_size') : config('upload_file_size');
+        $size_limit = $dir == 'images' ? config('app.upload_image_size') : config('app.upload_file_size');
         $size_limit = $size_limit * 1024;
         // 附件类型限制
-        $ext_limit = $dir == 'images' ? config('upload_image_ext') : config('upload_file_ext');
+        $ext_limit = $dir == 'images' ? config('app.upload_image_ext') : config('app.upload_file_ext');
         $ext_limit = $ext_limit != '' ? parse_attr($ext_limit) : '';
         // 缩略图参数
         $thumb = $this->request->post('thumb', '');
@@ -239,7 +239,7 @@ class Attachment extends Admin
         }
 
         // 附件上传钩子，用于第三方文件上传扩展
-        if (config('upload_driver') != 'local') {
+        if (config('app.upload_driver') != 'local') {
             $hook_result = hook('upload_attachment', ['file' => $file, 'from' => $from, 'module' => $module], true);
             if (false !== $hook_result) {
                 return $hook_result;
@@ -247,7 +247,7 @@ class Attachment extends Admin
         }
 
         // 移动到框架应用根目录/uploads/ 目录下
-        $info = $file->move(config('upload_path') . DIRECTORY_SEPARATOR . $dir);
+        $info = $file->move(config('app.upload_path') . DIRECTORY_SEPARATOR . $dir);
         if($info){
             // 缩略图路径
             $thumb_path_name = '';
@@ -261,7 +261,7 @@ class Attachment extends Admin
                 $img_height = $img->height();
                 // 水印功能
                 if ($watermark == '') {
-                    if (config('upload_thumb_water') == 1 && config('upload_thumb_water_pic') > 0) {
+                    if (config('app.upload_thumb_water') == 1 && config('upload_thumb_water_pic') > 0) {
                         $this->create_water($info->getRealPath(), config('upload_thumb_water_pic'));
                     }
                 } else {
@@ -273,7 +273,7 @@ class Attachment extends Admin
 
                 // 生成缩略图
                 if ($thumb == '') {
-                    if (config('upload_image_thumb') != '') {
+                    if (config('app.upload_image_thumb') != '') {
                         $thumb_path_name = $this->create_thumb($info, $info->getPathInfo()->getfileName(), $info->getFilename());
                     }
                 } else {
@@ -447,7 +447,7 @@ class Attachment extends Admin
         $file         = $this->request->post('file');
         $file_content = base64_decode($file);
         $file_name    = md5($file) . '.jpg';
-        $dir          = config('upload_path') . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . date('Ymd', $this->request->time());
+        $dir          = config('app.upload_path') . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . date('Ymd', $this->request->time());
         $file_path    = $dir . DIRECTORY_SEPARATOR . $file_name;
 
         if (!is_dir($dir)) {
@@ -500,14 +500,14 @@ class Attachment extends Admin
             case 'listfile':
                 $allowFiles = $config['fileManagerAllowFiles'];
                 $listSize = $config['fileManagerListSize'];
-                $path = realpath(config('upload_path') .'/files/');
+                $path = realpath(config('app.upload_path') .'/files/');
                 break;
             /* 列出图片 */
             case 'listimage':
             default:
                 $allowFiles = $config['imageManagerAllowFiles'];
                 $listSize = $config['imageManagerListSize'];
-                $path = realpath(config('upload_path') .'/images/');
+                $path = realpath(config('app.upload_path') .'/images/');
         }
         $allowFiles = substr(str_replace(".", "|", join("", $allowFiles)), 1);
 
@@ -563,10 +563,10 @@ class Attachment extends Admin
         // 上传图片
         if ($file_path == '') {
             $file = $this->request->file('file');
-            if (!is_dir(config('upload_temp_path'))) {
-                mkdir(config('upload_temp_path'), 0766, true);
+            if (!is_dir(config('app.upload_temp_path'))) {
+                mkdir(config('app.upload_temp_path'), 0766, true);
             }
-            $info = $file->move(config('upload_temp_path'), $file->hash('md5'));
+            $info = $file->move(config('app.upload_temp_path'), $file->hash('md5'));
             if ($info) {
                 return json(['code' => 1, 'src' => PUBLIC_PATH. 'uploads/temp/'. $info->getFilename()]);
             } else {
@@ -574,7 +574,7 @@ class Attachment extends Admin
             }
         }
 
-        $file_path = config('upload_temp_path') . str_replace(PUBLIC_PATH. 'uploads/temp/', '', $file_path);
+        $file_path = config('app.upload_temp_path') . str_replace(PUBLIC_PATH. 'uploads/temp/', '', $file_path);
 
         if (is_file($file_path)) {
             // 获取裁剪信息
@@ -584,7 +584,7 @@ class Attachment extends Admin
             $image = Image::open($file_path);
 
             $dir_name = date('Ymd');
-            $file_dir = config('upload_path') . DIRECTORY_SEPARATOR . 'images/' . $dir_name . '/';
+            $file_dir = config('app.upload_path') . DIRECTORY_SEPARATOR . 'images/' . $dir_name . '/';
             if (!is_dir($file_dir)) {
                 mkdir($file_dir, 0766, true);
             }
@@ -596,8 +596,8 @@ class Attachment extends Admin
 
             // 水印功能
             if ($watermark == '') {
-                if (config('upload_thumb_water') == 1 && config('upload_thumb_water_pic') > 0) {
-                    $this->create_water($new_file_path, config('upload_thumb_water_pic'));
+                if (config('app.upload_thumb_water') == 1 && config('app.upload_thumb_water_pic') > 0) {
+                    $this->create_water($new_file_path, config('app.upload_thumb_water_pic'));
                 }
             } else {
                 if (strtolower($watermark) != 'close') {
@@ -609,7 +609,7 @@ class Attachment extends Admin
             // 是否创建缩略图
             $thumb_path_name = '';
             if ($thumb == '') {
-                if (config('upload_image_thumb') != '') {
+                if (config('app.upload_image_thumb') != '') {
                     $thumb_path_name = $this->create_thumb($new_file_path, $dir_name, $file_name);
                 }
             } else {
@@ -666,15 +666,15 @@ class Attachment extends Admin
     private function create_thumb($file = '', $dir = '', $save_name = '', $thumb_size = '', $thumb_type = '')
     {
         // 获取要生成的缩略图最大宽度和高度
-        $thumb_size = $thumb_size == '' ? config('upload_image_thumb') : $thumb_size;
+        $thumb_size = $thumb_size == '' ? config('app.upload_image_thumb') : $thumb_size;
         list($thumb_max_width, $thumb_max_height) = explode(',', $thumb_size);
         // 读取图片
         $image = Image::open($file);
         // 生成缩略图
-        $thumb_type = $thumb_type == '' ? config('upload_image_thumb_type') : $thumb_type;
+        $thumb_type = $thumb_type == '' ? config('app.upload_image_thumb_type') : $thumb_type;
         $image->thumb($thumb_max_width, $thumb_max_height, $thumb_type);
         // 保存缩略图
-        $thumb_path = config('upload_path') . DIRECTORY_SEPARATOR . 'images/' . $dir . '/thumb/';
+        $thumb_path = config('app.upload_path') . DIRECTORY_SEPARATOR . 'images/' . $dir . '/thumb/';
         if (!is_dir($thumb_path)) {
             mkdir($thumb_path, 0766, true);
         }
@@ -701,8 +701,8 @@ class Attachment extends Admin
             // 读取图片
             $image = Image::open($file);
             // 添加水印
-            $watermark_pos   = $watermark_pos   == '' ? config('upload_thumb_water_position') : $watermark_pos;
-            $watermark_alpha = $watermark_alpha == '' ? config('upload_thumb_water_alpha') : $watermark_alpha;
+            $watermark_pos   = $watermark_pos   == '' ? config('app.upload_thumb_water_position') : $watermark_pos;
+            $watermark_alpha = $watermark_alpha == '' ? config('app.upload_thumb_water_alpha') : $watermark_alpha;
             $image->water($thumb_water_pic, $watermark_pos, $watermark_alpha);
             // 保存水印图片，覆盖原图
             $image->save($file);
@@ -792,8 +792,8 @@ class Attachment extends Admin
         $files_path = AttachmentModel::where('id', 'in', $ids)->column('path,thumb', 'id');
 
         foreach ($files_path as $value) {
-            $real_path       = realpath(config('upload_path').'/../'.$value['path']);
-            $real_path_thumb = realpath(config('upload_path').'/../'.$value['thumb']);
+            $real_path       = realpath(config('app.upload_path').'/../'.$value['path']);
+            $real_path_thumb = realpath(config('app.upload_path').'/../'.$value['thumb']);
 
             if (is_file($real_path) && !unlink($real_path)) {
                 $this->error('删除失败');

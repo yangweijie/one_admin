@@ -181,9 +181,9 @@ class Database extends Admin
             // 读取备份配置
             $config = array(
                 'path'     => realpath($path) . DIRECTORY_SEPARATOR,
-                'part'     => config('data_backup_part_size'),
-                'compress' => config('data_backup_compress'),
-                'level'    => config('data_backup_compress_level'),
+                'part'     => config('app.data_backup_part_size'),
+                'compress' => config('app.data_backup_compress'),
+                'level'    => config('app.data_backup_compress_level'),
             );
 
             // 检查是否有正在执行的任务

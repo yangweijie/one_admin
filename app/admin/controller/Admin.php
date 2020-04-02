@@ -138,7 +138,7 @@ class Admin extends Common
     {
         _system_check();
         $list_rows = input('?param.list_rows') ? input('param.list_rows') : config('paginate.list_rows');
-        $paginate = config('paginate');
+        $paginate = config('app.paginate');
         $paginate['list_rows'] = $list_rows;
         $paginate['query'] = input('get.');
         config($paginate, 'paginate');

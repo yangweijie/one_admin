@@ -335,8 +335,8 @@ class Ajax extends Common
         set_time_limit(5 * 60);
         // Uncomment this one to fake upload time
         // Settings
-        $targetDir = config('upload_path').DIRECTORY_SEPARATOR.'file_material_tmp';            //存放分片临时目录
-        $uploadDir = config('upload_path').DIRECTORY_SEPARATOR.'file_material'.DIRECTORY_SEPARATOR.date('Ymd');    //分片合并存放目录
+        $targetDir = config('app.upload_path').DIRECTORY_SEPARATOR.'file_material_tmp';            //存放分片临时目录
+        $uploadDir = config('app.upload_path').DIRECTORY_SEPARATOR.'file_material'.DIRECTORY_SEPARATOR.date('Ymd');    //分片合并存放目录
 
         $cleanupTargetDir = true; // Remove old files
         $maxFileAge = 5 * 3600; // Temp file age in seconds
@@ -475,8 +475,8 @@ class Ajax extends Common
 	//分片验证
 	public function checkChunk(){
 	    $md5 = request()->param()['md5'];
-        $targetDir = config('upload_path').DIRECTORY_SEPARATOR.'file_material_tmp';            //存放分片临时目录
-        $uploadDir = config('upload_path').DIRECTORY_SEPARATOR.'file_material'.DIRECTORY_SEPARATOR.date('Ymd');
+        $targetDir = config('app.upload_path').DIRECTORY_SEPARATOR.'file_material_tmp';            //存放分片临时目录
+        $uploadDir = config('app.upload_path').DIRECTORY_SEPARATOR.'file_material'.DIRECTORY_SEPARATOR.date('Ymd');
 	    if(is_dir($targetDir)) {
 	    	$files = [];
 	    	$tmp_files = glob("{$targetDir}/{$md5}_*");

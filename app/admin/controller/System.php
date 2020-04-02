@@ -33,9 +33,9 @@ class System extends Admin
         if ($this->request->isPost()) {
             $data = $this->request->post();
 
-            if (isset(config('config_group')[$group])) {
+            if (isset(config('app.config_group')[$group])) {
                 // 查询该分组下所有的配置项名和类型
-                $items = ConfigModel::where('group', $group)->where('status', 1)->column('name,type');
+                $items = ConfigModel::where('group', $group)->where('status', 1)->column('type','name');
 
                 foreach ($items as $name => $type) {
                     if (!isset($data[$name])) {
@@ -84,7 +84,7 @@ class System extends Admin
             $this->success('更新成功', url('index', ['group' => $group]));
         } else {
             // 配置分组信息
-            $list_group = config('config_group');
+            $list_group = config('app.config_group');
 
             // 读取模型配置
             $modules = ModuleModel::where('config', '<>', '')
@@ -100,7 +100,7 @@ class System extends Admin
                 $tab_list[$key]['url']   = url('index', ['group' => $key]);
             }
 
-            if (isset(config('config_group')[$group])) {
+            if (isset(config('app.config_group')[$group])) {
                 // 查询条件
                 $map['group']  = $group;
                 $map['status'] = 1;

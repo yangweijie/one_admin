@@ -31,7 +31,7 @@ class Config extends Admin
         cookie('__forward__', $_SERVER['REQUEST_URI']);
 
         // 配置分组信息
-        $list_group = config('config_group');
+        $list_group = config('app.config_group');
         $tab_list   = [];
         foreach ($list_group as $key => $value) {
             $tab_list[$key]['title'] = $value;
@@ -56,7 +56,7 @@ class Config extends Admin
             ->addColumns([ // 批量添加数据列
                 ['name', '名称', 'text.edit'],
                 ['title', '标题', 'text.edit'],
-                ['type', '类型', 'select', config('form_item_type')],
+                ['type', '类型', 'select', config('app.form_item_type')],
                 ['status', '状态', 'switch'],
                 ['sort', '排序', 'text.edit'],
                 ['right_button', '操作', 'btn']
@@ -64,7 +64,7 @@ class Config extends Admin
             ->addValidate('Config', 'name,title') // 添加快捷编辑的验证器
             ->addOrder('name,title,status') // 添加标题字段排序
             ->addFilter('name,title') // 添加标题字段筛选
-            ->addFilter('type', config('form_item_type')) // 添加标题字段筛选
+            ->addFilter('type', config('app.form_item_type')) // 添加标题字段筛选
             ->addFilterMap('name,title', ['group' => $group]) // 添加标题字段筛选条件
             ->addTopButton('add', ['href' => url('add', ['group' => $group])], true) // 添加单个顶部按钮
             ->addTopButtons('enable,disable,delete') // 批量添加顶部按钮
@@ -115,8 +115,8 @@ class Config extends Admin
         // 使用ZBuilder快速创建表单
         return ZBuilder::make('form')
             ->setPageTitle('新增')
-            ->addRadio('group', '配置分组', '', config('config_group'), $group)
-            ->addSelect('type', '配置类型', '', config('form_item_type'))
+            ->addRadio('group', '配置分组', '', config('app.config_group'), $group)
+            ->addSelect('type', '配置类型', '', config('app.form_item_type'))
             ->addText('title', '配置标题', '一般由中文组成，仅用于显示')
             ->addText('name', '配置名称', '由英文字母和下划线组成，如 <code>web_site_title</code>，调用方法：<code>config(\'web_site_title\')</code>')
             ->addTextarea('value', '配置值', '该配置的具体内容')
@@ -193,8 +193,8 @@ class Config extends Admin
         return ZBuilder::make('form')
             ->setPageTitle('编辑')
             ->addHidden('id')
-            ->addRadio('group', '配置分组', '', config('config_group'))
-            ->addSelect('type', '配置类型', '', config('form_item_type'))
+            ->addRadio('group', '配置分组', '', config('app.config_group'))
+            ->addSelect('type', '配置类型', '', config('app.form_item_type'))
             ->addText('title', '配置标题', '一般由中文组成，仅用于显示')
             ->addText('name', '配置名称', '由英文字母和下划线组成，如 <code>web_site_title</code>，调用方法：<code>config(\'web_site_title\')</code>')
             ->addTextarea('value', '配置值', '该配置的具体内容')

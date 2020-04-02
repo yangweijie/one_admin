@@ -182,7 +182,7 @@ class Plugin extends Admin
         }
 
         // 执行卸载插件sql文件
-        $sql_file = realpath(config('plugin_path').$plug_name.'/uninstall.sql');
+        $sql_file = realpath(config('app.plugin_path').$plug_name.'/uninstall.sql');
         if (file_exists($sql_file)) {
             if (isset($plugin->database_prefix) && $plugin->database_prefix != '') {
                 $sql_statement = Sql::getSqlFromFile($sql_file, true, [$plugin->database_prefix => database_config('database.prefix')]);
@@ -458,7 +458,7 @@ class Plugin extends Admin
         $db_config = json_decode($info['config'], true);
 
         // 插件配置项
-        $config    = include config('plugin_path'). $name. '/config.php';
+        $config    = include config('app.plugin_path'). $name. '/config.php';
 
         // 使用ZBuilder快速创建表单
         return ZBuilder::make('form')
