@@ -134,9 +134,9 @@ class Attachment extends Admin
                 $file_input_name = 'file';
         }
         $file = $this->request->file($file_input_name);
-
+        $file_exists = AttachmentModel::where(['md5' => $file->hash('md5')])->find();
         // 判断附件是否已存在
-        if ($file_exists = AttachmentModel::get(['md5' => $file->hash('md5')])) {
+        if ($file_exists = AttachmentModel::where(['md5' => $file->hash('md5')])->find()) {
             if ($file_exists['driver'] == 'local') {
                 $file_path = PUBLIC_PATH. $file_exists['path'];
             } else {
@@ -197,15 +197,14 @@ class Attachment extends Admin
                     ]);
             }
         }
-
         // 判断附件格式是否符合
-        $file_name = $file->getInfo('name');
+        $file_name = $file->getOriginalName();
         $file_ext  = strtolower(substr($file_name, strrpos($file_name, '.')+1));
         $error_msg = '';
         if ($ext_limit == '') {
             $error_msg = '获取文件信息失败！';
         }
-        if ($file->getMime() == 'text/x-php' || $file->getMime() == 'text/html') {
+        if ($file->getOriginalMime() == 'text/x-php' || $file->getOriginalMime() == 'text/html') {
             $error_msg = '禁止上传非法文件！';
         }
         if (preg_grep("/php/i", $ext_limit)) {
@@ -262,24 +261,24 @@ class Attachment extends Admin
                 // 水印功能
                 if ($watermark == '') {
                     if (config('app.upload_thumb_water') == 1 && config('upload_thumb_water_pic') > 0) {
-                        $this->create_water($info->getRealPath(), config('upload_thumb_water_pic'));
+                        $this->create_water($info->getPathname(), config('upload_thumb_water_pic'));
                     }
                 } else {
                     if (strtolower($watermark) != 'close') {
                         list($watermark_img, $watermark_pos, $watermark_alpha) = explode('|', $watermark);
-                        $this->create_water($info->getRealPath(), $watermark_img, $watermark_pos, $watermark_alpha);
+                        $this->create_water($info->getPathname(), $watermark_img, $watermark_pos, $watermark_alpha);
                     }
                 }
 
                 // 生成缩略图
                 if ($thumb == '') {
                     if (config('app.upload_image_thumb') != '') {
-                        $thumb_path_name = $this->create_thumb($info, $info->getPathInfo()->getfileName(), $info->getFilename());
+                        $thumb_path_name = $this->create_thumb($info, $info->getPathInfo()->getFileName(), $info->getFilename());
                     }
                 } else {
                     if (strtolower($thumb) != 'close') {
                         list($thumb_size, $thumb_type) = explode('|', $thumb);
-                        $thumb_path_name = $this->create_thumb($info, $info->getPathInfo()->getfileName(), $info->getFilename(), $thumb_size, $thumb_type);
+                        $thumb_path_name = $this->create_thumb($info, $info->getPathInfo()->getFileName(), $info->getFilename(), $thumb_size, $thumb_type);
                     }
                 }
             }
@@ -287,9 +286,9 @@ class Attachment extends Admin
             // 获取附件信息
             $file_info = [
                 'uid'    => session('user_auth.uid'),
-                'name'   => $file->getInfo('name'),
-                'mime'   => $file->getInfo('type'),
-                'path'   => 'uploads/' . $dir . '/' . str_replace('\\', '/', $info->getSaveName()),
+                'name'   => $file->getOriginalName(),
+                'mime'   => $file->getOriginalMime(),
+                'path'   => 'uploads/' . $dir . '/' . str_replace('\\', '/', $info->getFilename()),
                 'ext'    => $info->getExtension(),
                 'size'   => $info->getSize(),
                 'md5'    => $info->hash('md5'),
@@ -300,6 +299,7 @@ class Attachment extends Admin
                 'height' => $img_height,
             ];
 
+            halt($file_info);
             // 写入数据库
             if ($file_add = AttachmentModel::create($file_info)) {
                 $file_path = PUBLIC_PATH. $file_info['path'];
@@ -352,6 +352,7 @@ class Attachment extends Admin
                 }
             }
         }else{
+        	dump('asdas');
             switch ($from) {
                 case 'wangeditor':
                     return "error|".$file->getError();
@@ -823,4 +824,5 @@ class Attachment extends Admin
         $id = input('post.pk', '');
         return parent::quickEdit(['attachment_edit', 'admin_attachment', 0, UID, $id]);
     }
+
 }

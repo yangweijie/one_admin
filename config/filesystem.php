@@ -11,8 +11,8 @@ return [
         ],
         'public' => [
             'type'       => 'local',
-            'root'       => app()->getRootPath() . 'public/storage',
-            'url'        => '/storage',
+            'root'       => app()->getRootPath() . 'public/uploads',
+            'url'        => '/uploads',
             'visibility' => 'public',
         ],
         // 更多的磁盘配置信息
