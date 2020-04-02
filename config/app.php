@@ -35,7 +35,16 @@ return [
     // 显示错误信息
     'show_error_msg'   => true,
 
+    // 后台公共模板
     'admin_base_layout'  => app_path() . 'admin/view/layout.html',
 
-    'plugin_path' => '../extend/plugins/'
+    // 插件目录路径
+    'plugin_path' => '../extend/plugins/',
+
+    // 数据包目录路径
+    'packet_path'        => root_path(). 'packet/',
+    // 文件上传路径
+    'upload_path'        => root_path() . 'public' . DIRECTORY_SEPARATOR . 'uploads',
+    // 文件上传临时目录
+    'upload_temp_path'   => root_path() . 'public' . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . 'temp/',
 ];

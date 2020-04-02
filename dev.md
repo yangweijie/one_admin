@@ -1,5 +1,4 @@
 # 后台目标
-## 后台代码方式展示前台页面bs4
 
 ## 复用资源
 
@@ -38,6 +37,7 @@
 * $this->assign => View::assign
 * column('true', 'id' 等字段) => column('\*', 'id' 等字段)
 * column(true) => column(true, 'id')
+* Env::get('root_path') => root_path()
 
 
 ## 容易犯的错误

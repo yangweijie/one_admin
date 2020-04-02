@@ -697,7 +697,7 @@ class Attachment extends Admin
     {
     	$model = new \app\admin\models\Attachment;
         $path = $$model->getFilePath($watermark_img, 1);
-        $thumb_water_pic = realpath(Env::get('root_path') . 'public/' . $path);
+        $thumb_water_pic = realpath(root_path() . 'public/' . $path);
         if (is_file($thumb_water_pic)) {
             // 读取图片
             $image = Image::open($file);
