@@ -50,7 +50,7 @@ class Model extends ThinkModel
      */
     public static function getTitleList($map = [])
     {
-        return self::where('status', 1)->where($map)->column('id,title');
+        return self::where('status', 1)->where($map)->column('title','id');
     }
 
     /**

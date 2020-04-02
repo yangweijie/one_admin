@@ -159,7 +159,7 @@ class Role extends Model
         if (!$menu_auth) {
             $menu_auth = self::where('id', session('user_auth.role'))->value('menu_auth');
             $menu_auth = json_decode($menu_auth, true);
-            $menu_auth = MenuModel::where('id', 'in', $menu_auth)->column('id,url_value');
+            $menu_auth = MenuModel::where('id', 'in', $menu_auth)->column('url_value','id');
         }
         // 非开发模式，缓存数据
         if (config('app.develop_mode') == 0) {
@@ -178,7 +178,7 @@ class Role extends Model
     public static function getRoleWithMenu($menu_id = '', $menu_auth = false)
     {
         if ($menu_auth) {
-            return self::where('menu_auth', 'like', '%"'.$menu_id.'"%')->column('id,menu_auth');
+            return self::where('menu_auth', 'like', '%"'.$menu_id.'"%')->column('menu_auth','id');
         } else {
             return self::where('menu_auth', 'like', '%"'.$menu_id.'"%')->column('id');
         }
@@ -192,7 +192,7 @@ class Role extends Model
      */
     public static function getAuthWithRole($role = [])
     {
-        return self::where('id', 'in', $role)->column('id,menu_auth');
+        return self::where('id', 'in', $role)->column('menu_auth','id');
     }
 
     /**
@@ -204,7 +204,7 @@ class Role extends Model
     public static function resetAuth($pid = null, $new_auth = [])
     {
         if ($pid !== null) {
-            $data = self::where('pid', $pid)->column('id,menu_auth');
+            $data = self::where('pid', $pid)->column('menu_auth','id');
             foreach ($data as $id => $menu_auth) {
                 $menu_auth = json_decode($menu_auth, true);
                 $menu_auth = json_encode(array_intersect($menu_auth, $new_auth));

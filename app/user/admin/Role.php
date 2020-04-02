@@ -42,7 +42,7 @@ class Role extends Admin
         // 数据列表
         $data_list = RoleModel::where($map)->order('pid,id')->paginate();
         // 角色列表
-        $list_role = RoleModel::column('id,name');
+        $list_role = RoleModel::column('name','id');
         $list_role[0] = '顶级角色';
 
         // 使用ZBuilder快速创建数据表格
@@ -61,7 +61,7 @@ class Role extends Admin
                     } else {
                         return isset($list_module[$value]) ? $list_module[$value] : '模块不存在';
                     }
-                }, MenuModel::where('pid', 0)->column('id,title')],
+                }, MenuModel::where('pid', 0)->column('title','id')],
                 ['create_time', '创建时间', 'datetime'],
                 ['access', '是否可登录后台', 'switch'],
                 ['status', '状态', 'switch'],
@@ -124,7 +124,7 @@ class Role extends Admin
         // 菜单列表
         $menus = cache('access_menus');
         if (!$menus) {
-            $modules = Db::name('admin_module')->where('status', 1)->column('name,title');
+            $modules = Db::name('admin_module')->where('status', 1)->column('title','name');
             $map     = [];
             // 非超级管理员角色，只能分配当前角色所拥有的权限
             if (session('user_auth.role') != 1) {
@@ -173,7 +173,7 @@ class Role extends Admin
 
         View::assign('page_title', '新增');
         View::assign('role_list', $role_list);
-        View::assign('module_list', MenuModel::where('pid', 0)->column('id,title'));
+        View::assign('module_list', MenuModel::where('pid', 0)->column('title','id'));
         View::assign('menus', $menus);
         View::assign('curr_tab', current(array_keys($menus)));
         return View::fetch();
@@ -254,7 +254,7 @@ class Role extends Admin
             $role_list = RoleModel::getTree($id, '顶级角色');
         }
 
-        $modules = Db::name('admin_module')->where('status', 1)->column('name,title');
+        $modules = Db::name('admin_module')->where('status', 1)->column('title','name');
         $map     = [];
         // 非超级管理员角色，只能分配当前角色所拥有的权限
         if (session('user_auth.role') != 1) {
@@ -290,7 +290,7 @@ class Role extends Admin
 
         View::assign('page_title', '编辑');
         View::assign('role_list', $role_list);
-        View::assign('module_list', MenuModel::where('pid', 0)->column('id,title'));
+        View::assign('module_list', MenuModel::where('pid', 0)->column('title','id'));
         View::assign('menus', $moduleMenus);
         View::assign('curr_tab', current(array_keys($moduleMenus)));
         View::assign('info', $info);

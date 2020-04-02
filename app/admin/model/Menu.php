@@ -263,7 +263,7 @@ class Menu extends Model
      * @author 蔡伟明 <314013107@qq.com>
      * @return array
      */
-    public static function getMenusByGroup($group = '', $fields = true, $map = [])
+    public static function getMenusByGroup($group = '', $fields = '*', $map = [])
     {
         $map['module'] = $group;
         return self::where($map)->order('sort,id')->column($fields, 'id');
@@ -278,7 +278,7 @@ class Menu extends Model
     {
         $map['status'] = 1;
         $map['pid']    = 0;
-        $menus = self::where($map)->order('id,sort')->column('module,title');
+        $menus = self::where($map)->order('id,sort')->column('title','module');
         return $menus;
     }
 

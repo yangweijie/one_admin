@@ -44,7 +44,7 @@ class Advert extends Admin
             'href'  => url('advert_type/index')
         ];
 
-        $list_type = AdvertTypeModel::where('status', 1)->column('id,name');
+        $list_type = AdvertTypeModel::where('status', 1)->column('name','id');
         array_unshift($list_type, '默认分类');
 
         // 使用ZBuilder快速创建数据表格
@@ -149,7 +149,7 @@ class Advert extends Admin
             }
         }
 
-        $list_type = AdvertTypeModel::where('status', 1)->column('id,name');
+        $list_type = AdvertTypeModel::where('status', 1)->column('name','id');
         array_unshift($list_type, '默认分类');
 
         // 显示添加页面
@@ -211,7 +211,7 @@ class Advert extends Admin
             }
         }
 
-        $list_type = AdvertTypeModel::where('status', 1)->column('id,name');
+        $list_type = AdvertTypeModel::where('status', 1)->column('name','id');
         array_unshift($list_type, '默认分类');
 
         $info = AdvertModel::find($id);

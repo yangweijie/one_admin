@@ -104,8 +104,8 @@ class Message extends Admin
                 ['text', 'type', '消息分类'],
                 ['textarea', 'content', '消息内容'],
                 ['radio', 'send_type', '发送方式', '', ['uid' => '按指定用户', 'role' => '按指定角色'], 'uid'],
-                ['select', 'uid', '接收用户', '接收消息的用户', UserModel::where('status', 1)->column('id,nickname'), '', 'multiple'],
-                ['select', 'role', '接收角色', '接收消息的角色', RoleModel::where('status', 1)->column('id,name'), '', 'multiple'],
+                ['select', 'uid', '接收用户', '接收消息的用户', UserModel::where('status', 1)->column('nickname','id'), '', 'multiple'],
+                ['select', 'role', '接收角色', '接收消息的角色', RoleModel::where('status', 1)->column('name','id'), '', 'multiple'],
             ])
             ->setTrigger('send_type', 'uid', 'uid')
             ->setTrigger('send_type', 'role', 'role')

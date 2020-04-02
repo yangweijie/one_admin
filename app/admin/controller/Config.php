@@ -187,7 +187,7 @@ class Config extends Admin
         }
 
         // 获取数据
-        $info = ConfigModel::get($id);
+        $info = ConfigModel::find($id);
 
         // 使用ZBuilder快速创建表单
         return ZBuilder::make('form')

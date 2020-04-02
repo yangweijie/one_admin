@@ -42,7 +42,7 @@ class Common extends Home
      */
     private function getNav()
     {
-        $list_nav = Db::name('cms_nav')->where('status', 1)->column('id,tag');
+        $list_nav = Db::name('cms_nav')->where('status', 1)->column('tag','id');
 
         foreach ($list_nav as $id => $tag) {
             $data_list = Db::view('cms_menu', true)

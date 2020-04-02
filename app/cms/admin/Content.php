@@ -63,7 +63,7 @@ class Content extends Admin
                 'class' => 'btn btn-info',
                 'href'  => url('recycle/index', ['model' => $model['id']])
             ];
-            $columns = Db::name('cms_column')->where(['model' => $model['id']])->column('id,name');
+            $columns = Db::name('cms_column')->where(['model' => $model['id']])->column('name','id');
 
             // 使用ZBuilder快速创建数据表格
             return ZBuilder::make('table')
@@ -103,7 +103,7 @@ class Content extends Admin
             // 数据列表
             $data_list = Document::getList($map, $order);
 
-            $columns = Db::name('cms_column')->where(['model' => $model['id']])->column('id,name');
+            $columns = Db::name('cms_column')->where(['model' => $model['id']])->column('name','id');
 
             // 使用ZBuilder快速创建数据表格
             return ZBuilder::make('table')
