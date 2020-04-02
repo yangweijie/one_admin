@@ -442,6 +442,13 @@ class Plugin extends Admin
         }
 
         $plugin_class = get_plugin_class($name);
+
+        cookie('__forward__', $_SERVER['REQUEST_URI']);
+
+        if (!class_exists($plugin_class)) {
+            $this->error($name.'插件不存在！');
+        }
+
         // 实例化插件
         $plugin  = new $plugin_class;
         $trigger = isset($plugin->trigger) ? $plugin->trigger : [];
