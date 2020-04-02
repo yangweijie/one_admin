@@ -39,7 +39,7 @@ return [
     'admin_base_layout'  => app_path() . 'admin/view/layout.html',
 
     // 插件目录路径
-    'plugin_path' => '../extend/plugins/',
+    'plugin_path'        => root_path().'extend/plugins/',
 
     // 数据包目录路径
     'packet_path'        => root_path(). 'packet/',

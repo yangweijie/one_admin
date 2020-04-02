@@ -470,7 +470,7 @@ class Attachment extends Admin
             'size'   => $file->getSize(),
             'md5'    => $file->hash('md5'),
             'sha1'   => $file->hash('sha1'),
-            'module' => $this->request->module(),
+            'module' => MODULE,
             'width'  => $img->width(),
             'height' => $img->height()
         ];

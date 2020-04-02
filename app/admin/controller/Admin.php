@@ -100,7 +100,7 @@ class Admin extends Common
     final protected function getCurrModel()
     {
         $table_token = input('param._t', '');
-        $module      = $this->request->module();
+        $module      = MODULE;
         $controller  = parse_name($this->request->controller());
 
         $table_token == '' && $this->error('缺少参数');
@@ -278,7 +278,7 @@ class Admin extends Common
     public function add()
     {
         // 获取表单项
-        $cache_name = $this->request->module().'/'.parse_name($this->request->controller()).'/add';
+        $cache_name = MODULE.'/'.parse_name($this->request->controller()).'/add';
         $cache_name = strtolower($cache_name);
         $form       = Cache::get($cache_name, []);
         if (!$form) {
@@ -344,7 +344,7 @@ class Admin extends Common
         if ($id === '') $this->error('参数错误');
 
         // 获取表单项
-        $cache_name = $this->request->module().'/'.parse_name($this->request->controller()).'/edit';
+        $cache_name = MODULE.'/'.parse_name($this->request->controller()).'/edit';
         $cache_name = strtolower($cache_name);
         $form       = Cache::get($cache_name, []);
         if (!$form) {
@@ -475,7 +475,7 @@ class Admin extends Common
     public function moduleConfig()
     {
         // 当前模块名
-        $module = $this->request->module();
+        $module = MODULE;
 
         // 保存
         if ($this->request->isPost()) {

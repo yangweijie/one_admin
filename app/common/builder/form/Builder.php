@@ -2037,7 +2037,7 @@ class Builder extends ZBuilder
     private function loadFile($type = '', $files_name = '', $module = '')
     {
         if ($files_name != '') {
-            $module = $module == '' ? $this->request->module() : $module;
+            $module = $module == '' ? MODULE : $module;
             if (!is_array($files_name)) {
                 $files_name = explode(',', $files_name);
             }
