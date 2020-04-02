@@ -311,7 +311,7 @@ class Module extends Admin
     {
         $name == '' && $this->error('缺少模块名！');
 
-        $Module = ModuleModel::get(['name' => $name]);
+        $Module = ModuleModel::where(['name' => $name])->find();
         !$Module && $this->error('模块不存在，或未安装');
 
         // 模块配置信息

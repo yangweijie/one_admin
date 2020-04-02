@@ -171,7 +171,7 @@ class Icon extends Admin
      */
     public function reload($id = '')
     {
-        $icon = IconModel::get($id);
+        $icon = IconModel::find($id);
         // 获取图标信息
         $url = substr($icon['url'], 0, 4) == 'http' ? $icon['url'] : 'http:'.$icon['url'];
         $content = file_get_contents($url);

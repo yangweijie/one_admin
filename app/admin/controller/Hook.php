@@ -127,7 +127,7 @@ class Hook extends Admin
         }
 
         // 获取数据
-        $info = HookModel::get($id);
+        $info = HookModel::find($id);
 
         // 该钩子的所有插件
         $hooks = HookPluginModel::where('hook', $info['name'])->order('sort')->column('plugin');

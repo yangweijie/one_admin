@@ -201,7 +201,7 @@ class Menu extends Admin
         }
 
         // 获取数据
-        $info = MenuModel::get($id);
+        $info = MenuModel::find($id);
         // 拥有该节点权限的角色
         $info['role'] = RoleModel::getRoleWithMenu($id);
 
