@@ -96,7 +96,7 @@ class Database extends Admin
                 break;
             case 'import':
                 // 列出备份文件列表
-                $path = config('data_backup_path');
+                $path = config('app.data_backup_path');
                 if(!is_dir($path)){
                     mkdir($path, 0755, true);
                 }
@@ -173,7 +173,7 @@ class Database extends Admin
         $tables = $ids;
         if ($this->request->isPost() && !empty($tables) && is_array($tables)) {
             // 初始化
-            $path = config('data_backup_path');
+            $path = config('app.data_backup_path');
             if(!is_dir($path)){
                 mkdir($path, 0755, true);
             }
@@ -242,7 +242,7 @@ class Database extends Admin
 
         // 初始化
         $name  = date('Ymd-His', $time) . '-*.sql*';
-        $path  = realpath(config('data_backup_path')) . DIRECTORY_SEPARATOR . $name;
+        $path  = realpath(config('app.data_backup_path')) . DIRECTORY_SEPARATOR . $name;
         $files = glob($path);
         $list  = array();
         foreach($files as $name){
@@ -258,7 +258,7 @@ class Database extends Admin
         if(count($list) === $last[0]){
             foreach ($list as $item) {
                 $config = [
-                    'path'     => realpath(config('data_backup_path')) . DIRECTORY_SEPARATOR,
+                    'path'     => realpath(config('app.data_backup_path')) . DIRECTORY_SEPARATOR,
                     'compress' => $item[2]
                 ];
                 $Database = new DatabaseModel($item, $config);
@@ -361,7 +361,7 @@ class Database extends Admin
         if ($ids == 0) $this->error('参数错误！');
 
         $name  = date('Ymd-His', $ids) . '-*.sql*';
-        $path  = realpath(config('data_backup_path')) . DIRECTORY_SEPARATOR . $name;
+        $path  = realpath(config('app.data_backup_path')) . DIRECTORY_SEPARATOR . $name;
         array_map("unlink", glob($path));
         if(count(glob($path))){
             $this->error('备份文件删除失败，请检查权限！');
