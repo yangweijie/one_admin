@@ -29,7 +29,8 @@ class Content extends Admin
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
      */
-    public function _empty()
+
+    public function __call($method, $args)
     {
         cookie('__forward__', $_SERVER['REQUEST_URI']);
         $model_name = $this->request->action();
