@@ -198,7 +198,7 @@ class Document extends Admin
         // 获取文档模型字段
         $where['status'] = 1;
         $where['show']   = 1;
-        $fields          = FieldModel::where($where)->order('sort asc,id asc')->column('*', 'id');
+        $fields          = FieldModel::where($where)->where('name', '<>', 'create_time')->order('sort asc,id asc')->column('*', 'id');
         foreach ($fields as $id => &$value) {
             // 解析options
             if ($value['options'] != '') {

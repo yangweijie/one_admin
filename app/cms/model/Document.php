@@ -201,6 +201,7 @@ class Document extends ThinkModel
                     return true;
                 }
             } else {
+            	$data['update_time'] = strtotime($data['update_time']);
                 // 更新文档基础内容
                 if (self::update($data)) {
                     // 更新文档扩展内容
