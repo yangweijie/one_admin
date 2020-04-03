@@ -156,6 +156,7 @@ class Advert extends Admin
         return ZBuilder::make('form')
             ->setPageTips('如果出现无法添加的情况，可能由于浏览器将本页面当成了广告，请尝试关闭浏览器的广告过滤功能再试。', 'warning')
             ->addFormItems([
+            	['hidden', 'expcontent'],
                 ['select', 'typeid', '广告分类', '', $list_type, 0],
                 ['text', 'tagname', '广告位标识', '由小写字母、数字或下划线组成，不能以数字开头'],
                 ['text', 'name', '广告位名称'],
@@ -223,6 +224,7 @@ class Advert extends Admin
             ->addFormItems([
                 ['hidden', 'id'],
                 ['hidden', 'tagname'],
+                ['hidden', 'expcontent'],
                 ['static', 'tagname', '广告位标识'],
                 ['static', 'ad_type', '广告类型'],
                 ['text', 'name', '广告位名称'],
