@@ -1471,7 +1471,9 @@ class Builder extends ZBuilder
             return $row_list->toArray()['data'];
         } elseif ($row_list instanceof \think\model\Collection) {
             return $row_list->toArray();
-        } else {
+        } elseif($row_list instanceof \think\Collection){
+        	return $row_list->toArray();
+        } else{
             return $row_list;
         }
     }
