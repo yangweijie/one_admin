@@ -19,7 +19,6 @@ use app\user\model\Message as MessageModel;
 use think\facade\Cache;
 use think\facade\Db;
 use think\facade\App;
-use think\helper\Hash;
 use think\facade\View;
 
 /**
@@ -247,7 +246,7 @@ class Admin extends Common
                 break;
             // 开关
             case 'password':
-                $value = Hash::make((string)$value);
+                $value = \Hash::make((string)$value);
                 break;
         }
 

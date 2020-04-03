@@ -30,7 +30,7 @@ class User extends Model
     // 对密码进行加密
     public function setPasswordAttr($value)
     {
-        return Hash::make((string)$value);
+        return \Hash::make((string)$value);
     }
 
     // 获取注册ip

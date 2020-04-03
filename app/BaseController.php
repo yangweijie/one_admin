@@ -87,8 +87,11 @@ abstract class BaseController
         if ($batch || $this->batchValidate) {
             $v->batch(true);
         }
-
-        return $v->failException(true)->check($data);
+        try{
+        	return $v->failException(true)->check($data);
+        }catch(\Exception $e){
+        	return $e->getMessage();
+        }
     }
 
     use \liliuwei\think\Jump;
