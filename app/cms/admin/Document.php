@@ -145,7 +145,7 @@ class Document extends Admin
             $columns = ColumnModel::getTreeList(0, false);
         } else {
             // 获取相同内容模型的栏目
-            $columns = Db::name('cms_column')->where('model', $model)->order('pid,id')->column('id,name,pid');
+            $columns = Db::name('cms_column')->where('model', $model)->order('pid,id')->column('name,pid','id');
             $columns = Tree::config(['title' => 'name'])->toList($columns, current($columns)['pid']);
             $result  = [];
             foreach ($columns as $column) {
@@ -199,7 +199,6 @@ class Document extends Admin
         $where['status'] = 1;
         $where['show']   = 1;
         $fields          = FieldModel::where($where)->order('sort asc,id asc')->column('*', 'id');
-
         foreach ($fields as $id => &$value) {
             // 解析options
             if ($value['options'] != '') {
@@ -220,7 +219,7 @@ class Document extends Admin
         }
 
         // 获取相同内容模型的栏目
-        $columns = Db::name('cms_column')->where(['model' => $where['model']])->whereOr('model', $info['model'])->order('pid,id')->column('id,name,pid');
+        $columns = Db::name('cms_column')->where('model', 'in', is_array($where['model'])? $where['model'][1]: [$where['model']])->whereOr('model', $info['model'])->order('pid,id')->column('name,pid','id');
         $columns = Tree::config(['title' => 'name'])->toList($columns, current($columns)['pid']);
         $result  = [];
         foreach ($columns as $column) {
@@ -228,15 +227,18 @@ class Document extends Admin
         }
         $columns = $result;
 
-
         // 添加额外表单项信息
         $extra_field = [
             ['name' => 'id', 'type' => 'hidden'],
             ['name' => 'cid', 'title' => '所属栏目', 'type' => 'select', 'options' => $columns],
             ['name' => 'model', 'type' => 'hidden']
         ];
-        $fields = array_merge($extra_field, $fields);
-
+        $extra_names = array_column($extra_field, 'name');
+        foreach ($fields as $key => &$value) {
+        	if(in_array($value['name'], $extra_names)){
+        		$value = array_merge($value, $extra_field[array_search($value['name'], $extra_names)]);
+        	}
+        }
         // 使用ZBuilder快速创建表单
         return ZBuilder::make('form')
             ->setFormItems($fields)

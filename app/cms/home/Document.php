@@ -67,7 +67,7 @@ class Document extends Common
      */
     private function getBreadcrumb($id)
     {
-        $columns = ColumnModel::where('status', 1)->column('id,pid,name,url,target,type');
+        $columns = ColumnModel::where('status', 1)->column('pid,name,url,target,type','id');
         foreach ($columns as &$column) {
             if ($column['type'] == 0) {
                 $column['url'] = url('cms/column/index', ['id' => $column['id']]);

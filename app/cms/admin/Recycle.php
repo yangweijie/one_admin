@@ -166,7 +166,7 @@ class Recycle extends Admin
 
         if ($table == '') {
             // 获取文档标题和模型id
-            $data_list = Db::name('cms_document')->where('id', 'in', $ids)->column('id,model,title');
+            $data_list = Db::name('cms_document')->where('id', 'in', $ids)->column('model,title','id');
 
             foreach ($data_list as $document) {
                 // 附加表名

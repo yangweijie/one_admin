@@ -119,7 +119,7 @@ class Document extends ThinkModel
         }
 
         // 处理特殊字段类型
-        $fields = FieldModel::where('model', $data['model'])->where('status', 1)->column('name,type');
+        $fields = FieldModel::where('model', $data['model'])->where('status', 1)->column('type','name');
 
         foreach ($fields as $name => $type) {
             if (!isset($data[$name])) {

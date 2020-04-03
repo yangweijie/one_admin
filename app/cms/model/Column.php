@@ -77,7 +77,7 @@ class Column extends ThinkModel
             $where[]  = ['id', 'not in', $hide_ids];
         }
 
-        $data_list = Tree::config(['title' => 'name'])->toList(self::where($where)->order('pid,id')->column('id,pid,name'));
+        $data_list = Tree::config(['title' => 'name'])->toList(self::where($where)->order('pid,id')->column('pid,name','id'));
         foreach ($data_list as $item) {
             $result[$item['id']] = $item['title_display'];
         }
