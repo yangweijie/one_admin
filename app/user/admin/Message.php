@@ -38,7 +38,7 @@ class Message extends Admin
             ->setTableName('admin_message')
             ->addTopButton('add')
             ->addTopButton('delete')
-            ->addRightButton('edit')
+            // ->addRightButton('edit')
             ->addRightButton('delete')
             ->addColumns([
                 ['id', 'ID'],
