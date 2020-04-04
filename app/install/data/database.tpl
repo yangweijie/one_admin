@@ -1,61 +1,60 @@
 <?php
-// +----------------------------------------------------------------------
-// | 海豚PHP框架 [ DolphinPHP ]
-// +----------------------------------------------------------------------
-// | 版权所有 2016~2019 广东卓锐软件有限公司 [ http://www.zrthink.com ]
-// +----------------------------------------------------------------------
-// | 官方网站: http://dolphinphp.com
-// +----------------------------------------------------------------------
+use think\facade\Env;
 
 return [
-    // 数据库类型
-    'type'            => '[type]',
-    // 服务器地址
-    'hostname'        => '[hostname]',
-    // 数据库名
-    'database'        => '[database]',
-    // 用户名
-    'username'        => '[username]',
-    // 密码
-    'password'        => '[password]',
-    // 端口
-    'hostport'        => '[hostport]',
-    // 连接dsn
-    'dsn'             => '',
-    // 数据库连接参数
-    'params'          => [],
-    // 数据库编码默认采用utf8
-    'charset'         => 'utf8',
-    // 数据库表前缀
-    'prefix'          => '[prefix]',
-    // 数据库调试模式
-    'debug'           => true,
-    // 数据库部署方式:0 集中式(单一服务器),1 分布式(主从服务器)
-    'deploy'          => 0,
-    // 数据库读写是否分离 主从式有效
-    'rw_separate'     => false,
-    // 读写分离后 主服务器数量
-    'master_num'      => 1,
-    // 指定从服务器序号
-    'slave_no'        => '',
-    // 自动读取主库数据
-    'read_master'     => false,
-    // 是否严格检查字段是否存在
-    'fields_strict'   => false,
-    // 数据集返回类型
-    'resultset_type'  => 'array',
+    // 默认使用的数据库连接配置
+    'default'         => Env::get('database.driver', '[type]'),
+
+    // 自定义时间查询规则
+    'time_query_rule' => [],
+
     // 自动写入时间戳字段
+    // true为自动识别类型 false关闭
+    // 字符串则明确指定时间字段类型 支持 int timestamp datetime date
     'auto_timestamp'  => false,
+
     // 时间字段取出后的默认时间格式
     'datetime_format' => false,
-    // 是否需要进行SQL性能分析
-    'sql_explain'     => false,
-    // Builder类
-    'builder'         => '',
-    // Query类
-    'query'           => '\\think\\db\\Query',
-    // 是否需要断线重连
-    'break_reconnect' => false,
-    // 断线标识字符串
-    'break_match_str' => [],
+
+    // 数据库连接配置信息
+    'connections'     => [
+        '[type]' => [
+            // 数据库类型
+            'type'              => Env::get('database.type', '[type]'),
+            // 服务器地址
+            'hostname'          => Env::get('database.hostname', '[hostname]'),
+            // 数据库名
+            'database'          => Env::get('database.database', '[database]'),
+            // 用户名
+            'username'          => Env::get('database.username', '[username]'),
+            // 密码
+            'password'          => Env::get('database.password', '[password]'),
+            // 端口
+            'hostport'          => Env::get('database.hostport', '[hostport]'),
+            // 数据库连接参数
+            'params'            => [],
+            // 数据库编码默认采用utf8
+            'charset'           => Env::get('database.charset', 'utf8'),
+            // 数据库表前缀
+            'prefix'            => Env::get('database.prefix', '[prefix]'),
+            // 数据库调试模式
+            'debug'             => Env::get('database.debug', true),
+            // 数据库部署方式:0 集中式(单一服务器),1 分布式(主从服务器)
+            'deploy'            => 0,
+            // 数据库读写是否分离 主从式有效
+            'rw_separate'       => false,
+            // 读写分离后 主服务器数量
+            'master_num'        => 1,
+            // 指定从服务器序号
+            'slave_no'          => '',
+            // 是否严格检查字段是否存在
+            'fields_strict'     => false,
+            // 是否需要断线重连
+            'break_reconnect'   => false,
+            // 字段缓存路径
+            'schema_cache_path' => app()->getRuntimePath() . 'schema' . DIRECTORY_SEPARATOR,
+        ],
+
+        // 更多的数据库配置信息
+    ],
 ];

@@ -25,7 +25,7 @@ return [
     // 路由缓存Key
     'route_check_cache_key' => '',
     // 访问控制器层名称
-    'controller_layer'      => 'home',
+    'controller_layer'      => 'controller',
     // 空控制器名
     'empty_controller'      => 'Error',
     // 是否使用控制器后缀

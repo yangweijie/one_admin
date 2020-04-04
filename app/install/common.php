@@ -47,7 +47,7 @@ function check_env(){
 
     // 磁盘空间检测
     if(function_exists('disk_free_space')) {
-        $disk_size = floor(disk_free_space(Env::get('app_path')) / (1024*1024));
+        $disk_size = floor(disk_free_space(app_path()) / (1024*1024));
         $items['disk'][3] = $disk_size.'M';
         if ($disk_size < 100) {
             $items['disk'][4] = 'times text-warning';
@@ -58,18 +58,80 @@ function check_env(){
     return $items;
 }
 
+// 将post的配置改为tp连接格式
+function parse_db($db, $database = 'mysql'){
+	$config = [
+	    // 默认使用的数据库连接配置
+	    'default'         => 'mysql',
+
+	    // 自定义时间查询规则
+	    'time_query_rule' => [],
+
+	    // 自动写入时间戳字段
+	    // true为自动识别类型 false关闭
+	    // 字符串则明确指定时间字段类型 支持 int timestamp datetime date
+	    'auto_timestamp'  => false,
+
+	    // 时间字段取出后的默认时间格式
+	    'datetime_format' => false,
+
+	    // 数据库连接配置信息
+	    'connections'     => [
+	        'mysql' => [
+	            // 数据库类型
+	            'type'              => 'mysql',
+	            // 服务器地址
+	            'hostname'          => $db['hostname'],
+	            // 数据库名
+	            'database'          => $database,
+	            // 用户名
+	            'username'          => $db['username'],
+	            // 密码
+	            'password'          => $db['password'],
+	            // 端口
+	            'hostport'          => $db['hostport'],
+	            // 数据库连接参数
+	            'params'            => [],
+	            // 数据库编码默认采用utf8
+	            'charset'           => 'utf8',
+	            // 数据库表前缀
+	            'prefix'            => $db['prefix'],
+	            // 数据库调试模式
+	            'debug'             => true,
+	            // 数据库部署方式:0 集中式(单一服务器),1 分布式(主从服务器)
+	            'deploy'            => 0,
+	            // 数据库读写是否分离 主从式有效
+	            'rw_separate'       => false,
+	            // 读写分离后 主服务器数量
+	            'master_num'        => 1,
+	            // 指定从服务器序号
+	            'slave_no'          => '',
+	            // 是否严格检查字段是否存在
+	            'fields_strict'     => false,
+	            // 是否需要断线重连
+	            'break_reconnect'   => false,
+	            // 字段缓存路径
+	            'schema_cache_path' => app()->getRuntimePath() . 'schema' . DIRECTORY_SEPARATOR,
+	        ],
+
+	        // 更多的数据库配置信息
+	    ],
+	];
+	return $config;
+}
+
 /**
  * 目录，文件读写检测
  * @return array 检测数据
  */
 function check_dirfile(){
     $items = array(
-        array('dir',  '可写', 'check', '../application'),
+        array('dir',  '可写', 'check', '../app'),
         array('dir',  '可写', 'check', '../config'),
         array('dir',  '可写', 'check', '../data'),
         array('dir',  '可写', 'check', '../export'),
         array('dir',  '可写', 'check', '../packet'),
-        array('dir',  '可写', 'check', '../plugins'),
+        array('dir',  '可写', 'check', '../extend/plugins'),
         array('dir',  '可写', 'check', './static'),
         array('dir',  '可写', 'check', './uploads'),
         array('dir',  '可写', 'check', '../runtime'),
@@ -146,14 +208,14 @@ function check_func(){
 function write_config($config){
     if(is_array($config)){
         //读取配置内容
-        $conf = file_get_contents(Env::get('app_path') . 'install/data/database.tpl');
+        $conf = file_get_contents(base_path() . 'install/data/database.tpl');
         // 替换配置项
         foreach ($config as $name => $value) {
             $conf = str_replace("[{$name}]", $value, $conf);
         }
 
         //写入应用配置文件
-        if(file_put_contents(Env::get('config_path') . 'database.php', $conf)){
+        if(file_put_contents(root_path().'config/database.php', $conf)){
             show_msg('配置文件写入成功');
         } else {
             show_msg('配置文件写入失败！', 'error');
@@ -170,18 +232,18 @@ function write_config($config){
  */
 function create_tables($db, $prefix = ''){
     // 读取SQL文件
-    $sql = file_get_contents(Env::get('app_path') . 'install/data/dolphin.sql');
+    $sql = file_get_contents(base_path() . 'install/data/dolphin.sql');
 
     $sql = str_replace("\r", "\n", $sql);
     $sql = explode(";\n", $sql);
 
     // 替换表前缀
-    $orginal = config('original_table_prefix');
+    $orginal = config('app.original_table_prefix');
     $sql = str_replace(" `{$orginal}", " `{$prefix}", $sql);
 
     // 开始安装
     show_progress('0%');
-    $all_table = config('install_table_total');
+    $all_table = config('app.install_table_total');
     $i = 1;
     foreach ($sql as $value) {
         $value = trim($value);
@@ -204,7 +266,7 @@ function create_tables($db, $prefix = ''){
  */
 function update_tables($db, $prefix = ''){
     //读取SQL文件
-    $sql = file_get_contents(Env::get('app_path') . 'install/data/update.sql');
+    $sql = file_get_contents(base_path() . 'install/data/update.sql');
     $sql = str_replace("\r", "\n", $sql);
     $sql = explode(";\n", $sql);
 
@@ -213,7 +275,7 @@ function update_tables($db, $prefix = ''){
 
     //开始安装
     show_progress('0%');
-    $all_table = config('update_data_total');
+    $all_table = config('app.update_data_total');
     $i = 1;
     $msg = '';
     foreach ($sql as $value) {

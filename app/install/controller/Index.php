@@ -9,9 +9,12 @@
 
 namespace app\install\controller;
 
-use think\Controller;
-use think\Db;
+use app\BaseController;
+
+use think\facade\Db;
 use think\facade\Env;
+use think\facade\Config;
+use think\facade\View;
 
 define('INSTALL_APP_PATH', realpath('./') . '/');
 
@@ -19,14 +22,14 @@ define('INSTALL_APP_PATH', realpath('./') . '/');
  * 安装控制器
  * @package app\install\controller
  */
-class Index extends Controller
+class Index extends BaseController
 {
     /**
      * 获取入口目录
      * @author 蔡伟明 <314013107@qq.com>
      */
     protected function initialize() {
-        $this->assign('static_dir', 'static/');
+        View::assign('static_dir', 'static/');
     }
 
     /**
@@ -38,15 +41,15 @@ class Index extends Controller
         if (is_file(Env::get('app_path') . 'database.php')) {
             // 已经安装过了 执行更新程序
             session('reinstall', true);
-            $this->assign('next', '重新安装');
+            View::assign('next', '重新安装');
         } else {
             session('reinstall', false);
-            $this->assign('next', '下一步');
+            View::assign('next', '下一步');
         }
 
         session('step', 1);
         session('error', false);
-        return $this->fetch();
+        return View::fetch();
     }
 
     /**
@@ -68,17 +71,17 @@ class Index extends Controller
 
             // 目录文件读写检测
             $dirfile = check_dirfile();
-            $this->assign('dirfile', $dirfile);
+            View::assign('dirfile', $dirfile);
 
             // 函数检测
             $func = check_func();
 
             session('step', 2);
 
-            $this->assign('env', $env);
-            $this->assign('func', $func);
+            View::assign('env', $env);
+            View::assign('func', $func);
 
-            return $this->fetch();
+            return View::fetch();
         }
     }
 
@@ -100,7 +103,7 @@ class Index extends Controller
         if (session('step') != 2) $this->redirect($this->request->baseFile());
         session('error', false);
         session('step', 3);
-        return $this->fetch();
+        return View::fetch();
     }
 
     /**
@@ -130,8 +133,11 @@ class Index extends Controller
             $db_name = $db['database'];
             unset($db['database']);
 
+            $config = parse_db($db);
+
+            Config::set($config, 'database');
             // 创建数据库连接
-            $db_instance = Db::connect($db);
+            $db_instance = Db::connect('mysql');
 
             // 检测数据库连接
             try{
@@ -161,7 +167,7 @@ class Index extends Controller
             }
 
             session('step', 4);
-            return $this->fetch();
+            return View::fetch();
         }
     }
 
@@ -184,7 +190,7 @@ class Index extends Controller
             session('step', null);
             session('error', null);
             session('reinstall', null);
-            return $this->fetch();
+            return View::fetch();
         }
     }
 }

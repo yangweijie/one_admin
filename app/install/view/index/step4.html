@@ -23,13 +23,17 @@
     }
 </script>
     {php}
-    use think\Db;
     // 连接数据库
-    $db_config = session('db_config');
-    $db_instance = Db::connect($db_config);
+    $db_config  = session('db_config');
+    $prefix     = $db_config['prefix'];
+
+    $connect_db = parse_db($db_config, $db_config['database']);
+    config($connect_db, 'database');
+
+    $db_instance = \think\facade\Db::connect();
 
     // 创建数据表
-    create_tables($db_instance, $db_config['prefix']);
+    create_tables($db_instance, $prefix);
 
     // 创建配置文件
     $conf = write_config($db_config);

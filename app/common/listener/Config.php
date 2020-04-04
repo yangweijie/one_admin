@@ -41,11 +41,16 @@ class Config
         		$module  = explode('/', str_ireplace($request->baseFile().'/', '', $baseUrl))[0];
         	}
         }else{
-	    	$module = explode('/', str_ireplace($request->baseFile().'/', '', $baseUrl))[0];
+        	if(stripos($baseUrl, $request->baseFile().'/') === false){
+        		$module = explode('/', str_ireplace($request->baseFile(), '', $baseUrl))[0];
+        	}else{
+        		$module = explode('/', str_ireplace($request->baseFile().'/', '', $baseUrl))[0];
+        	}
         }
         if(!defined('MODULE')){
-        	define('MODULE', $module);
+        	define('MODULE', $module?: trim($request->baseFile(), '.php'));
         }
+
         // 获取入口目录
         $base_file = Request::baseFile();
         $base_dir  = substr($base_file, 0, strripos($base_file, '/') + 1);
@@ -109,10 +114,10 @@ class Config
             }
 
         } else {
-            if ($module == 'admin') {
+            if (MODULE == 'admin') {
                 header("Location: ".$base_dir.ADMIN_FILE.'/admin', true, 302);exit();
             }
-            if ($module != '' && !in_array($module, config('module.default_controller_layer'))) {
+            if (MODULE != '' && !in_array(MODULE, config('module.default_controller_layer'))) {
                 // 修改默认访问控制器层
             	$route_config                         = config('route');
             	$route_config['controller_layer'] = 'home';
