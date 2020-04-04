@@ -1381,7 +1381,7 @@ if (!function_exists('extend_form_item')) {
         $template = './extend/form/'.$form['type'].'/'.$form['type'].'.html';
         if (file_exists($template)) {
             $template_content = file_get_contents($template);
-            $view = Container::get('view');
+            $view = app('view');
             return $view->display($template_content, $form);
         } else {
             return '';
