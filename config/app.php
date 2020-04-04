@@ -47,4 +47,9 @@ return [
     'upload_path'        => root_path() . 'public' . DIRECTORY_SEPARATOR . 'uploads',
     // 文件上传临时目录
     'upload_temp_path'   => root_path() . 'public' . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . 'temp/',
+
+    // 最大缓存用户数
+    'user_max_cache' => 1000,
+    // 管理员用户ID
+    'user_admin'     => 1,
 ];

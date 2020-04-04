@@ -15,5 +15,5 @@ return [
     // 过期时间
     'expire'         => 1440,
     // 前缀
-    'prefix'         => '',
+    'prefix'         => 'dolphin_',
 ];
