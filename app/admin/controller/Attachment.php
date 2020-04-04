@@ -246,7 +246,8 @@ class Attachment extends Admin
         }
 
         // 移动到框架应用根目录/uploads/ 目录下
-        $info = $file->move(config('app.upload_path') . DIRECTORY_SEPARATOR . $dir);
+        $info = \think\facade\Filesystem::disk('public')->putFile($dir, $file);
+        $info = 'uploads/'.$info;
         if($info){
             // 缩略图路径
             $thumb_path_name = '';
@@ -261,24 +262,24 @@ class Attachment extends Admin
                 // 水印功能
                 if ($watermark == '') {
                     if (config('app.upload_thumb_water') == 1 && config('upload_thumb_water_pic') > 0) {
-                        $this->create_water($info->getPathname(), config('upload_thumb_water_pic'));
+                        $this->create_water($info, config('upload_thumb_water_pic'));
                     }
                 } else {
                     if (strtolower($watermark) != 'close') {
                         list($watermark_img, $watermark_pos, $watermark_alpha) = explode('|', $watermark);
-                        $this->create_water($info->getPathname(), $watermark_img, $watermark_pos, $watermark_alpha);
+                        $this->create_water($info, $watermark_img, $watermark_pos, $watermark_alpha);
                     }
                 }
 
                 // 生成缩略图
                 if ($thumb == '') {
                     if (config('app.upload_image_thumb') != '') {
-                        $thumb_path_name = $this->create_thumb($info, $info->getPathInfo()->getFileName(), $info->getFilename());
+                        $thumb_path_name = $this->create_thumb($info, pathinfo($info, PATHINFO_DIRNAME), pathinfo($info, PATHINFO_BASENAME));
                     }
                 } else {
                     if (strtolower($thumb) != 'close') {
                         list($thumb_size, $thumb_type) = explode('|', $thumb);
-                        $thumb_path_name = $this->create_thumb($info, $info->getPathInfo()->getFileName(), $info->getFilename(), $thumb_size, $thumb_type);
+                        $thumb_path_name = $this->create_thumb($info, pathinfo($info, PATHINFO_DIRNAME), pathinfo($info, PATHINFO_BASENAME));
                     }
                 }
             }
@@ -286,20 +287,19 @@ class Attachment extends Admin
             // 获取附件信息
             $file_info = [
                 'uid'    => session('user_auth.uid'),
-                'name'   => $file->getOriginalName(),
-                'mime'   => $file->getOriginalMime(),
-                'path'   => 'uploads/' . $dir . '/' . str_replace('\\', '/', $info->getFilename()),
-                'ext'    => $info->getExtension(),
-                'size'   => $info->getSize(),
-                'md5'    => $info->hash('md5'),
-                'sha1'   => $info->hash('sha1'),
+                'name'   => $file_name,
+                'mime'   => $file->getMime(),
+                'path'   => str_replace('\\', '/', $info),
+                'ext'    => $file->extension(),
+                'size'   => $file->getSize(),
+                'md5'    => $file->md5(),
+                'sha1'   => $file->sha1(),
                 'thumb'  => $thumb_path_name,
                 'module' => $module,
                 'width'  => $img_width,
                 'height' => $img_height,
             ];
 
-            halt($file_info);
             // 写入数据库
             if ($file_add = AttachmentModel::create($file_info)) {
                 $file_path = PUBLIC_PATH. $file_info['path'];

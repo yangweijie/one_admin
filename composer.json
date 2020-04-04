@@ -23,7 +23,8 @@
         "nesk/puphpeteer": "2.0.0.x-dev",
         "aktuba/php-puppeteer": "0.1.0.9",
         "topthink/think-multi-app": "^1.0",
-        "liliuwei/thinkphp-jump": "^1.4"
+        "liliuwei/thinkphp-jump": "^1.4",
+        "topthink/think-image": "^1.0"
     },
     "require-dev": {
         "symfony/var-dumper": "^4.2"
