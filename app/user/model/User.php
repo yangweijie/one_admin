@@ -91,7 +91,7 @@ class User extends Model
                 $user['last_login_ip']   = ip2long(request()->ip());
                 if ($user->save()) {
                     // 自动登录
-                    return $this->autoLogin(self::where($uid)->find(), $rememberme);
+                    return $this->autoLogin(self::find($uid), $rememberme);
                 } else {
                     // 更新登录信息失败
                     $this->error = '登录信息更新失败，请重新登录！';
