@@ -102,7 +102,7 @@ class System extends Admin
 
             if (isset(config('app.config_group')[$group])) {
                 // 查询条件
-                $map['group']  = $group;
+                $map['`group`']  = $group;
                 $map['status'] = 1;
 
                 // 数据列表
