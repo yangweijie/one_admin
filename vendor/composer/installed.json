@@ -1633,5 +1633,57 @@
             "semver",
             "versioning"
         ]
+    },
+    {
+        "name": "zoujingli/think-library",
+        "version": "v6.0.x-dev",
+        "version_normalized": "6.0.9999999.9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/zoujingli/ThinkLibrary.git",
+            "reference": "62da1187283ddeea4a314b614a337b1bd911cde5"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://mirrors.huaweicloud.com/repository/php/dist/zoujingli/think-library/zoujingli-think-library-v6.0.x-dev-6376bf39.zip",
+            "reference": "62da1187283ddeea4a314b614a337b1bd911cde5",
+            "shasum": "322211b59c4e551650988c2bf29bfe1dbd82e362"
+        },
+        "require": {
+            "ext-curl": "*",
+            "ext-gd": "*",
+            "ext-iconv": "*",
+            "ext-json": "*",
+            "topthink/framework": "^6.0"
+        },
+        "time": "2020-04-07T06:09:04+00:00",
+        "type": "library",
+        "extra": {
+            "think": {
+                "services": [
+                    "think\\admin\\Library"
+                ]
+            }
+        },
+        "installation-source": "source",
+        "autoload": {
+            "files": [
+                "src/common.php"
+            ],
+            "psr-4": {
+                "think\\admin\\": "src"
+            }
+        },
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Anyon",
+                "email": "zoujingli@qq.com"
+            }
+        ],
+        "description": "ThinkPHP v6.0 Development Library",
+        "homepage": "http://framework.thinkadmin.top"
     }
 ]

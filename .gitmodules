@@ -1,0 +1,3 @@
+[submodule "vendor/zoujingli/think-library"]
+	path = vendor/zoujingli/think-library
+	url = ../../zoujingli/ThinkLibrary.git

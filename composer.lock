@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e3f43155bcec025dcae524cc6aeabe32",
+    "content-hash": "2e8a67d654adad94a4576ef8006cda88",
     "packages": [
         {
             "name": "aktuba/php-puppeteer",
@@ -1391,6 +1391,56 @@
                 "versioning"
             ],
             "time": "2017-07-11T09:53:59+00:00"
+        },
+        {
+            "name": "zoujingli/think-library",
+            "version": "v6.0.x-dev",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zoujingli/ThinkLibrary.git",
+                "reference": "62da1187283ddeea4a314b614a337b1bd911cde5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://mirrors.huaweicloud.com/repository/php/dist/zoujingli/think-library/zoujingli-think-library-v6.0.x-dev-6376bf39.zip",
+                "reference": "62da1187283ddeea4a314b614a337b1bd911cde5",
+                "shasum": "322211b59c4e551650988c2bf29bfe1dbd82e362"
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-gd": "*",
+                "ext-iconv": "*",
+                "ext-json": "*",
+                "topthink/framework": "^6.0"
+            },
+            "type": "library",
+            "extra": {
+                "think": {
+                    "services": [
+                        "think\\admin\\Library"
+                    ]
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/common.php"
+                ],
+                "psr-4": {
+                    "think\\admin\\": "src"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Anyon",
+                    "email": "zoujingli@qq.com"
+                }
+            ],
+            "description": "ThinkPHP v6.0 Development Library",
+            "homepage": "http://framework.thinkadmin.top",
+            "time": "2020-04-07T06:09:04+00:00"
         }
     ],
     "packages-dev": [
@@ -1587,7 +1637,8 @@
     "stability-flags": {
         "topthink/framework": 20,
         "topthink/think-orm": 20,
-        "nesk/puphpeteer": 20
+        "nesk/puphpeteer": 20,
+        "zoujingli/think-library": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
