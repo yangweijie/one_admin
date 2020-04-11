@@ -1,0 +1,127 @@
+<div class="row">
+    <div class="col-xs-6 col-lg-3">
+        <a class="block block-link-hover1" href="javascript:void(0)">
+            <div class="block-content block-content-full clearfix">
+                <div class="pull-right push-15-t push-15">	<i class="fa fa-star fa-2x text-primary"></i>
+                </div>
+                <div class="h2 text-primary" data-toggle="countTo" data-to="{$total.pre|default=0}">{$total.pre|default=0}</div>
+                <div class="text-uppercase font-w600 font-s12 text-muted">待处理的任务数量</div>
+            </div>
+        </a>
+    </div>
+    <div class="col-xs-6 col-lg-3">
+        <a class="block block-link-hover1" href="javascript:void(0)">
+            <div class="block-content block-content-full clearfix">
+                <div class="pull-right push-15-t push-15">	<i class="si si-clock fa-2x text-smooth"></i>
+
+                </div>
+                <div class="h2 text-smooth" data-toggle="countTo" data-to="{$total.dos|default=0}">{$total.dos|default=0}</div>
+                <div class="text-uppercase font-w600 font-s12 text-muted">处理中的任务数量</div>
+            </div>
+        </a>
+    </div>
+    <div class="col-xs-6 col-lg-3">
+        <a class="block block-link-hover1" href="javascript:void(0)">
+            <div class="block-content block-content-full clearfix">
+                <div class="pull-right push-15-t push-15">	<i class="fa fa-fw fa-paper-plane fa-2x text-success"></i>
+
+                </div>
+                <div class="h2 text-success" data-toggle="countTo" data-to="{$total.oks|default=0}" data-before="0">{$total.oks|default=0}</div>
+                <div class="text-uppercase font-w600 font-s12 text-muted">处理完成的任务数量</div>
+            </div>
+        </a>
+    </div>
+    <div class="col-xs-6 col-lg-3">
+        <a class="block block-link-hover1" href="javascript:void(0)">
+            <div class="block-content block-content-full clearfix">
+                <div class="pull-right push-15-t push-15">	<i class="fa fa-fw fa-wrench fa-2x text-amethyst"></i>
+
+                </div>
+                <div class="h2 text-amethyst" data-toggle="countTo" data-to="{$total.ers|default=0}">{$total.ers|default=0}</div>
+                <div class="text-uppercase font-w600 font-s12 text-muted">处理失败的任务数量</div>
+            </div>
+        </a>
+    </div>
+</div>
+
+<style>
+	.margin-bottom-15 {
+		margin-bottom: 15px !important;
+	}
+	h1, h2, h3, h4, h5, h6 {
+		font-weight: 400;
+	}
+
+	fieldset {
+		margin: 0;
+		border: 1px solid #e6e6e6;
+		padding: 10px 20px 5px 20px;
+	}
+	fieldset legend {
+		color: #666;
+		padding: 0 10px;
+		font-size: 14px;
+		margin-bottom: 0;
+	}
+	.notselect {
+		user-select: none;
+		-ms-user-select: none;
+		-moz-user-select: none;
+		-webkit-user-select: none;
+	}
+
+	.margin-top-0 {
+		margin-top: 0 !important;
+	}
+	.border-0 {
+		border: 0 !important;
+	}
+	.layui-code {
+		position: relative;
+		margin: 10px 0;
+		padding: 15px;
+		line-height: 20px;
+		border: 1px solid #ddd;
+		border-left-width: 6px;
+		background-color: #F2F2F2;
+		color: #333;
+		font-family: Courier New;
+		font-size: 12px;
+	}
+	.layui-code p{
+		margin:0;
+		padding: 0;
+	}
+	.margin-top-0 {
+		margin-top: 0 !important;
+	}
+	.border-0 {
+		border: 0 !important;
+	}
+	.margin-top-10 {
+		margin-top: 10px !important;
+	}
+	.color-desc {
+		color: #999 !important;
+	}
+
+	.margin-bottom-15 {
+		margin-bottom: 15px !important;
+	}
+	fieldset {
+		margin: 0;
+		border: 1px solid #e6e6e6;
+		padding: 10px 20px 5px 20px;
+	}
+	layui-card-body {
+		position: relative;
+		padding: 10px 15px;
+		line-height: 24px;
+	}
+	h4, h5, h6 {
+		font-size: 100%;
+	}
+</style>
+
+<fieldset class="margin-bottom-15"><legend class="notselect">守护状态</legend><div class="layui-code border-0 margin-top-0"><h4 class="color-desc margin-top-10 notselect">守护进程运行状态</h4><span class="text-success"><info>Listening for main process 28452 running</info>
+</span><h4 class="color-desc margin-top-10 notselect">配置定时任务来检查并启动进程（建议每分钟执行）</h4><p>php /home/wwwroot/admin/v6/think xtask:start</p></div></fieldset>

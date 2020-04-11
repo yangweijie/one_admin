@@ -1641,13 +1641,19 @@
         "source": {
             "type": "git",
             "url": "https://github.com/zoujingli/ThinkLibrary.git",
-            "reference": "62da1187283ddeea4a314b614a337b1bd911cde5"
+            "reference": "a6b2f3929c9853c700e45e260c2eaf0ed0aeda3f"
         },
         "dist": {
             "type": "zip",
-            "url": "https://mirrors.huaweicloud.com/repository/php/dist/zoujingli/think-library/zoujingli-think-library-v6.0.x-dev-6376bf39.zip",
-            "reference": "62da1187283ddeea4a314b614a337b1bd911cde5",
-            "shasum": "322211b59c4e551650988c2bf29bfe1dbd82e362"
+            "url": "https://api.github.com/repos/zoujingli/ThinkLibrary/zipball/a6b2f3929c9853c700e45e260c2eaf0ed0aeda3f",
+            "reference": "a6b2f3929c9853c700e45e260c2eaf0ed0aeda3f",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
         },
         "require": {
             "ext-curl": "*",
@@ -1656,7 +1662,7 @@
             "ext-json": "*",
             "topthink/framework": "^6.0"
         },
-        "time": "2020-04-07T06:09:04+00:00",
+        "time": "2020-04-09T14:06:42+00:00",
         "type": "library",
         "extra": {
             "think": {
@@ -1665,7 +1671,7 @@
                 ]
             }
         },
-        "installation-source": "source",
+        "installation-source": "dist",
         "autoload": {
             "files": [
                 "src/common.php"
@@ -1674,6 +1680,7 @@
                 "think\\admin\\": "src"
             }
         },
+        "notification-url": "https://packagist.org/downloads/",
         "license": [
             "MIT"
         ],

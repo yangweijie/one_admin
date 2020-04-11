@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2e8a67d654adad94a4576ef8006cda88",
+    "content-hash": "be4f71729195de9436594852062df590",
     "packages": [
         {
             "name": "aktuba/php-puppeteer",
@@ -1398,13 +1398,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/zoujingli/ThinkLibrary.git",
-                "reference": "62da1187283ddeea4a314b614a337b1bd911cde5"
+                "reference": "a6b2f3929c9853c700e45e260c2eaf0ed0aeda3f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://mirrors.huaweicloud.com/repository/php/dist/zoujingli/think-library/zoujingli-think-library-v6.0.x-dev-6376bf39.zip",
-                "reference": "62da1187283ddeea4a314b614a337b1bd911cde5",
-                "shasum": "322211b59c4e551650988c2bf29bfe1dbd82e362"
+                "url": "https://api.github.com/repos/zoujingli/ThinkLibrary/zipball/a6b2f3929c9853c700e45e260c2eaf0ed0aeda3f",
+                "reference": "a6b2f3929c9853c700e45e260c2eaf0ed0aeda3f",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
                 "ext-curl": "*",
@@ -1429,6 +1435,7 @@
                     "think\\admin\\": "src"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1440,7 +1447,7 @@
             ],
             "description": "ThinkPHP v6.0 Development Library",
             "homepage": "http://framework.thinkadmin.top",
-            "time": "2020-04-07T06:09:04+00:00"
+            "time": "2020-04-09T14:06:42+00:00"
         }
     ],
     "packages-dev": [

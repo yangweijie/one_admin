@@ -14,6 +14,7 @@ use app\common\builder\ZBuilder;
 use app\user\model\Role;
 use think\facade\Cache;
 use think\facade\Env;
+use think\facade\View;
 
 /**
  * 表格构建器
@@ -1603,7 +1604,7 @@ class Builder extends ZBuilder
         $file = base_path(). $this->_module.'/view/admin/'.$this->_controller.'/'.$template.'.html';
         if (file_exists($file)) {
             $content = file_get_contents($file);
-            $content = $this->view->display($content, $vars);
+            $content = View::display($content, $vars);
         } else {
             $content = '模板文件不存在：'.$file;
         }

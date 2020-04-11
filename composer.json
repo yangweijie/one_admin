@@ -28,7 +28,7 @@
         "topthink/think-captcha": "^3.0",
         "mtdowling/cron-expression": "^1.2",
         "guzzlehttp/guzzle": "^6.5",
-        "zoujingli/think-library": "6.0.*-dev"
+        "zoujingli/think-library": "6.0.x-dev"
     },
     "require-dev": {
         "symfony/var-dumper": "^4.2"
