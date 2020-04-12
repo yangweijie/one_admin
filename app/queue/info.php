@@ -10,7 +10,7 @@ return [
     // 模块图标[选填]
     'icon'        => 'fa fa-fw fa-tasks',
     // 模块描述[选填]
-    'description' => '队列任务 移植于think-admin',
+    'description' => '队列任务 适配tp6 移植于think-admin',
     // 开发者[必填]
     'author'      => 'yangweijie',
     // 开发者网址[选填]
@@ -23,4 +23,7 @@ return [
     ],
 
     'config'=>[],
+    'tables' => [
+		'system_queue',
+	]
 ];
