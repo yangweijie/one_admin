@@ -1491,38 +1491,83 @@ if (!function_exists('dp_send_message')) {
         $MessageModel = $model;
         return false !== $MessageModel->saveAll($list);
     }
+}
 
-	function tree($directory)
-	{
-		$mydir = dir($directory);
-		$files = [];
-		$ds = DIRECTORY_SEPARATOR;
-		while($file = $mydir->read())
-		{
-			if((is_dir("{$directory}{$ds}{$file}")) AND ($file!=".") AND ($file!=".."))
-			{
-				$temps = tree("{$directory}{$ds}{$file}");
-				if($temps){
-					foreach ($temps as $temp) {
-						$files[] = $temp;
-					}
-				}
-			}elseif(!is_dir("{$directory}{$ds}{$file}")){
-				$files[] = $directory.DIRECTORY_SEPARATOR.$file;
-			}
-		}
-		$mydir->close();
-		return $files;
-	}
+function tree($directory)
+{
+    $mydir = dir($directory);
+    $files = [];
+    $ds = DIRECTORY_SEPARATOR;
+    while($file = $mydir->read())
+    {
+        if((is_dir("{$directory}{$ds}{$file}")) AND ($file!=".") AND ($file!=".."))
+        {
+            $temps = tree("{$directory}{$ds}{$file}");
+            if($temps){
+                foreach ($temps as $temp) {
+                    $files[] = $temp;
+                }
+            }
+        }elseif(!is_dir("{$directory}{$ds}{$file}")){
+            $files[] = $directory.DIRECTORY_SEPARATOR.$file;
+        }
+    }
+    $mydir->close();
+    return $files;
+}
 
-	// 获取数据库配置
-	function database_config($name, $connection_name = ''){
-		$name = str_ireplace('database.', '', $name);
-		$db_config = config('database');
-		if(isset($db_config[$name])){
-			return $db_config[$name];
-		}else{
-			return $db_config['connections'][$connection_name?:$db_config['default']][$name]??'';
-		}
-	}
+// 获取数据库配置
+function database_config($name, $connection_name = ''){
+    $name = str_ireplace('database.', '', $name);
+    $db_config = config('database');
+    if(isset($db_config[$name])){
+        return $db_config[$name];
+    }else{
+        return $db_config['connections'][$connection_name?:$db_config['default']][$name]??'';
+    }
+}
+
+if (!function_exists('debug')) {
+    /**
+     * 记录时间（微秒）和内存使用情况
+     * @param string            $start 开始标签
+     * @param string            $end 结束标签
+     * @param integer|string    $dec 小数位 如果是m 表示统计内存占用
+     * @return mixed
+     */
+    function debug($start, $end = '', $dec = 6)
+    {
+        static $info = [];
+        static $mem = [];
+        if ('' == $end) {
+            $info[$start] = is_float($end) ? $end : microtime(true);
+        } else {
+            if ('time' != $end) {
+                $mem['mem'][$start]  = is_float($end) ? $end : memory_get_usage();
+                $mem['peak'][$start] = memory_get_peak_usage();
+            }
+            if($dec == 'm'){
+                if (!isset($mem['mem'][$end])) {
+                    $mem['mem'][$end] = memory_get_usage();
+                }
+
+                $size = $mem['mem'][$end] - $mem['mem'][$start];
+                $a    = ['B', 'KB', 'MB', 'GB', 'TB'];
+                $pos  = 0;
+
+                while ($size >= 1024) {
+                    $size /= 1024;
+                    $pos++;
+                }
+
+                return round($size, $dec) . " " . $a[$pos];
+            }else{
+                if (!isset($info[$end])) {
+                    $info[$end] = microtime(true);
+                }
+
+                return number_format(($info[$end] - $info[$start]), $dec);
+            }
+        }
+    }
 }

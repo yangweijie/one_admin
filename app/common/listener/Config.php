@@ -36,26 +36,26 @@ class Config
         $request = request();
         $baseUrl = $request->baseUrl();
         if(stripos($baseUrl, '.php') === false){
-        	if($baseUrl[0] == '/'){
-        		$baseUrl = substr($baseUrl, 1);
-        		$module  = explode('/', str_ireplace($request->baseFile().'/', '', $baseUrl))[0];
-        	}
+            if($baseUrl[0] == '/'){
+                $baseUrl = substr($baseUrl, 1);
+                $module  = explode('/', str_ireplace($request->baseFile().'/', '', $baseUrl))[0];
+            }
         }else{
-        	if(stripos($baseUrl, $request->baseFile().'/') === false){
-        		$module = explode('/', str_ireplace($request->baseFile(), '', $baseUrl))[0];
-        	}else{
-        		$module = explode('/', str_ireplace($request->baseFile().'/', '', $baseUrl))[0];
-        	}
+            if(stripos($baseUrl, $request->baseFile().'/') === false){
+                $module = explode('/', str_ireplace($request->baseFile(), '', $baseUrl))[0];
+            }else{
+                $module = explode('/', str_ireplace($request->baseFile().'/', '', $baseUrl))[0];
+            }
         }
         if(!defined('MODULE')){
-        	define('MODULE', $module?: trim($request->baseFile(), '.php'));
+            define('MODULE', $module?: trim($request->baseFile(), '.php'));
         }
 
         // 获取入口目录
         $base_file = Request::baseFile();
         $base_dir  = substr($base_file, 0, strripos($base_file, '/') + 1);
         if(!defined('PUBLIC_PATH'))
-        	define('PUBLIC_PATH', $base_dir);
+            define('PUBLIC_PATH', $base_dir);
 
         // 视图输出字符串内容替换
         $view_replace_str = [
@@ -98,19 +98,18 @@ class Config
                 header("Location: ".$base_file.'/admin', true, 302);exit();
             }
             if (!in_array($module, config('module.default_controller_layer'))) {
-
                 // 修改默认访问控制器层
                 $route_config = config('route');
-            	$route_config['controller_layer'] = 'admin';
-            	config($route_config, 'route');
+                $route_config['controller_layer'] = 'admin';
                 // 修改视图模板路径
                 $view['view_path'] = app_path(). $module. '/view/admin/';
+                config($route_config, 'route');
             }else{
-            	$module_dir = $module == 'index'?'admin':$module;
-            	$view['view_path'] = app_path(). $module_dir. '/view/';
-            	$route_config                     = config('route');
-            	$route_config['controller_layer'] = 'controller';
-            	config($route_config, 'route');
+                $module_dir = $module == 'index'?'admin':$module;
+                $view['view_path'] = app_path(). $module_dir. '/view/';
+                $route_config                     = config('route');
+                $route_config['controller_layer'] = 'controller';
+                config($route_config, 'route');
             }
 
         } else {
@@ -119,9 +118,9 @@ class Config
             }
             if (MODULE != '' && !in_array(MODULE, config('module.default_controller_layer'))) {
                 // 修改默认访问控制器层
-            	$route_config                         = config('route');
-            	$route_config['controller_layer'] = 'home';
-            	config($route_config, 'route');
+                $route_config                         = config('route');
+                $route_config['controller_layer'] = 'home';
+                config($route_config, 'route');
             }
         }
 
