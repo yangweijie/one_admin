@@ -12,6 +12,7 @@ namespace app\admin\controller;
 use app\common\controller\Common;
 use app\admin\model\Menu as MenuModel;
 use app\admin\model\Attachment as AttachmentModel;
+use app\common\builder\ZBuilder;
 use think\facade\Cache;
 use think\facade\Db;
 
@@ -494,4 +495,11 @@ class Ajax extends Common
 	        return json(['code'=>0]);
 	    }
 	}
+
+    public function cutfile(){
+        return ZBuilder::make('form')
+            ->setPageTitle('分片上传')
+            ->addCutfile('file', '上传')
+            ->fetch();
+    }
 }
